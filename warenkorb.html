@@ -31,186 +31,140 @@
             list-style: none;
             padding: 0;
             margin-bottom: 30px;
+            background-color: #2b2b2b;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
-        
-        .cart-item {
+        #cart-items li {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #2b2b2b;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 6px;
+            padding: 15px 0;
+            border-bottom: 1px solid #444;
         }
-        
+        #cart-items li:last-child {
+            border-bottom: none;
+        }
         .item-details {
             flex-grow: 1;
             text-align: left;
+            padding-right: 20px;
         }
-        
-        .item-details h4 {
-            margin: 0 0 5px 0;
+        .item-details strong {
+            color: #FF0000;
+        }
+        .item-quantity {
+            font-weight: bold;
             color: #f0f0f0;
+            margin-right: 10px;
         }
-        
-        .item-details p {
-            margin: 0;
-            font-size: 0.9em;
-            color: #cccccc;
-        }
-        
-        .quantity-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .quantity-controls input {
-            width: 40px;
-            text-align: center;
-            background-color: #1a1a1a;
-            color: #ffffff;
-            border: 1px solid #FF0000;
-            padding: 5px;
-            border-radius: 3px;
-        }
-        
         .remove-btn {
-            background-color: #FF0000;
-            color: white;
+            background-color: #444;
+            color: #ffffff;
             border: none;
             padding: 5px 10px;
+            border-radius: 4px;
             cursor: pointer;
-            border-radius: 3px;
-            font-size: 0.9em;
             transition: background-color 0.2s;
         }
-        
         .remove-btn:hover {
-            background-color: #a9000c;
+            background-color: #FF0000;
         }
         
-        .empty-cart-message {
-            color: #cccccc;
-            font-style: italic;
-            padding: 40px 0;
-        }
-
+        /* Gesamt-Info */
         .total-info {
-            font-size: 1.5em;
-            font-weight: 700;
+            font-size: 1.2em;
+            font-weight: bold;
             color: #FF0000;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #2b2b2b;
+            border-radius: 8px;
         }
         
+        /* Bestell-Button */
         .cta-bestellen {
             background-color: #FF0000;
-            color: white;
-            padding: 15px 30px;
+            color: #ffffff;
             text-decoration: none;
+            padding: 15px 30px;
             border: none;
             border-radius: 5px;
-            font-size: 1.2em;
-            font-weight: 700;
+            font-weight: bold;
+            font-size: 1.1em;
             cursor: pointer;
-            display: block;
-            width: 100%;
+            transition: background-color 0.3s ease;
             max-width: 400px;
-            margin: 20px auto 0;
-            transition: background-color 0.2s;
+            display: block;
+            margin: 0 auto;
         }
-
         .cta-bestellen:hover {
             background-color: #a9000c;
         }
 
-        /* Navigationsstil beibehalten */
+        .empty-cart-message {
+            margin-top: 50px;
+            font-size: 1.2em;
+            color: #ccc;
+        }
+        
+        /* Stil für die feste Navigation */
         .fixed-compact-nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: #1a1a1a;
-            border-bottom: 3px solid #FF0000;
-            z-index: 1000;
-            padding: 20px 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 10px 0;
+            z-index: 999;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
         }
         .fixed-compact-nav .container {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            max-width: 1200px; 
-            margin: 0 auto;
+            align-items: center;
             padding: 0 20px;
         }
-        .fixed-compact-nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
+        .fixed-compact-nav .header-logo {
+            height: 30px;
+            margin-right: 20px;
         }
-        .fixed-compact-nav li a {
+        .fixed-compact-nav nav ul {
+            display: flex;
+            list-style: none;
+        }
+        .fixed-compact-nav nav a {
             color: #ffffff;
             text-decoration: none;
-            padding: 0 15px;
+            padding: 10px 15px;
+            display: block;
+            font-family: 'Oswald', sans-serif;
             font-weight: 700;
-            font-size: 1.1em;
+            transition: color 0.3s ease;
         }
-        .fixed-compact-nav .header-logo-small {
-            height: 45px; 
-            margin-right: 15px;
-        }
-        .fixed-compact-nav .header-title-small {
-            font-size: 1.5em;
-            font-weight: 700;
+        .fixed-compact-nav nav a:hover {
             color: #FF0000;
-            margin-right: auto;
         }
-        body {
-            padding-top: 85px; 
-        }
-        /* ======================================= */
-/* Warenkorb Benachrichtigung (Toast)      */
-/* ======================================= */
-#notification-toast {
-    visibility: hidden; /* Standardmäßig versteckt */
-    min-width: 250px;
-    margin-left: -125px; /* Zentrieren des Toasts */
-    background-color: #FF0000; /* Rot */
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 16px;
-    position: fixed;
-    z-index: 1050; /* Über allem, sogar über der Navigation */
-    left: 50%;
-    bottom: 30px; /* Am unteren Bildschirmrand */
-    font-size: 1.1em;
-    font-weight: 700;
-    opacity: 0;
-    transition: opacity 0.5s, bottom 0.5s;
-}
-
-#notification-toast.show {
-    visibility: visible;
-    opacity: 1;
-    bottom: 50px; /* Bewegt sich sanft nach oben */
-}
     </style>
 </head>
 <body>
     
-    <nav class="fixed-compact-nav">
+    <header class="fixed-compact-nav">
         <div class="container">
-            <img src="logo_furia.png" alt="Logo" class="header-logo-small">
-            <div class="header-title-small">COLONIA DELLA FURIA</div>
-            <ul>
-                <li><a href="index.html">Home</a></li> 
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="warenkorb.html">Warenkorb (<span id="cart-count-nav">0</span>)</a></li>
-            </ul>
+            <a href="index.html" class="header-logo-link">
+                <img src="logo_furia.png" alt="Logo Colonia Della Furia" class="header-logo">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li> 
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="warenkorb.html">Warenkorb (<span id="cart-count-nav">0</span>)</a></li>
+                </ul>
+            </nav>
         </div>
-    </nav>
+    </header>
 
     <main>
         
@@ -239,6 +193,16 @@
     </main>
     
     <button id="scrollToTopBtn" title="Zum Seitenanfang">↑</button>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Colonia Della Furia. Unabhängiger Fanclub. Alle Rechte vorbehalten. | <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></p>
+            <div class="social-links">
+                <a href="https://www.tiktok.com/@coloniadellafuria" target="_blank" aria-label="TikTok"><img src="tiktok.png" alt="TikTok"></a>
+                <a href="https://www.instagram.com/coloniadellanfuria/" target="_blank" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>

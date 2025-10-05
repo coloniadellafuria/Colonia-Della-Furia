@@ -11,12 +11,11 @@
     <style>
         /* Spezifische Stile für die Shop-Seite */
         #shop {
-            padding: 80px 0 100px 0;
+            padding: 80px 0;
             background-color: #1a1a1a; 
             color: #ffffff;
             line-height: 1.6;
             text-align: center;
-            min-height: 100vh;
         }
         #shop .container {
             max-width: 1200px;
@@ -27,144 +26,155 @@
             font-size: 2.5em;
         }
         
-        /* Stil für die Shop-Kategorien */
-        .shop-kategorien {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .kategorie-box {
-            background-color: #2b2b2b;
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            max-width: 450px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        
-        .kategorie-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(255, 0, 0, 0.2);
-        }
-
-        .kategorie-box h3 {
-            color: #FF0000;
-            font-size: 1.8em;
-            margin-bottom: 15px;
-        }
-
-        .kategorie-box p {
-            color: #f0f0f0;
-            margin-bottom: 25px;
-        }
-        
         /* Stil für die feste Navigation */
         .fixed-compact-nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: #1a1a1a;
-            border-bottom: 3px solid #FF0000;
-            z-index: 1000;
-            padding: 20px 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 10px 0;
+            z-index: 999;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
         }
         .fixed-compact-nav .container {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            max-width: 1200px; 
-            margin: 0 auto;
+            align-items: center;
             padding: 0 20px;
         }
-        .fixed-compact-nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
+        .fixed-compact-nav .header-logo {
+            height: 30px;
+            margin-right: 20px;
         }
-        .fixed-compact-nav li a {
+        .fixed-compact-nav nav ul {
+            display: flex;
+            list-style: none;
+        }
+        .fixed-compact-nav nav a {
             color: #ffffff;
             text-decoration: none;
-            padding: 0 15px;
+            padding: 10px 15px;
+            display: block;
+            font-family: 'Oswald', sans-serif;
             font-weight: 700;
-            font-size: 1.1em;
+            transition: color 0.3s ease;
         }
-        .fixed-compact-nav .header-logo-small {
-            height: 45px; 
-            margin-right: 15px;
-        }
-        .fixed-compact-nav .header-title-small {
-            font-size: 1.5em;
-            font-weight: 700;
+        .fixed-compact-nav nav a:hover {
             color: #FF0000;
-            margin-right: auto;
-        }
-        body {
-            padding-top: 85px; 
         }
 
-        /* Responsivität */
-        @media (max-width: 900px) {
-            .shop-kategorien {
-                flex-direction: column;
-                gap: 20px;
-            }
+        /* Shop Grid */
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .shop-item {
+            background-color: #2b2b2b;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        .shop-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+        .shop-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border: 2px solid #FF0000;
+        }
+        .shop-item h3 {
+            color: #FF0000;
+            margin-bottom: 10px;
+            font-family: 'Oswald', sans-serif;
+        }
+        .shop-item p {
+            font-size: 0.9em;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+        .shop-item .cta-button {
+             background-color: #FF0000;
+             color: #ffffff;
+             text-decoration: none;
+             padding: 10px 20px;
+             border-radius: 5px;
+             font-weight: bold;
+             display: inline-block;
+             margin-top: 15px;
+             transition: background-color 0.3s ease;
+        }
+        .shop-item .cta-button:hover {
+            background-color: #a9000c;
         }
     </style>
 </head>
 <body>
     
-    <nav class="fixed-compact-nav">
+    <header class="fixed-compact-nav">
         <div class="container">
-            <img src="logo_furia.png" alt="Logo" class="header-logo-small">
-            <div class="header-title-small">COLONIA DELLA FURIA</div>
-            <ul>
-                <li><a href="index.html">Home</a></li> 
-                <li><a href="index.html#news">Aktuelles</a></li>
-                <li><a href="index.html#about">Über uns</a></li>
-                <li><a href="mitglied.html">Mitglied werden</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="warenkorb.html">Warenkorb (<span id="cart-count-nav">0</span>)</a></li>
-            </ul>
+            <a href="index.html" class="header-logo-link">
+                <img src="logo_furia.png" alt="Logo Colonia Della Furia" class="header-logo">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li> 
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="warenkorb.html">Warenkorb (<span id="cart-count-nav">0</span>)</a></li>
+                </ul>
+            </nav>
         </div>
-    </nav>
+    </header>
 
     <main>
         <section id="shop">
             <div class="container">
-                <h2>Unser Fanartikel-Shop</h2>
-                <p>Wähle eine Kategorie, um die verfügbaren Artikel in deinen Warenkorb zu legen. Du kannst uns anschließend eine Bestell-Anfrage senden.</p>
+                <h2>Unser Shop</h2>
+                <p>Wähle eine Kategorie, um die verfügbaren Artikel in den Warenkorb zu legen. Die Bestellung erfolgt per E-Mail-Anfrage.</p>
                 
-                <div class="shop-kategorien">
+                <div class="shop-grid">
                     
-                    <div class="kategorie-box">
+                    <div class="shop-item">
+                        <img src="{6EAED032-4739-4753-B586-53E1C00CECF5}.png" alt="Bekleidung">
                         <h3>Bekleidung</h3>
-                        <p>Hoodies, Shirts und Schals – Zeige deine Furia in der Arena!</p>
+                        <p>T-Shirts, Hoodies und Fan-Trikots im Colonia Style.</p>
                         <a href="bekleidung.html" class="cta-button">Zur Bekleidung</a>
                     </div>
                     
-                    <div class="kategorie-box">
+                    <div class="shop-item">
+                        <img src="{4F7E3C7C-0A0E-468F-9598-ED9043E99BCD}.png" alt="Sticker & Accessoires">
                         <h3>Sticker & Accessoires</h3>
-                        <p>Aufkleber, Feuerzeuge und weiteres Zubehör für den Spieltag.</p>
-                        <a href="sticker.html" class="cta-button">Zu den Stickern</a>
+                        <p>Stickerbögen, Feuerzeuge und weitere Accessoires.</p>
+                        <a href="sticker.html" class="cta-button">Zu Stickern & mehr</a>
                     </div>
-                    
+
                 </div>
                 
-                <p style="margin-top: 60px; font-size: 1.1em;">
-                    Hinweis: Dies ist eine Bestell-Anfrage. Du erhältst alle weiteren Informationen (Preise, Größen, Zahlung) per E-Mail an **coloniadellafuria1972@gmail.com**
-                </p>
+                <p style="margin-top: 50px; font-size: 1.1em; font-weight: bold; color: #FF0000;">Bestellungen erfolgen über die Bestell-Anfrage im <a href="warenkorb.html" style="color: #FF0000; text-decoration: underline;">Warenkorb</a>. Bei Fragen: coloniadellafuria1972@gmail.com</p>
+                
             </div>
         </section>
         
     </main>
     
     <button id="scrollToTopBtn" title="Zum Seitenanfang">↑</button>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Colonia Della Furia. Unabhängiger Fanclub. Alle Rechte vorbehalten. | <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></p>
+            <div class="social-links">
+                <a href="https://www.tiktok.com/@coloniadellafuria" target="_blank" aria-label="TikTok"><img src="tiktok.png" alt="TikTok"></a>
+                <a href="https://www.instagram.com/coloniadellanfuria/" target="_blank" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>

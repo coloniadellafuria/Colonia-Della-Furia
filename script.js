@@ -1,269 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ===================================
-    // WARENKORB LOGIK
-    // ===================================
-    
-    const CART_STORAGE_KEY = 'coloniaFuriaCart';
+    // ====================================
+    // Allgemeine Funktionen
+    // ====================================
 
-    /**
-     * Lädt den Warenkorb aus dem localStorage.
-     * @returns {Array} Array von Warenkorb-Artikeln.
-     */
-    function getCart() {
-        const cartString = localStorage.getItem(CART_STORAGE_KEY);
-        return cartString ? JSON.parse(cartString) : [];
-    }
-
-    /**
-     * Speichert den aktuellen Warenkorb im localStorage.
-     * @param {Array} cart - Array von Warenkorb-Artikeln.
-     */
-    function saveCart(cart) {
-        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
-        updateCartCount();
-        if (document.getElementById('cart-section')) {
-            renderCart();
-        }
-    }
-
-    /**
-     * Aktualisiert die Anzahl der Artikel im Warenkorb (in der Navigationsleiste).
-     */
-    function updateCartCount() {
-        const cart = getCart();
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        const countElements = document.querySelectorAll('#cart-count-nav');
-        countElements.forEach(el => el.textContent = totalItems);
-    }
-    
-    /**
-     * Zeigt eine Toast-Benachrichtigung an (ersetzt alert()).
-     * @param {string} message - Die anzuzeigende Nachricht.
-     */
-    function showNotification(message) {
-        let notification = document.getElementById('notification-toast');
-        
-        // Erstellen, falls noch nicht vorhanden
-        if (!notification) {
-            notification = document.createElement('div');
-            notification.id = 'notification-toast';
-            document.body.appendChild(notification);
-        }
-        
-        notification.textContent = message;
-        notification.classList.add('show');
-        
-        // Entfernt die Klasse nach 3 Sekunden, um die Benachrichtigung auszublenden
-        setTimeout(() => {
-            notification.classList.remove('show');
-        }, 3000);
-    }
-
-    /**
-     * Fügt ein Produkt zum Warenkorb hinzu oder erhöht die Menge.
-     * @param {string} id - Eindeutige Produkt-ID.
-     * @param {string} name - Produktname.
-     * @param {string} description - Produktbeschreibung.
-     */
-    function addToCart(id, name, description) {
-        const cart = getCart();
-        const existingItem = cart.find(item => item.id === id);
-
-        if (existingItem) {
-            existingItem.quantity += 1;
-        } else {
-            cart.push({ id, name, description, quantity: 1 });
-        }
-        
-        saveCart(cart);
-        // NEU: Zeige die benutzerdefinierte Benachrichtigung
-        showNotification(`${name} wurde zum Warenkorb hinzugefügt!`);
-    }
-
-    /**
-     * Aktualisiert die Menge eines Artikels im Warenkorb.
-     * @param {string} id - Eindeutige Produkt-ID.
-     * @param {number} newQuantity - Die neue Menge.
-     */
-    function updateCartItemQuantity(id, newQuantity) {
-        let cart = getCart();
-        const quantity = parseInt(newQuantity);
-
-        if (quantity < 1) {
-            // Wenn Menge 0 oder weniger, entferne das Element
-            removeFromCart(id);
-            return;
-        }
-
-        cart = cart.map(item => {
-            if (item.id === id) {
-                return { ...item, quantity: quantity };
-            }
-            return item;
-        });
-
-        saveCart(cart);
-    }
-
-    /**
-     * Entfernt einen Artikel komplett aus dem Warenkorb.
-     * @param {string} id - Eindeutige Produkt-ID.
-     */
-    function removeFromCart(id) {
-        let cart = getCart();
-        cart = cart.filter(item => item.id !== id);
-        saveCart(cart);
-    }
-
-    /**
-     * Leert den gesamten Warenkorb.
-     */
-    function clearCart() {
-        if (confirm('Bist du sicher, dass du den Warenkorb leeren möchtest?')) {
-            localStorage.removeItem(CART_STORAGE_KEY);
-            saveCart([]); // Speichert den leeren Warenkorb
-        }
-    }
-
-    /**
-     * Zeigt den Inhalt des Warenkorbs auf der warenkorb.html an.
-     */
-    function renderCart() {
-        const cart = getCart();
-        const listElement = document.getElementById('cart-items');
-        const totalItemsElement = document.getElementById('cart-total-items');
-        const emptyMessage = document.getElementById('empty-cart-message');
-        const cartContent = document.getElementById('cart-content');
-
-        if (!listElement) return;
-
-        listElement.innerHTML = ''; // Leere die aktuelle Liste
-
-        if (cart.length === 0) {
-            cartContent.style.display = 'none';
-            emptyMessage.style.display = 'block';
-            totalItemsElement.textContent = '0';
-            return;
-        }
-
-        cartContent.style.display = 'block';
-        emptyMessage.style.display = 'none';
-
-        let totalItems = 0;
-        
-        cart.forEach(item => {
-            totalItems += item.quantity;
-            const listItem = document.createElement('li');
-            listItem.className = 'cart-item';
-            
-            listItem.innerHTML = `
-                <div class="item-details">
-                    <h4>${item.name}</h4>
-                    <p>${item.description}</p>
-                </div>
-                <div class="quantity-controls">
-                    <input type="number" 
-                           value="${item.quantity}" 
-                           min="1" 
-                           data-id="${item.id}"
-                           class="quantity-input">
-                    <button class="remove-btn" data-id="${item.id}">Entfernen</button>
-                </div>
-            `;
-            listElement.appendChild(listItem);
-        });
-        
-        totalItemsElement.textContent = totalItems;
-    }
-    
-    /**
-     * Erstellt die Bestell-E-Mail.
-     */
-    function createOrderEmail() {
-        const cart = getCart();
-        if (cart.length === 0) {
-            alert('Dein Warenkorb ist leer.');
-            return;
-        }
-
-        let body = "Hallo Colonia Della Furia Team,\n\nIch möchte folgende Artikel bestellen:\n\n";
-        
-        cart.forEach(item => {
-            body += `- ${item.quantity}x ${item.name} (${item.description})\n`;
-        });
-        
-        body += "\nBitte sende mir Informationen zu Verfügbarkeit, Gesamtpreis und Zahlungsmodalitäten. Ich benötige auch die gewünschten Größen für die Bekleidung.\n\n"
-        body += "--- Bitte folgende Felder ausfüllen ---\n"
-        body += "Dein Name: [Dein Name]\n"
-        body += "Deine E-Mail: [Deine E-Mail]\n"
-        body += "Deine Adresse: [Deine Adresse]\n"
-        body += "Gewünschte Größen/Anmerkungen: [z.B. Hoodie S, T-Shirt XL]\n"
-
-
-        const subject = "Bestell-Anfrage Fanartikel";
-        const mailtoLink = `mailto:coloniadellafuria1972@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        
-        // Öffnet das E-Mail-Programm des Nutzers
-        window.location.href = mailtoLink;
-    }
-
-    // ===================================
-    // EVENT LISTENER
-    // ===================================
-
-    // 1. Produkt-Buttons auf bekleidung.html und sticker.html
-    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const id = this.dataset.id;
-            const name = this.dataset.name;
-            const description = this.dataset.description;
-            addToCart(id, name, description);
-        });
-    });
-
-    // 2. Event Listener für Warenkorb-Änderungen (Menge/Entfernen) auf warenkorb.html
-    const cartList = document.getElementById('cart-items');
-    if (cartList) {
-        cartList.addEventListener('change', function(e) {
-            if (e.target.classList.contains('quantity-input')) {
-                const id = e.target.dataset.id;
-                const newQuantity = e.target.value;
-                updateCartItemQuantity(id, newQuantity);
-            }
-        });
-        cartList.addEventListener('click', function(e) {
-            if (e.target.classList.contains('remove-btn')) {
-                const id = e.target.dataset.id;
-                removeFromCart(id);
-            }
-        });
-    }
-
-    // 3. Warenkorb leeren Button
-    const clearCartBtn = document.getElementById('clear-cart-btn');
-    if (clearCartBtn) {
-        clearCartBtn.addEventListener('click', clearCart);
-    }
-    
-    // 4. Bestell-Anfrage Button
-    const checkoutBtn = document.getElementById('checkout-btn');
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', createOrderEmail);
-    }
-
-    // ===================================
-    // INIT & Allgemeine Funktionen
-    // ===================================
-    
-    updateCartCount();
-
-    // Rendere den Warenkorb nur, wenn wir auf der warenkorb.html Seite sind
-    if (document.getElementById('cart-section')) {
-        renderCart();
-    }
-    
-    // Smooth Scrolling für Navigationslinks (Beibehalten)
+    // Smooth Scrolling für Navigationslinks
     document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -272,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetElement = document.getElementById(targetId);
 
             if (targetElement) {
+                // Manuelle Offset-Berechnung ist nicht nötig, da 'scroll-padding-top' im CSS die Fixierung übernimmt.
                 window.scrollTo({
                     top: targetElement.offsetTop, 
                     behavior: 'smooth'
@@ -279,5 +21,205 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Header Funktionalität (fixieren und kompakte Ansicht beim Scrollen)
+    const header = document.querySelector('header');
+    const toggleHeaderCompact = () => {
+        if (window.scrollY > 50) {
+            header.classList.add('compact');
+        } else {
+            header.classList.remove('compact');
+        }
+    };
     
+    window.addEventListener('scroll', toggleHeaderCompact);
+    // Initialer Check, falls die Seite nicht ganz oben geladen wird
+    toggleHeaderCompact();
+    
+    // Cookie-Consent Logik
+    const cookieConsent = document.getElementById('cookieConsent');
+    const acceptCookiesBtn = document.getElementById('acceptCookies');
+    
+    if (localStorage.getItem('cookiesAccepted') !== 'true') {
+        cookieConsent.style.display = 'block';
+    } else {
+        cookieConsent.style.display = 'none';
+    }
+    
+    if (acceptCookiesBtn) {
+        acceptCookiesBtn.addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'true');
+            cookieConsent.style.display = 'none';
+        });
+    }
+    
+    // Scroll-To-Top Button
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+    
+    const toggleScrollToTop = () => {
+        if (window.scrollY > 300) {
+            scrollToTopBtn.style.display = 'block';
+        } else {
+            scrollToTopBtn.style.display = 'none';
+        }
+    };
+    
+    if (scrollToTopBtn) {
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    window.addEventListener('scroll', toggleScrollToTop);
+    toggleScrollToTop(); // Initialer Check
+
+    // ====================================
+    // SPIELPLAN LOGIK
+    // ====================================
+    
+    /**
+     * Lädt die Spieldaten aus spiele.json und aktualisiert das Highlight/die Liste.
+     */
+    function displayUpcomingGames() {
+        const highlightElement = document.getElementById('next-game-highlight');
+        const listElement = document.getElementById('upcoming-games-list');
+        const toggleBtn = document.getElementById('toggle-games-btn');
+
+        // Sicherstellen, dass die Elemente existieren
+        if (!highlightElement || !listElement) {
+            return;
+        }
+
+        // Zeigt "Lade..." an
+        highlightElement.innerHTML = '<div class="card-content"><p class="loading-text">Lade Spielplan...</p></div>';
+        listElement.innerHTML = '';
+
+
+        fetch('spiele.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const now = new Date();
+
+                // Filtern: Nur zukünftige Spiele
+                const upcomingGames = data.filter(spiel => new Date(spiel.datum) > now);
+
+                if (upcomingGames.length > 0) {
+                    // 1. Das nächste Spiel (Highlight)
+                    const nextGame = upcomingGames[0];
+                    const nextGameDate = new Date(nextGame.datum);
+
+                    // Ort-Kürzel für Highlight
+                    const ortKuerzelHighlight = nextGame.ort === 'Heimspiel' ? 'HEIMSPIEL' : 'AUSWÄRTS';
+                    const highlightHTML = `
+                        <div class="card-content">
+                            <div class="highlight-date">${nextGameDate.toLocaleDateString('de-DE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</div>
+                            <div class="highlight-opponent">vs. ${nextGame.gegner}</div>
+                            <div class="highlight-details">${ortKuerzelHighlight} | ${nextGameDate.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' })} Uhr | ${nextGame.arena}</div>
+                        </div>
+                    `;
+                    highlightElement.innerHTML = highlightHTML;
+
+                    // 2. Die restlichen Spiele (Liste)
+                    const remainingGames = upcomingGames.slice(1); // Alle außer dem ersten
+                    
+                    if (remainingGames.length > 0) {
+                        // Zeigt den Button an, wenn es mehr als ein Spiel gibt
+                        if (toggleBtn) {
+                            toggleBtn.style.display = 'inline-block';
+                        }
+                        
+                        const listHTML = remainingGames.map(spiel => {
+                            const gameDate = new Date(spiel.datum);
+                            const ortKuerzel = spiel.ort === 'Heimspiel' ? 'H' : 'A';
+                            
+                            return `
+                                <div class="game-item">
+                                    <div class="date-info">${gameDate.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit' })} | ${gameDate.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' })}</div>
+                                    <div class="opponent-info">
+                                        vs. ${spiel.gegner}
+                                    </div>
+                                    <div class="location-info">
+                                        ${ortKuerzel} (${spiel.arena})
+                                    </div>
+                                </div>
+                            `;
+                        }).join('');
+                        listElement.innerHTML = listHTML;
+                    } else {
+                         listElement.innerHTML = '<p class="loading-text" style="color: #f0f0f0;">Keine weiteren Spiele in der Liste.</p>';
+                         if (toggleBtn) {
+                            toggleBtn.style.display = 'none'; // Versteckt den Button, wenn nur ein Spiel da ist
+                        }
+                    }
+                } else {
+                    // Keine kommenden Spiele
+                    highlightElement.innerHTML = '<div class="card-content"><div class="highlight-title">KEINE SPIELE</div><div class="highlight-opponent">Aktuell sind keine weiteren Spiele geplant.</div></div>';
+                    listElement.innerHTML = '';
+                    if (toggleBtn) {
+                        toggleBtn.style.display = 'none';
+                    }
+                }
+            })
+            .catch(error => {
+                // Fehlerbehandlung falls die Datei nicht geladen werden konnte
+                console.error('Fehler beim Laden der Spieldaten:', error);
+                if (highlightElement) {
+                    highlightElement.innerHTML = `
+                        <div class="card-content">
+                            <div class="highlight-title">FEHLER!</div>
+                            <div class="highlight-opponent">Daten konnten nicht geladen werden.</div>
+                            <div class="highlight-details">Bitte prüfen Sie, ob die Datei 'spiele.json' im richtigen Ordner liegt.</div>
+                        </div>
+                    `;
+                }
+                if (listElement) {
+                    listElement.innerHTML = '';
+                }
+            });
+
+    }
+    
+    // ====================================
+    // NEUE FUNKTION: Ausklapp-Logik für Spiele
+    // ====================================
+    function setupToggleGames() {
+        const toggleBtn = document.getElementById('toggle-games-btn');
+        const listContainer = document.getElementById('upcoming-games-list-container');
+
+        if (toggleBtn && listContainer) {
+            // Event-Listener für den Klick
+            toggleBtn.addEventListener('click', () => {
+                const isActive = listContainer.classList.toggle('active');
+                toggleBtn.classList.toggle('active');
+
+                if (isActive) {
+                    toggleBtn.textContent = 'Weitere Spiele ausblenden ▲';
+                } else {
+                    toggleBtn.textContent = 'Alle weiteren Spiele anzeigen ▼';
+                }
+            });
+
+            // Setzt den Button-Text initial korrekt (wird in displayUpcomingGames() angepasst)
+            toggleBtn.textContent = 'Alle weiteren Spiele anzeigen ▼';
+        }
+    }
+
+
+    displayUpcomingGames();
+
+    // Führt die Funktion alle 5 Minuten (300.000 Millisekunden) erneut aus,
+    // um neue Daten abzurufen und das Highlight automatisch zu aktualisieren.
+    setInterval(displayUpcomingGames, 300000); 
+    
+    // Initialisiert die Ausklapp-Logik
+    setupToggleGames(); 
+
 });

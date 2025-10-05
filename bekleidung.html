@@ -16,7 +16,7 @@
             color: #ffffff;
             line-height: 1.6;
             text-align: center;
-            min-height: 100vh; 
+            min-height: 100vh; /* Sorgt dafür, dass die Seite mindestens bildschirmhoch ist */
         }
         #products .container {
             max-width: 1200px;
@@ -33,172 +33,148 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: #1a1a1a;
-            border-bottom: 3px solid #FF0000;
-            z-index: 1000;
-            padding: 20px 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 10px 0;
+            z-index: 999;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
         }
         .fixed-compact-nav .container {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            max-width: 1200px; 
-            margin: 0 auto;
+            align-items: center;
             padding: 0 20px;
         }
-        .fixed-compact-nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
+        .fixed-compact-nav .header-logo {
+            height: 30px;
+            margin-right: 20px;
         }
-        .fixed-compact-nav li a {
+        .fixed-compact-nav nav ul {
+            display: flex;
+            list-style: none;
+        }
+        .fixed-compact-nav nav a {
             color: #ffffff;
             text-decoration: none;
-            padding: 0 15px;
+            padding: 10px 15px;
+            display: block;
+            font-family: 'Oswald', sans-serif;
             font-weight: 700;
-            font-size: 1.1em;
+            transition: color 0.3s ease;
         }
-        .fixed-compact-nav .header-logo-small {
-            height: 45px; 
-            margin-right: 15px;
-        }
-        .fixed-compact-nav .header-title-small {
-            font-size: 1.5em;
-            font-weight: 700;
+        .fixed-compact-nav nav a:hover {
             color: #FF0000;
-            margin-right: auto;
         }
-        body {
-            padding-top: 85px; 
-        }
-
-        /* Produkt-Grid */
+        
+        /* Produkt Grid */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            padding: 20px 0;
+            gap: 30px;
+            margin-bottom: 30px;
         }
-
         .product-item {
             background-color: #2b2b2b;
-            border-radius: 8px;
             padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: transform 0.3s ease;
         }
-        
+        .product-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
         .product-item img {
-            width: 100%;
+            max-width: 100%;
             height: auto;
-            border-radius: 4px;
+            border-radius: 6px;
             margin-bottom: 15px;
-            max-height: 250px;
-            object-fit: cover;
+            border: 2px solid #FF0000;
         }
-
         .product-item h3 {
             color: #FF0000;
-            font-size: 1.4em;
             margin-bottom: 10px;
+            font-family: 'Oswald', sans-serif;
         }
-        
         .product-item p {
-            color: #f0f0f0;
-            min-height: 40px; 
+            font-size: 0.9em;
+            color: #ccc;
             margin-bottom: 20px;
+            min-height: 40px; /* Einheitliche Höhe für Beschreibung */
         }
         
-        /* Warenkorb Button */
         .add-to-cart-btn {
             background-color: #FF0000;
-            color: white;
+            color: #ffffff;
             padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 700;
-            text-transform: uppercase;
             border: none;
+            border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-            display: block;
-            width: 100%;
-            max-width: 250px;
-            margin: 15px auto 0;
-            font-size: 1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.1s;
         }
-        
         .add-to-cart-btn:hover {
             background-color: #a9000c;
-            transform: scale(1.05);
+            transform: scale(1.02);
         }
-
     </style>
 </head>
 <body>
     
-    <nav class="fixed-compact-nav">
+    <header class="fixed-compact-nav">
         <div class="container">
-            <img src="logo_furia.png" alt="Logo" class="header-logo-small">
-            <div class="header-title-small">COLONIA DELLA FURIA</div>
-            <ul>
-                <li><a href="index.html">Home</a></li> 
-                <li><a href="index.html#news">Aktuelles</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="warenkorb.html">Warenkorb (<span id="cart-count-nav">0</span>)</a></li>
-            </ul>
+            <a href="index.html" class="header-logo-link">
+                <img src="logo_furia.png" alt="Logo Colonia Della Furia" class="header-logo">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li> 
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="warenkorb.html">Warenkorb (<span id="cart-count-nav">0</span>)</a></li>
+                </ul>
+            </nav>
         </div>
-    </nav>
+    </header>
 
     <main>
+        
         <section id="products">
             <div class="container">
                 <h2>Bekleidung</h2>
-                <p>Hoodies, T-Shirts und Schals – hier findest du alles, um deine Furia im Stadion zu zeigen.</p>
+                <p>Hochwertige Fan-Wear für die Arena und unterwegs.</p>
                 
                 <div class="product-grid">
                     
                     <div class="product-item">
-                        <img src="https://via.placeholder.com/350x250/FF0000/FFFFFF?text=Hoodie+Logo" alt="Fan Hoodie Logo">
-                        <h3>Fan Hoodie 'Furia'</h3>
-                        <p>Hochwertiger Kapuzenpullover mit gesticktem Furia-Logo.</p>
-                        <button class="add-to-cart-btn" 
-                                data-id="bekl-hoodie-furia" 
-                                data-name="Fan Hoodie 'Furia'" 
-                                data-description="Kapuzenpullover, gesticktes Logo">
-                            In den Warenkorb
-                        </button>
-                    </div>
-                    
-                    <div class="product-item">
-                        <img src="https://via.placeholder.com/350x250/1a1a1a/f0f0f0?text=T-Shirt+Logo" alt="Fan T-Shirt Logo">
+                        <img src="{886DAF98-F143-43D4-9230-B611AD6FC211}.png" alt="Fan T-Shirt Logo">
                         <h3>Fan T-Shirt 'Logo'</h3>
                         <p>Hochwertiges T-Shirt mit großem Logo-Print auf der Brust.</p>
-                        <button class="add-to-cart-btn" 
-                                data-id="bekl-shirt-logo" 
+                        <button class="cta-button add-to-cart-btn" 
+                                data-id="bekl-tshirt-logo" 
                                 data-name="Fan T-Shirt 'Logo'" 
-                                data-description="T-Shirt, Logo-Print">
+                                data-description="Hochwertiges T-Shirt, Logo-Print">
                             In den Warenkorb
                         </button>
                     </div>
                     
                     <div class="product-item">
-                        <img src="https://via.placeholder.com/350x250/FFFFFF/FF0000?text=Schal+Premium" alt="Premium Schal">
+                        <img src="{6619C5F4-D068-4FD6-A003-0682FC7AB67B}.png" alt="Premium Schal">
                         <h3>Premium Strickschal</h3>
                         <p>Ein Muss für die Arena: Der Premium-Strickschal.</p>
-                        <button class="add-to-cart-btn" 
-                                data-id="bekl-schal-premium" 
+                        <button class="cta-button add-to-cart-btn" 
+                                data-id="bekl-strickschal" 
                                 data-name="Premium Strickschal" 
-                                data-description="Strickschal, Rot/Weiß/Schwarz">
+                                data-description="Doppelt gewebt, hohe Qualität">
                             In den Warenkorb
                         </button>
                     </div>
                     
                     <div class="product-item">
-                        <img src="https://via.placeholder.com/350x250/1a1a1a/f0f0f0?text=Trikot+Replica" alt="Replica Trikot">
+                        <img src="{9A5DDE73-F6F8-4950-98D2-4C90DDDD7995}.png" alt="Replica Trikot">
                         <h3>Replica Trikot</h3>
                         <p>Das aktuelle Trikot im Colonia-Style.</p>
-                        <button class="add-to-cart-btn" 
+                        <button class="cta-button add-to-cart-btn" 
                                 data-id="bekl-trikot-replica" 
                                 data-name="Replica Trikot" 
                                 data-description="Colonia Style">

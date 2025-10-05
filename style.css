@@ -20,7 +20,7 @@ body {
     line-height: 1.6;
     color: var(--haie-schwarz);
     background: var(--haie-weiss);
-    /* **AKTUELLE ÄNDERUNG (1/2): 50px** Setzt den Platz für den fixierten Header auf 50px. */
+    /* Setzt den Platz für den fixierten Header auf 50px. */
     scroll-padding-top: 50px; 
 }
 
@@ -29,232 +29,267 @@ body {
     max-width: 1200px;
     margin: auto;
     overflow: hidden;
-    padding: 20px 0;
+    padding: 20px 0; /* Vertikaler Abstand innerhalb des Containers */
 }
 
-h1, h2, h3 {
-    font-family: 'Oswald', sans-serif;
-    color: var(--haie-schwarz);
-    margin-bottom: 15px;
-}
-
-h1 { font-size: 2.8em; text-transform: uppercase; }
-h2 { font-size: 2.2em; text-transform: uppercase; text-align: center; margin-bottom: 40px; }
-h3 { font-size: 1.8em; }
-
-.haie-rot {
-    color: var(--haie-rot);
-}
-
-/* Call-to-Action Buttons */
-.cta-button {
-    display: inline-block;
-    padding: 12px 25px;
-    background-color: var(--haie-rot);
-    color: var(--haie-weiss);
-    text-decoration: none;
-    font-weight: 700;
-    border-radius: var(--border-radius);
-    transition: background-color 0.3s ease, transform 0.2s;
-    border: 2px solid var(--haie-rot);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-top: 15px;
-}
-
-.cta-button:hover {
-    background-color: #a9000c;
-    transform: translateY(-2px);
-}
-
-.secondary-button {
-    background-color: transparent;
-    color: var(--haie-schwarz);
-    border-color: var(--haie-schwarz);
-}
-
-.secondary-button:hover {
-    background-color: var(--haie-schwarz);
-    color: var(--haie-weiss);
-    border-color: var(--haie-schwarz);
-}
-
-/* Header */
+/* Header & Navigation */
 header {
     background: var(--haie-schwarz);
     color: var(--haie-weiss);
-    padding: 20px 0;
-    text-align: center;
-    border-bottom: 5px solid var(--haie-rot);
-    transition: all 0.3s ease;
-}
-
-header .header-logo {
-    height: 70px;
-    margin-bottom: 10px;
-    transition: all 0.3s ease;
-}
-
-header h1 {
-    transition: all 0.3s ease;
-}
-
-header p {
-    color: var(--text-grau);
-    margin: 0;
-    transition: all 0.3s ease;
-}
-
-header nav ul {
-    padding: 0;
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-header nav ul li {
-    margin: 0 15px;
-}
-
-header nav ul li a {
-    color: var(--haie-weiss);
-    text-decoration: none;
-    font-weight: 700;
-    padding: 5px 10px;
-    transition: color 0.3s ease, border-bottom 0.3s ease;
-    text-transform: uppercase;
-}
-
-header nav ul li a:hover,
-header nav ul li a.active {
-    color: var(--haie-rot);
-    border-bottom: 3px solid var(--haie-rot);
-}
-
-
-/* NEU: Header im Kompakt-Modus beim Scrollen */
-header.compact {
+    padding: 10px 0;
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 1000;
-    /* **AKTUELLE ÄNDERUNG (2/2): -0%** Der Header wird nicht mehr nach oben verschoben und bleibt vollständig sichtbar. */
-    transform: translateY(-0%); 
-    background-color: rgba(26, 26, 26, 0.98); 
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    padding: 10px 0;
+    z-index: 100;
+    transition: all 0.3s ease;
 }
 
-/* Passt das Layout des Containers im Kompakt-Modus an */
-header.compact .container {
+header.compact {
+    /* Kompakte Ansicht beim Scrollen */
+    padding: 5px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+header .container {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap; /* Erlaubt Umbruch auf kleinen Screens */
     justify-content: space-between;
-    padding: 0 20px;
+    align-items: center;
+    padding: 0 5%;
 }
 
-/* Passt die Größe der Hauptelemente im Kompakt-Modus an */
-header.compact h1 {
-    font-size: 1.5em; 
+header h1 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 1.8em;
     margin: 0;
 }
 
-header.compact .header-logo {
-    height: 40px; 
-    margin: 0 15px 0 0;
+header p {
+    font-size: 0.8em;
+    margin: -10px 0 0;
+    color: var(--text-grau);
 }
 
-header.compact br, 
-header.compact p {
-    display: none; /* Subline und Zeilenumbruch ausblenden */
+.header-logo {
+    height: 40px;
+    width: auto;
+    margin-right: 15px;
 }
 
-header.compact nav {
-    margin-top: 0;
-}
-
-
-/* Hero Section */
-#hero {
-    background: url('https://via.placeholder.com/1920x600/1a1a1a/FFFFFF?text=Kölner+Haie+Eishalle+Banner') no-repeat center center/cover;
-    height: 60vh;
+nav ul {
+    list-style: none;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-top: 5px;
+}
+
+nav ul li a {
     color: var(--haie-weiss);
-    text-align: center;
-    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 5px 15px;
+    display: block;
+    transition: color 0.3s ease;
 }
 
-#hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5); /* Dunkler Overlay */
-}
-
-#hero .container {
-    z-index: 10;
-    padding: 0;
-}
-
-#hero h2 {
-    font-size: 3.5em;
-    color: var(--haie-weiss);
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-}
-
-#hero p {
-    font-size: 1.4em;
-    margin-bottom: 30px;
-    font-weight: 400;
+nav ul li a:hover {
+    color: var(--haie-rot);
 }
 
 /* Allgemeine Sektionen */
 section {
-    padding: 80px 0;
+    padding: 50px 0;
+    text-align: center;
+    color: var(--haie-schwarz);
+    background: var(--haie-weiss);
 }
 
 .dark-section {
-    background: var(--haie-schwarz);
-    color: var(--haie-weiss);
-    text-align: center;
+    background: var(--dark-grey-bg);
+    color: var(--text-grau);
 }
 
-.dark-section h2, .dark-section h3 {
+section h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 2.2em;
     color: var(--haie-rot);
+    margin-bottom: 40px;
+    text-transform: uppercase;
 }
 
-.dark-section .cta-button.secondary-button {
+/* Hero Section */
+.hero-section {
+    padding-top: 70px; /* Platz für den fixierten Header */
+    background: var(--haie-schwarz);
+}
+
+.hero-banner {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Game Highlight Card (Nächstes Spiel) */
+#games {
+    background: var(--dark-grey-bg);
+    color: var(--text-grau);
+}
+
+.game-highlight-card {
+    background: var(--haie-schwarz);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+    border: 2px solid var(--haie-rot);
+    max-width: 600px;
+    margin: 20px auto;
+    font-family: 'Oswald', sans-serif;
+}
+
+.highlight-title {
+    font-size: 2.5em;
+    color: var(--haie-rot);
+    margin-bottom: 10px;
+}
+
+.highlight-date {
+    font-size: 1.2em;
+    font-weight: 400;
+    color: var(--text-grau);
+    margin-bottom: 5px;
+}
+
+.highlight-opponent {
+    font-size: 3em;
+    font-weight: 700;
     color: var(--haie-weiss);
-    border-color: var(--haie-weiss);
+    text-transform: uppercase;
+    margin-bottom: 10px;
 }
 
-.dark-section .cta-button.secondary-button:hover {
-    background-color: var(--haie-weiss);
-    color: var(--haie-schwarz);
+.highlight-details {
+    font-size: 1.1em;
+    color: var(--haie-rot);
+    font-weight: 400;
+}
+
+
+/* Game List (Ausklappbarer Teil) */
+#upcoming-games-list {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-top: 30px; /* Abstand nach dem Ausklappen */
+}
+
+.game-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #222222;
+    padding: 15px 20px;
+    border-radius: 5px;
+    border-left: 5px solid var(--haie-rot);
+    transition: background 0.3s ease;
+}
+
+.game-item:hover {
+    background: #333333;
+}
+
+.date-info {
+    font-weight: 700;
+    color: var(--haie-rot);
+    flex: 0 0 150px; /* Feste Breite für Datum/Uhrzeit */
+    text-align: left;
+}
+
+.opponent-info {
+    font-weight: 700;
+    color: var(--haie-weiss);
+    text-align: left;
+    flex-grow: 1;
+}
+
+.location-info {
+    font-size: 0.9em;
+    color: var(--text-grau);
+    flex: 0 0 180px; /* Feste Breite für Ort */
+    text-align: right;
+}
+
+/* News Section */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+    text-align: left;
+}
+
+.news-item {
+    background: var(--haie-schwarz);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+}
+
+.news-item:hover {
+    transform: translateY(-5px);
+}
+
+.news-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.news-item h3 {
+    color: var(--haie-rot);
+    padding: 15px 15px 5px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.news-item p {
+    padding: 0 15px 15px;
+    color: var(--text-grau);
+}
+
+.read-more {
+    display: block;
+    padding: 0 15px 15px;
+    color: var(--haie-rot);
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.read-more:hover {
+    color: var(--haie-weiss);
 }
 
 /* Gallery Section */
-#gallery .image-gallery {
-    display: flex;
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
+    margin-top: 30px;
 }
 
 .gallery-item {
-    background: var(--dark-grey-bg);
+    background: var(--haie-schwarz);
     border-radius: var(--border-radius);
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    width: 30%;
-    min-width: 280px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    padding-bottom: 10px;
 }
 
 .gallery-item img {
@@ -265,303 +300,62 @@ section {
 }
 
 .gallery-item p {
-    padding: 10px;
-    margin: 0;
-    font-size: 0.9em;
-    font-style: italic;
-    color: var(--text-grau);
-    background: var(--dark-grey-bg);
-    text-align: center;
-}
-
-/* ==================================== */
-/* MODERNER NEWS & SPIELPLAN STYLING */
-/* ==================================== */
-.news-section {
-    padding: 80px 0;
-    background-color: var(--light-grey-bg);
-    color: var(--haie-schwarz);
-}
-
-.news-section .section-title {
+    margin-top: 10px;
     color: var(--haie-rot);
-    font-size: 2.8em;
-    margin-bottom: 60px;
-    position: relative;
-    padding-bottom: 15px;
-}
-
-.news-section .section-title::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background-color: var(--haie-rot);
-    border-radius: 2px;
-}
-
-/* News Grid für Karten (Highlight + Beispiele) */
-.news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-bottom: 60px;
-}
-
-.news-card {
-    background-color: var(--haie-weiss);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-}
-
-.news-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-}
-
-.news-card .card-image {
-    width: 100%;
-    height: 220px;
-    overflow: hidden;
-    flex-shrink: 0;
-}
-
-.news-card .card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.news-card:hover .card-image img {
-    transform: scale(1.05);
-}
-
-.news-card .card-content {
-    padding: 25px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.news-card h3 {
-    font-size: 1.6em;
-    color: var(--haie-schwarz);
-    margin-bottom: 12px;
-    line-height: 1.3;
-}
-
-.news-card p {
-    font-size: 1em;
-    line-height: 1.6;
-    color: #555;
-    margin-bottom: 15px;
-}
-
-.news-card .news-date {
-    display: block;
-    font-size: 0.85em;
-    color: #888;
-    margin-bottom: 10px;
-}
-
-.news-card .read-more {
-    color: var(--haie-rot);
-    font-weight: 600;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.news-card .read-more:hover {
-    color: var(--haie-schwarz);
-}
-
-/* Spezielles Styling für die Highlight-Karte (Nächstes Spiel) */
-.highlight-card {
-    /* Aggressiverer Look */
-    background: linear-gradient(145deg, var(--haie-schwarz) 0%, #333333 100%);
-    color: var(--haie-weiss);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    border: 3px solid var(--haie-rot);
-    grid-column: span 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.highlight-card .card-content {
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-}
-
-.highlight-card .loading-text {
-    font-size: 1.2em;
-    color: #aaa;
-}
-
-.highlight-card .highlight-title {
-    color: var(--haie-rot);
-    font-size: 1.8em;
     font-weight: 700;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
 }
-
-.highlight-card .highlight-opponent {
-    font-size: 3em;
-    font-family: 'Oswald', sans-serif;
-    text-transform: uppercase;
-    margin: 10px 0 15px;
-    color: var(--haie-weiss);
-    line-height: 1.1;
-    text-shadow: 0 0 10px rgba(214, 0, 16, 0.5);
-}
-
-.highlight-card .highlight-details {
-    font-size: 1.2em;
-    line-height: 1.5;
-    color: #e0e0e0;
-}
-
-.highlight-card .highlight-details span {
-    font-weight: bold;
-    color: var(--haie-rot); /* Hebt die Uhrzeit hervor */
-    margin: 0 5px;
-}
-
-/* Styling für die Spieleliste (Upcoming Games) */
-.upcoming-games-section {
-    padding: 30px;
-    background-color: var(--haie-weiss);
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-}
-
-.upcoming-games-title {
-    color: var(--haie-schwarz);
-    border-bottom: 3px solid var(--haie-rot);
-    padding-bottom: 10px;
-    margin-bottom: 25px;
-}
-
-.games-list {
-    margin-bottom: 30px;
-}
-
-.game-item {
-    display: grid;
-    grid-template-columns: 1.5fr 2fr 1fr; /* Datum | Gegner | Ort */
-    gap: 15px;
-    align-items: center;
-    padding: 15px 0;
-    border-bottom: 1px solid #e0e0e0;
-    transition: background-color 0.3s ease;
-}
-
-.game-item:hover {
-    background-color: #f0f0f0;
-}
-
-.game-item:last-child {
-    border-bottom: none;
-}
-
-.game-item .date-info {
-    font-weight: 700;
-    color: var(--haie-rot);
-    font-size: 1em;
-}
-
-.game-item .opponent-info {
-    font-size: 1.2em;
-    font-family: 'Oswald', sans-serif;
-    color: var(--haie-schwarz);
-}
-
-.game-item .location-info {
-    text-align: right;
-    font-style: italic;
-    font-size: 0.9em;
-    color: #666;
-}
-
-.game-cta-wrapper {
-    text-align: center;
-    margin-top: 20px;
-}
-
 
 /* Footer */
 footer {
     background: var(--haie-schwarz);
     color: var(--text-grau);
+    padding: 20px 0;
     text-align: center;
-    padding: 30px 0;
-    border-top: 5px solid var(--haie-rot);
-    font-size: 0.9em;
+    border-top: 3px solid var(--haie-rot);
 }
 
 footer a {
     color: var(--haie-rot);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--haie-weiss);
+}
+
+.social-links {
+    margin-top: 10px;
+}
+
+.social-links img {
+    width: 24px;
+    height: 24px;
     margin: 0 5px;
+    vertical-align: middle;
 }
 
-footer .social-links {
-    margin-top: 15px;
+/* Allgemeine Utility-Klassen */
+.haie-rot {
+    color: var(--haie-rot);
 }
 
-footer .social-links a {
-    display: inline-block;
-    margin: 0 8px;
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
-}
-
-footer .social-links a:hover {
-    opacity: 1;
-}
-
-footer .social-links img {
-    border-radius: 50%;
-}
-
-/* Scroll To Top Button */
-#scrollToTopBtn {
-    display: none; /* Wird per JS eingeblendet */
-    position: fixed;
-    bottom: 20px;
-    right: 30px;
-    z-index: 100;
+.cta-button {
     background-color: var(--haie-rot);
     color: var(--haie-weiss);
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
     border: none;
-    outline: none;
     cursor: pointer;
-    padding: 15px 20px;
-    border-radius: 50%;
-    font-size: 18px;
-    line-height: 1;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-    transition: background-color 0.3s, transform 0.3s;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 20px;
 }
 
-#scrollToTopBtn:hover {
+.cta-button:hover {
     background-color: #a9000c;
     transform: scale(1.05);
 }
@@ -600,74 +394,90 @@ footer .social-links img {
     font-size: 0.9em;
 }
 
+/* --- NEUE STILE FÜR AUSKLAPPBARE SPIELLISTE --- */
+/* Versteckt den Container der Spielliste standardmäßig */
+#upcoming-games-list-container {
+    max-height: 0; /* Wichtig für die CSS-Animation */
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out; /* Sanfter Ausklapp-Effekt */
+    margin-bottom: 0;
+}
+
+/* Zeigt den Container, wenn die Klasse 'active' hinzugefügt wird */
+#upcoming-games-list-container.active {
+    max-height: 2000px; /* Muss groß genug sein, um alle Inhalte anzuzeigen */
+    margin-bottom: 30px;
+}
+
+/* Stil für den Button beim Aufklappen */
+#toggle-games-btn {
+    transition: transform 0.3s ease;
+}
+
+/* Fügt ein Dreieck hinzu und dreht es beim Ausklappen */
+#toggle-games-btn.active::after {
+    content: " ▲";
+}
+
+#toggle-games-btn::after {
+    content: " ▼";
+}
+
+
 /* Responsive Design */
 @media (max-width: 900px) {
+    header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    header h1 {
+        margin-top: 10px;
+        font-size: 1.5em;
+    }
+
+    header p {
+        margin-bottom: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+    
+    .hero-section {
+        padding-top: 110px; /* Mehr Platz für den Header im mobilen Layout */
+    }
+
     .news-grid {
-        grid-template-columns: 1fr; /* News-Karten untereinander auf kleineren Bildschirmen */
+        grid-template-columns: 1fr;
+    }
+    
+    .image-gallery {
+        grid-template-columns: 1fr;
     }
 
     .game-item {
-        grid-template-columns: 1fr 1fr; /* Datum oben, Gegner/Ort unten */
+        flex-direction: column;
+        align-items: flex-start;
         gap: 5px;
     }
-
-    .game-item .location-info {
-        grid-column: 2 / 3;
+    
+    .date-info, .opponent-info, .location-info {
+        flex: 1 1 100%;
         text-align: left;
     }
-
-    .game-item .opponent-info {
-        grid-column: 1 / 2;
-        text-align: left;
-    }
-
-    .highlight-card .highlight-opponent {
-        font-size: 2.5em;
-    }
-
-    header nav ul {
+    
+    #cookieConsent .container {
         flex-direction: column;
-        margin-top: 15px;
     }
-
-    header nav ul li {
-        margin: 5px 0;
+    
+    #cookieConsent p {
+        margin: 0 0 10px 0;
     }
-
-    #hero h2 {
-        font-size: 2.8em;
-    }
-}
-/* ======================================= */
-/* Warenkorb Benachrichtigung (Toast)      */
-/* ======================================= */
-#notification-toast {
-    /* Macht den Toast standardmäßig unsichtbar */
-    visibility: hidden; 
-    min-width: 250px;
-    /* Zentriert den Toast */
-    margin-left: -125px; 
-    background-color: #FF0000; /* Rot */
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 16px;
-    /* Positioniert den Toast fest unten in der Mitte */
-    position: fixed;
-    z-index: 1050; 
-    left: 50%;
-    bottom: 30px; 
-    font-size: 1.1em;
-    font-weight: 700;
-    /* Für die Animation */
-    opacity: 0;
-    transition: opacity 0.5s, bottom 0.5s;
-}
-
-/* Wird von script.js hinzugefügt, um den Toast anzuzeigen */
-#notification-toast.show {
-    visibility: visible;
-    opacity: 1;
-    /* Bewegt sich sanft nach oben */
-    bottom: 50px; 
 }

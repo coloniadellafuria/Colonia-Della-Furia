@@ -26,60 +26,75 @@
         <br>
         <p>Unabhängiger Fanclub der Kölner Haie</p>
         <br>
+        
         <nav>
             <ul>
-                <li><a href="#hero">Home</a></li> 
+                <li><a href="#home">Home</a></li>
+                <li><a href="#games">Spiele</a></li>
                 <li><a href="#news">Aktuelles</a></li>
                 <li><a href="#about">Über uns</a></li>
-                <li><a href="mitgliedwerden.html">Mitglied werden</a></li> 
+                <li><a href="mitgliedwerden.html">Mitglied werden</a></li>
                 <li><a href="shop.html">Shop</a></li>
             </ul>
         </nav>
+        
     </div>
-</header>
+   </header>
 
     <main>
-        <section id="hero">
+        
+        <section id="home" class="hero-section">
             <div class="container">
-                <h2>Colonia Della Furia</h2>
-                <p>Wir unterstützen mit Herz und Verstand</p>
-                <a href="mitglied.html" class="cta-button">Jetzt Mitglied werden</a>
+                <img src="banner (3).png" alt="Banner Colonia Della Furia" class="hero-banner">
             </div>
         </section>
 
-        <section id="news" class="news-section">
+        <section id="games">
+            <div class="container">
+                <h2>Nächste Spiele</h2>
+                
+                <div id="next-game-highlight" class="game-highlight-card">
+                    <p class="loading-text">Lade Spielplan...</p>
+                </div>
+                
+                <div id="upcoming-games-list-container" class="collapse-content">
+                    <div id="upcoming-games-list">
+                        </div>
+                </div>
+
+                <button id="toggle-games-btn" class="cta-button" style="margin-top: 30px;">
+                    Alle weiteren Spiele anzeigen
+                </button>
+
+            </div>
+        </section>
+        
+        <section id="news" class="dark-section">
             <div class="container">
                 <h2>Aktuelles</h2>
                 <div class="news-grid">
                     
-                    <div class="highlight-card" id="naechstes-spiel-highlight">
-                        <div class="card-content">
-                            <div class="loading-text">Lade Spielplan...</div>
-                        </div>
+                    <div class="news-item">
+                        <img src="https://via.placeholder.com/400x250/FF0000/FFFFFF?text=News+1" alt="News 1">
+                        <h3>Erfolgreiche Auswärtsfahrt</h3>
+                        <p>Wir waren in Mannheim dabei und haben unser Team lautstark unterstützt!</p>
+                        <a href="#" class="read-more">Mehr lesen →</a>
                     </div>
                     
-                    <div class="news-list">
-                        <article>
-                            <h3>Auswärtsfahrt nach Mannheim</h3>
-                            <p>Die Anmeldung für die Auswärtsfahrt am 24. Oktober ist eröffnet! Alle Infos und Preise findet ihr im Forum.</p>
-                            <a href="#" class="read-more">Mehr lesen</a>
-                        </article>
-                        <article>
-                            <h3>Neuer Fanartikel im Shop!</h3>
-                            <p>Ab sofort ist der exklusive Colonia Della Furia Schal 2024/25 im Shop verfügbar.</p>
-                            <a href="shop.html" class="read-more">Zum Shop</a>
-                        </article>
-                        
+                    <div class="news-item">
+                        <img src="https://via.placeholder.com/400x250/1a1a1a/FFFFFF?text=News+2" alt="News 2">
+                        <h3>Neues Mitglieds-Event</h3>
+                        <p>Am nächsten Dienstag findet unser monatlicher Stammtisch statt. Alle Infos im Forum.</p>
+                        <a href="#" class="read-more">Mehr lesen →</a>
                     </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="upcoming-games" class="alternate-bg">
-            <div class="container">
-                <h2>Kommende Spiele</h2>
-                <div class="game-list" id="kommende-spiele-liste">
-                     <p class="loading-text">Die Liste der Spiele wird geladen...</p>
+                    
+                    <div class="news-item">
+                        <img src="https://via.placeholder.com/400x250/FFFFFF/FF0000?text=News+3" alt="News 3">
+                        <h3>Neue Fanartikel im Shop</h3>
+                        <p>Das neue Cap und der neue Stickerbogen sind jetzt verfügbar! Schaut vorbei.</p>
+                        <a href="shop.html" class="read-more">Zum Shop →</a>
+                    </div>
+                    
                 </div>
             </div>
         </section>
@@ -89,11 +104,32 @@
                 <h2>Über uns</h2>
                 <p>Colonia Della Furia ist ein unabhängiger Fanclub der Kölner Haie. Seit 2005 unterstützen wir unseren KEC bei jedem Heim- und Auswärtsspiel. Unsere Leidenschaft ist der Eishockeysport, unser Zuhause die LANXESS arena.</p>
                 <p>Wir organisieren regelmäßig gemeinsame Auswärtsfahrten, Fan-Treffen und soziales Engagement in Köln. Werde Teil unserer Furia-Familie und erlebe die Spiele mit uns!</p>
-                <a href="mitglied.html" class="cta-button">Mitglied werden</a>
+                <a href="mitgliedwerden.html" class="cta-button">Mitglied werden</a>
             </div>
         </section>
 
-        </main>
+        <section id="gallery" class="dark-section">
+            <div class="container">
+                <h2>Galerie</h2>
+                <p>Eindrücke aus der Arena und von unseren Fahrten.</p>
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x200/FF0000/FFFFFF?text=Haie+Fan+1" alt="Haie Fanclub Bild 1">
+                        <p>Stimmung in der Arena!</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x200/000000/FFFFFF?text=Haie+Fan+2" alt="Haie Fanclub Bild 2">
+                        <p>Auswärtsfahrt nach Mannheim</p>
+                    </div>
+                     <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x200/FFFFFF/FF0000?text=Haie+Fan+3" alt="Unser Banner">
+                        <p>Unser Banner</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
     
     <button id="scrollToTopBtn" title="Zum Seitenanfang">↑</button>
 
