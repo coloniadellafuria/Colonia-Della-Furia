@@ -109,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function scrollFunction() {
         if (scrollToTopBtn) {
+            // Zeige den Button, wenn mehr als 300px gescrollt wurde
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
                 scrollToTopBtn.style.display = "block";
             } else {
@@ -126,16 +127,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // --- 4. Fixed Navigation Logic ---
+    // --- 4. Fixed Navigation Logic (NEU: Nur für Desktop) ---
     const nav = document.querySelector('.main-nav');
+    const mobileBreakpoint = 600; // Muss mit der CSS Media Query übereinstimmen
+    
     if (nav) {
         // Berechne die Höhe des Headers dynamisch
-        const headerHeight = document.querySelector('header').offsetHeight; 
+        const header = document.querySelector('header');
+        const headerHeight = header ? header.offsetHeight : 0; 
         
         window.addEventListener('scroll', () => {
-            if (window.scrollY > headerHeight) {
-                nav.classList.add('fixed-compact-nav');
+            
+            // WICHTIG: Prüfe die Bildschirmbreite
+            if (window.innerWidth > mobileBreakpoint) {
+                // Nur auf Desktop (> 600px) die Navigationsleiste fixieren
+                if (window.scrollY > headerHeight) {
+                    nav.classList.add('fixed-compact-nav');
+                } else {
+                    nav.classList.remove('fixed-compact-nav');
+                }
             } else {
+                // Auf Mobilgeräten (<= 600px) die fixierte Navigation IMMER entfernen
                 nav.classList.remove('fixed-compact-nav');
             }
         });
