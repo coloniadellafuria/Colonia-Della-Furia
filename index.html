@@ -179,7 +179,7 @@
         .hero-image {
             /* Das Banner-Bild (banner (3).png) wird für den Header verwendet, 
                aber hier belassen wir es bei einem dunklen Hintergrund für den Text */
-            background-image: url('banner (3).png');
+            background-image: url('logokec (1).jpeg');
             background-size: cover;
             background-position: center;
         }
@@ -269,6 +269,10 @@
         .game-card-home .game-date-time-box {
             background-color: #cc0000;
         }
+        /* NEUE KORREKTUR: Datum-Zahlen der Heimspiele in Schwarz setzen */
+        .game-card-home .game-date {
+            color: #000000; 
+        }
         
         /* Farbschema für Auswärtsspiel (Schwarz-Fokus) */
         .game-card-away {
@@ -333,6 +337,10 @@
             margin: 0 0 5px 0;
             color: #FF0000;
         }
+        .game-card-away .game-opponent {
+            color: #ffffff;
+        }
+
         .game-location {
             font-size: 0.9em;
             color: #ccc;
@@ -372,6 +380,14 @@
             line-height: 1.4;
             margin-bottom: 15px;
         }
+        
+        /* HIER BEGINNT DIE ANPASSUNG FÜR DIE BUTTONS */
+        .news-item .cta-button {
+             margin-top: 15px; 
+             max-width: 150px; 
+        }
+        /* HIER ENDET DIE ANPASSUNG FÜR DIE BUTTONS */
+
         
         /* About Us Section */
         #about-us {
@@ -598,8 +614,7 @@
         <div class="container">
             <ul>
                 <li><a href="index.html" class="active">Start</a></li>
-                <li><a href="aktuelles.html">Aktuelles</a></li>
-                <li><a href="bekleidung.html">Shop</a></li>
+                <li><a href="shop.html">Shop</a></li>
                 <li><a href="anmeldeformular.html">Mitglied werden</a></li>
                 <li><a href="kontakt.html">Kontakt</a></li>
             </ul>
@@ -631,26 +646,25 @@
                         <img src="gegen_deg (4).jpg" alt="Fan-Stimmung nach dem Derby-Sieg">
                         <h3>Derby-Sieg gegen die DEG!</h3>
                         <p>Ein dramatisches Spiel endet mit 5:4 nach Verlängerung. Die Stimmung in der Arena war phänomenal.</p>
-                        <a href="aktuelles.html" class="haie-rot">Mehr lesen...</a>
+                        <a href="aktuelles.html" class="cta-button">Mehr lesen...</a>
                     </div>
                     
                     <div class="news-item">
                         <img src="https://via.placeholder.com/400x300/000000/FFFFFF?text=Neues+Merch" alt="Neues Merchandise">
                         <h3>Neue Fan-Kollektion ist da!</h3>
                         <p>Limitierte Hoodies und Schals im 'Colonia'-Style jetzt im Shop erhältlich. Nur solange der Vorrat reicht.</p>
-                        <a href="bekleidung.html" class="haie-rot">Zum Shop...</a>
+                        <a href="bekleidung.html" class="cta-button">Zum Shop...</a>
                     </div>
                     
                     <div class="news-item">
                         <img src="https://via.placeholder.com/400x300/FF0000/FFFFFF?text=Auswärtsfahrt+Bus" alt="Fanbus">
                         <h3>Auswärtsfahrt nach Berlin</h3>
                         <p>Der Bus für das Spiel am 15.11. ist fast ausgebucht. Meldet euch schnell an!</p>
-                        <a href="kontakt.html" class="haie-rot">Zur Anmeldung...</a>
+                        <a href="kontakt.html" class="cta-button">Zur Anmeldung...</a>
                     </div>
                 </div>
             </div>
         </section>
-
         <section id="about-us">
             <div class="container">
                 <h2>Wer wir sind</h2>
@@ -704,6 +718,178 @@
         </div>
     </footer>
 
+    <script>
+        
+        // **********************************************
+        // FUNKTION ZUM RENDERN DER SPIELKARTEN
+        // **********************************************
+
+        // Hilfsfunktion zur Umwandlung des Spiel-Objekts in das gewünschte Format
+        function mapGameData(game) {
+            const dateObj = new Date(game.datum);
+
+            // Datum und Uhrzeit auf Deutsch formatieren
+            const dateOptions = { day: '2-digit', month: '2-digit' };
+            const dayOptions = { weekday: 'short' };
+            
+            return {
+                opponent: game.gegner,
+                // Entfernt den Punkt am Ende des Wochentags (z.B. 'Do' statt 'Do.')
+                day: dateObj.toLocaleDateString('de-DE', dayOptions).replace('.', ''), 
+                date: dateObj.toLocaleDateString('de-DE', dateOptions),
+                // Stellt sicher, dass die Uhrzeit im HH:MM-Format ist (ohne Sekunden)
+                time: dateObj.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }),
+                location: game.arena,
+                // 'isHome' ist true, wenn 'ort' gleich 'Heimspiel' ist
+                isHome: game.ort === "Heimspiel",
+                // Ticket-Link anpassen
+                ticketLink: game.ort === "Heimspiel" ? "#" : "kontakt.html" 
+            };
+        }
+
+        // Funktion zum Erstellen der HTML-Struktur für eine einzelne Spielkarte
+        function createGameCardHTML(game) {
+            const gameClass = game.isHome ? 'game-card-home' : 'game-card-away';
+            const tagText = game.isHome ? 'Heimspiel' : 'Auswärts';
+            const ctaText = game.isHome ? 'Tickets' : 'Fanbus';
+            const ctaLink = game.isHome ? game.ticketLink : 'kontakt.html'; 
+
+            return `
+                <div class="game-card ${gameClass}">
+                    <div class="game-date-time-box">
+                        <p class="game-day">${game.day}</p>
+                        <p class="game-date">${game.date}</p>
+                        <p class="game-time">${game.time} Uhr</p>
+                    </div>
+                    <div class="game-details">
+                        <div>
+                            <span class="game-tag">${tagText}</span>
+                            <h4 class="game-opponent">${game.opponent}</h4>
+                            <p class="game-location">${game.location}</p>
+                        </div>
+                        <a href="${ctaLink}" class="cta-button game-cta">${ctaText}</a>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Hauptfunktion: Lädt, filtert und rendert die Spiele
+        async function loadAndRenderUpcomingGames() {
+            const container = document.getElementById('upcoming-games-container');
+            
+            try {
+                // Daten aus der JSON-Datei laden (Pfad muss korrekt sein!)
+                const response = await fetch('spiele.json'); 
+                
+                // Prüfen, ob der Ladevorgang erfolgreich war
+                if (!response.ok) {
+                    throw new Error(`HTTP-Fehler! Status: ${response.status}. Stelle sicher, dass 'spiele.json' existiert.`);
+                }
+
+                const rawGames = await response.json();
+                const now = new Date();
+
+                // 1. Zukünftige Spiele filtern: Nur Spiele, die heute oder später stattfinden
+                const futureGames = rawGames
+                    .filter(game => new Date(game.datum) >= now) 
+                    // 2. Datenstruktur anpassen und Datum/Zeit formatieren
+                    .map(mapGameData); 
+                
+                // 3. Nur die nächsten 3 Spiele anzeigen
+                const gamesToShow = futureGames.slice(0, 3); 
+                
+                let htmlContent = '';
+
+                if (gamesToShow.length === 0) {
+                    htmlContent = '<p style="text-align: center; width: 100%; color: #ccc;">Aktuell sind keine zukünftigen Spieltermine in der Datei gefunden worden.</p>';
+                } else {
+                    gamesToShow.forEach(game => {
+                        htmlContent += createGameCardHTML(game);
+                    });
+                }
+                
+                container.innerHTML = htmlContent;
+
+            } catch (error) {
+                console.error("Fehler beim Laden der Spieldaten:", error);
+                container.innerHTML = '<p style="text-align: center; width: 100%; color: #FF0000;">Fehler beim Laden der Spieldaten. Bitte stellen Sie sicher, dass die Datei <code style="color: #ffffff;">spiele.json</code> existiert.</p>';
+            }
+        }
+
+
+        // **********************************************
+        // COOKIE BANNER LOGIK (Beibehalten)
+        // **********************************************
+        function checkCookieConsent() {
+            const consent = localStorage.getItem('cookieConsent');
+            const cookieBanner = document.getElementById('cookieConsent');
+            
+            if (consent !== 'accepted') {
+                cookieBanner.style.display = 'block';
+            } else {
+                cookieBanner.style.display = 'none';
+            }
+        }
+
+        document.getElementById('acceptCookies')?.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'accepted');
+            document.getElementById('cookieConsent').style.display = 'none';
+        });
+
+
+        // **********************************************
+        // NAVIGATION SCROLL LOGIK (Beibehalten)
+        // **********************************************
+        function handleScrollNav() {
+            const mainNav = document.querySelector('.main-nav');
+            // Holen Sie die Höhe des Headers, um zu wissen, wann die Nav fixiert werden soll
+            const header = document.querySelector('header');
+            const mainNavTop = header ? header.offsetHeight : 200; 
+
+            if (window.scrollY >= mainNavTop) {
+                if (!mainNav.classList.contains('fixed-compact-nav')) {
+                    mainNav.classList.add('fixed-compact-nav');
+                }
+            } else {
+                mainNav.classList.remove('fixed-compact-nav');
+            }
+        }
+        
+        // **********************************************
+        // SCROLL TO TOP LOGIK (Beibehalten)
+        // **********************************************
+        function handleScrollToTop() {
+            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        }
+
+        document.getElementById("scrollToTopBtn")?.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+
+
+        // **********************************************
+        // INITIALISIERUNG
+        // **********************************************
+        document.addEventListener('DOMContentLoaded', () => {
+            checkCookieConsent();
+            loadAndRenderUpcomingGames(); // Lädt die Spielkarten aus JSON beim Start
+        });
+
+        window.addEventListener('scroll', () => {
+             handleScrollNav();
+             handleScrollToTop();
+        });
+
+
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
