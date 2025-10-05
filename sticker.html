@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sticker & Accessoires | Colonia Della Furia Shop</title>
+    <title>Shop | Colonia Della Furia Shop</title>
     <link rel="icon" type="image/x-icon" href="logo_furia.png"> 
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -120,107 +120,150 @@
             font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
             font-size: 1.1em;
-            width: 100%; 
+            width: 100%;
             box-sizing: border-box;
         }
         .cta-button:hover {
             background-color: #cc0000;
         }
 
-        /* NEU: Responsive Anpassungen für Smartphones */
+        /* Stil für die Benachrichtigung (Toast) */
+        #toast-notification {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #FF0000; 
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-family: 'Roboto', sans-serif;
+            font-size: 1em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transition: visibility 0s, opacity 0.5s linear;
+        }
+
+        #toast-notification.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Responsive Anpassungen für Smartphones */
         @media (max-width: 768px) {
             .product-grid {
-                grid-template-columns: 1fr; 
+                grid-template-columns: 1fr;
                 gap: 20px;
             }
             .product-item {
                 padding: 20px;
             }
-             /* FIX: Hauptsektion nach unten schieben */
             #products {
-                padding-top: 75px !important; /* WICHTIG: Erhöhter Abstand, um unter der fixen Leiste zu starten */
+                padding-top: 75px !important;
             }
         }
         @media (max-width: 600px) {
-             /* FIX: Navigation kompakter machen (Falls sie per CSS gestackt wurde) */
             .fixed-compact-nav .container {
-                /* flex-direction: column; entfernt, um horizontal zu bleiben */
                 padding: 0 10px;
             }
             .fixed-compact-nav .header-logo {
-                height: 25px; 
+                height: 25px;
                 margin-right: 10px;
             }
             .fixed-compact-nav nav ul {
-                flex-direction: row; /* WICHTIG: Horizontal beibehalten */
+                flex-direction: row; 
                 justify-content: flex-end;
             }
             .fixed-compact-nav nav a {
-                padding: 8px 5px; /* Sehr kompakte Links */
-                font-size: 0.7em; /* Kleinere Schrift */
+                padding: 5px 8px;
+                font-size: 0.8em;
             }
         }
     </style>
 </head>
 <body>
-    
-    <div class="fixed-compact-nav">
+    <header>
         <div class="container">
             <a href="index.html">
-                <img src="logo_furia.png" alt="Logo Colonia Della Furia" class="header-logo">
+                <img src="logo_furia.png" alt="Colonia Della Furia Logo" class="header-logo">
             </a>
-            <nav>
+            <nav class="main-nav">
                 <ul>
-                    <li><a href="index.html">Start</a></li>
-                    <li><a href="mitglied.html">Mitglied</a></li>
-                    <li><a href="shop.html" style="color: #FF0000;">Shop</a></li>
-                    <li><a href="warenkorb.html">Warenkorb</a></li>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#team">Team</a></li>
+                    <li><a href="index.html#spiele">Spiele</a></li>
+                    <li><a href="index.html#kontakt">Kontakt</a></li>
+                    <li><a href="shop.html" class="active">Shop</a></li>
+                    <li><a href="warenkorb.html">Warenkorb (<span id="cart-count-nav">0</span>)</a></li>
                 </ul>
             </nav>
         </div>
-    </div>
+    </header>
 
     <main>
-        <section id="products">
+
+        <section id="products" class="container">
             <div class="container">
                 <h2>Sticker & Accessoires</h2>
                 
-                <p>Unsere Accessoires für den Alltag und die Fankurve.</p>
-
                 <div class="product-grid">
                     
                     <div class="product-item">
-                        <img src="https://via.placeholder.com/300x200/FF0000/FFFFFF?text=Stickerbogen+A4" alt="Stickerbogen">
-                        <h3>Stickerbogen</h3>
-                        <p>DIN A4 Bogen mit verschiedenen CDF-Motiven.</p>
+                        <img src="sticker1.jpeg" alt="Stickerbogen 'CDL'">
+                        <h3>Stickerbogen "CDL"</h3>
+                        <p>Diverse Motive.</p>
+                        <span class="price">5.00 €</span>
                         <button class="cta-button add-to-cart-btn" 
-                                data-id="acce-sticker" 
-                                data-name="Stickerbogen A4" 
-                                data-description="Verschiedene Motive">
-                            In den Warenkorb
-                        </button>
-                    </div>
-                    
-                    <div class="product-item">
-                        <img src="https://via.placeholder.com/300x200/000000/FFFFFF?text=Feuerzeug+Logo" alt="Feuerzeug">
-                        <h3>Feuerzeug</h3>
-                        <p>Schwarzes Feuerzeug mit CDF-Logo.</p>
-                        <button class="cta-button add-to-cart-btn" 
-                                data-id="acce-feuerzeug" 
-                                data-name="Feuerzeug CDF" 
-                                data-description="Schwarz, mit Logo">
+                                data-id="sticker-cdl-bogen" 
+                                data-name="Stickerbogen 'CDL'" 
+                                data-description="Diverse Motive"
+                                data-price="5.00">
                             In den Warenkorb
                         </button>
                     </div>
 
                     <div class="product-item">
-                        <img src="https://via.placeholder.com/300x200/FFFFFF/FF0000?text=Basecap+CDF" alt="Basecap">
-                        <h3>Basecap 'CDP'</h3>
-                        <p>Klassisches Cap mit gesticktem Logo.</p>
+                        <img src="sticker2.jpeg" alt="Sticker 1972">
+                        <h3>Sticker "1972"</h3>
+                        <p>Einzel-Sticker.</p>
+                        <span class="price">5.00 €</span>
+                        <button class="cta-button add-to-cart-btn" 
+                                data-id="sticker-1972" 
+                                data-name="Sticker '1972'" 
+                                data-description="Einzel-Sticker"
+                                data-price="5.00">
+                            In den Warenkorb
+                        </button>
+                    </div>
+                    
+                    <div class="product-item">
+                        <img src="accessoire1.jpeg" alt="Feuerzeug">
+                        <h3>Feuerzeug</h3>
+                        <p>Feuerzeug mit CDL-Logo.</p>
+                        <span class="price">5.00 €</span>
+                        <button class="cta-button add-to-cart-btn" 
+                                data-id="acce-feuerzeug" 
+                                data-name="Feuerzeug" 
+                                data-description="CDL-Logo"
+                                data-price="5.00">
+                            In den Warenkorb
+                        </button>
+                    </div>
+
+                    <div class="product-item">
+                        <img src="accessoire2.jpeg" alt="Basecap 'CDP'">
+                        <h3>Basecap "CDP"</h3>
+                        <p>Schwarz, verstellbar.</p>
+                        <span class="price">20.00 €</span>
                         <button class="cta-button add-to-cart-btn" 
                                 data-id="acce-basecap" 
                                 data-name="Basecap 'CDP'" 
-                                data-description="Schwarz, verstellbar">
+                                data-description="Schwarz, verstellbar"
+                                data-price="20.00">
                             In den Warenkorb
                         </button>
                     </div>
@@ -230,6 +273,8 @@
                 <p style="margin-top: 50px;">Bestellungen und Informationen zu Preisen und Verfügbarkeit erfolgen über eine Bestell-Anfrage im <a href="warenkorb.html" style="color: #FF0000; text-decoration: none; font-weight: bold;">Warenkorb</a>.</p>
             </div>
         </section>
+        
+        <div id="toast-notification"></div>
         
     </main>
     
@@ -246,6 +291,5 @@
     </footer>
 
     <script src="script.js"></script>
-    <script src="cart.js"></script> 
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bekleidung | Colonia Della Furia Shop</title>
+    <title>Shop | Colonia Della Furia Shop</title>
     <link rel="icon" type="image/x-icon" href="logo_furia.png"> 
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
             color: #ffffff;
             line-height: 1.6;
             text-align: center;
-            min-height: 100vh; /* Sorgt dafür, dass die Seite mindestens bildschirmhoch ist */
+            min-height: 100vh; 
         }
         #products .container {
             max-width: 1200px;
@@ -120,107 +120,150 @@
             font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
             font-size: 1.1em;
-            width: 100%; 
+            width: 100%;
             box-sizing: border-box;
         }
         .cta-button:hover {
             background-color: #cc0000;
         }
 
-        /* NEU: Responsive Anpassungen für Smartphones */
+        /* Stil für die Benachrichtigung (Toast) */
+        #toast-notification {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #FF0000; 
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-family: 'Roboto', sans-serif;
+            font-size: 1em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transition: visibility 0s, opacity 0.5s linear;
+        }
+
+        #toast-notification.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Responsive Anpassungen für Smartphones */
         @media (max-width: 768px) {
             .product-grid {
-                grid-template-columns: 1fr; 
+                grid-template-columns: 1fr;
                 gap: 20px;
             }
             .product-item {
                 padding: 20px;
             }
-             /* FIX: Hauptsektion nach unten schieben */
             #products {
-                padding-top: 75px !important; /* WICHTIG: Erhöhter Abstand, um unter der fixen Leiste zu starten */
+                padding-top: 75px !important;
             }
         }
         @media (max-width: 600px) {
-             /* FIX: Navigation kompakter machen (Falls sie per CSS gestackt wurde) */
             .fixed-compact-nav .container {
-                /* flex-direction: column; entfernt, um horizontal zu bleiben */
                 padding: 0 10px;
             }
             .fixed-compact-nav .header-logo {
-                height: 25px; 
+                height: 25px;
                 margin-right: 10px;
             }
             .fixed-compact-nav nav ul {
-                flex-direction: row; /* WICHTIG: Horizontal beibehalten */
+                flex-direction: row; 
                 justify-content: flex-end;
             }
             .fixed-compact-nav nav a {
-                padding: 8px 5px; /* Sehr kompakte Links */
-                font-size: 0.7em; /* Kleinere Schrift */
+                padding: 5px 8px;
+                font-size: 0.8em;
             }
         }
     </style>
 </head>
 <body>
-    
-    <div class="fixed-compact-nav">
+    <header>
         <div class="container">
             <a href="index.html">
-                <img src="logo_furia.png" alt="Logo Colonia Della Furia" class="header-logo">
+                <img src="logo_furia.png" alt="Colonia Della Furia Logo" class="header-logo">
             </a>
-            <nav>
+            <nav class="main-nav">
                 <ul>
-                    <li><a href="index.html">Start</a></li>
-                    <li><a href="mitglied.html">Mitglied</a></li>
-                    <li><a href="shop.html" style="color: #FF0000;">Shop</a></li>
-                    <li><a href="warenkorb.html">Warenkorb</a></li>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#team">Team</a></li>
+                    <li><a href="index.html#spiele">Spiele</a></li>
+                    <li><a href="index.html#kontakt">Kontakt</a></li>
+                    <li><a href="shop.html" class="active">Shop</a></li>
+                    <li><a href="warenkorb.html">Warenkorb (<span id="cart-count-nav">0</span>)</a></li>
                 </ul>
             </nav>
         </div>
-    </div>
+    </header>
 
     <main>
-        <section id="products">
+
+        <section id="products" class="container">
             <div class="container">
                 <h2>Bekleidung</h2>
                 
-                <p>Hoodies, T-Shirts und Schals in Fanclub-Optik.</p>
-
                 <div class="product-grid">
                     
                     <div class="product-item">
-                        <img src="https://via.placeholder.com/300x200/FF0000/000000?text=Hoodie+Logo" alt="Hoodie mit Logo">
-                        <h3>Hoodie 'Furia'</h3>
-                        <p>Hochwertiger, schwarzer Kapuzenpullover mit rotem Logo-Stick.</p>
+                        <img src="tshirt.jpeg" alt="T-Shirt 'CDL'">
+                        <h3>T-Shirt "CDL"</h3>
+                        <p>Schwarz, diverse Größen.</p>
+                        <span class="price">20.00 €</span>
                         <button class="cta-button add-to-cart-btn" 
-                                data-id="bekl-hoodie" 
-                                data-name="Hoodie 'Furia'" 
-                                data-description="Schwarz, Logo-Stick">
-                            In den Warenkorb
-                        </button>
-                    </div>
-                    
-                    <div class="product-item">
-                        <img src="https://via.placeholder.com/300x200/FFFFFF/FF0000?text=T-Shirt+Furia" alt="T-Shirt">
-                        <h3>T-Shirt 'Support'</h3>
-                        <p>Weißes T-Shirt mit großem 'Support Your Local Team' Rückenprint.</p>
-                        <button class="cta-button add-to-cart-btn" 
-                                data-id="bekl-shirt" 
-                                data-name="T-Shirt 'Support'" 
-                                data-description="Weiß, Rückenprint">
+                                data-id="bekl-tshirt-cdl" 
+                                data-name="T-Shirt 'CDL'" 
+                                data-description="Schwarz, diverse Größen"
+                                data-price="20.00">
                             In den Warenkorb
                         </button>
                     </div>
 
                     <div class="product-item">
-                        <img src="https://via.placeholder.com/300x200/000000/FFFFFF?text=Schal+Doppelseitig" alt="Schal">
+                        <img src="hoodie.jpeg" alt="Hoodie">
+                        <h3>Hoodie</h3>
+                        <p>Schwarz, diverse Größen.</p>
+                        <span class="price">20.00 €</span>
+                        <button class="cta-button add-to-cart-btn" 
+                                data-id="bekl-hoodie" 
+                                data-name="Hoodie" 
+                                data-description="Schwarz, diverse Größen"
+                                data-price="20.00">
+                            In den Warenkorb
+                        </button>
+                    </div>
+                    
+                    <div class="product-item">
+                        <img src="schal.jpeg" alt="Schal">
+                        <h3>Schal</h3>
+                        <p>Rot-Schwarz.</p>
+                        <span class="price">20.00 €</span>
+                        <button class="cta-button add-to-cart-btn" 
+                                data-id="acc-schal" 
+                                data-name="Schal" 
+                                data-description="Rot-Schwarz"
+                                data-price="20.00">
+                            In den Warenkorb
+                        </button>
+                    </div>
+
+                    <div class="product-item">
+                        <img src="schal_doppel.jpeg" alt="Doppelseitiger Schal">
                         <h3>Doppelseitiger Schal</h3>
-                        <p>Klassischer Fanschal, Rot und Schwarz, mit Fransen.</p>
+                        <p>Rot-Schwarz.</p>
+                        <span class="price">20.00 €</span>
                         <button class="cta-button add-to-cart-btn" 
                                 data-id="acc-schal-doppel" 
                                 data-name="Doppelseitiger Schal" 
-                                data-description="Rot-Schwarz">
+                                data-description="Rot-Schwarz"
+                                data-price="20.00">
                             In den Warenkorb
                         </button>
                     </div>
@@ -230,6 +273,8 @@
                 <p style="margin-top: 50px;">Bestellungen und Informationen zu Größen, Verfügbarkeit und Preisen erfolgen über eine Bestell-Anfrage im <a href="warenkorb.html" style="color: #FF0000; text-decoration: none; font-weight: bold;">Warenkorb</a>.</p>
             </div>
         </section>
+        
+        <div id="toast-notification"></div>
         
     </main>
     
@@ -246,6 +291,5 @@
     </footer>
 
     <script src="script.js"></script>
-    <script src="cart.js"></script> 
 </body>
 </html>
