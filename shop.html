@@ -64,92 +64,111 @@
         .fixed-compact-nav nav a:hover {
             color: #FF0000;
         }
-
+        
         /* Shop Grid */
         .shop-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-top: 50px;
+            margin-top: 30px;
         }
-        .shop-item {
+        .shop-category {
             background-color: #2b2b2b;
-            padding: 20px;
+            padding: 30px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
             transition: transform 0.3s ease;
         }
-        .shop-item:hover {
+        .shop-category:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 6px 12px rgba(255, 0, 0, 0.5);
         }
-        .shop-item img {
+        .shop-category img {
             max-width: 100%;
             height: auto;
-            border-radius: 6px;
+            border-radius: 4px;
             margin-bottom: 15px;
-            border: 2px solid #FF0000;
         }
-        .shop-item h3 {
+        .shop-category h3 {
             color: #FF0000;
             margin-bottom: 10px;
-            font-family: 'Oswald', sans-serif;
+            font-size: 1.5em;
         }
-        .shop-item p {
-            font-size: 0.9em;
-            color: #ccc;
+        .shop-category p {
             margin-bottom: 20px;
+            color: #ccc;
         }
-        .shop-item .cta-button {
-             background-color: #FF0000;
-             color: #ffffff;
-             text-decoration: none;
-             padding: 10px 20px;
-             border-radius: 5px;
-             font-weight: bold;
-             display: inline-block;
-             margin-top: 15px;
-             transition: background-color 0.3s ease;
+
+        /* NEU: Responsive Anpassungen für Smartphones */
+        @media (max-width: 768px) {
+            .shop-grid {
+                grid-template-columns: 1fr; /* Eine Spalte auf kleineren Bildschirmen */
+                gap: 20px;
+            }
+            .shop-category {
+                padding: 20px;
+            }
+            #shop {
+                padding-top: 60px;
+            }
         }
-        .shop-item .cta-button:hover {
-            background-color: #a9000c;
+        @media (max-width: 600px) {
+             .fixed-compact-nav .container {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px 15px;
+            }
+            .fixed-compact-nav nav ul {
+                flex-direction: column;
+                margin-top: 10px;
+            }
+            .fixed-compact-nav nav a {
+                padding: 5px 15px;
+            }
+            .fixed-compact-nav .header-logo {
+                height: 25px;
+                margin-right: 0;
+            }
         }
     </style>
 </head>
 <body>
     
-    <header class="fixed-compact-nav">
+    <div class="fixed-compact-nav">
         <div class="container">
-            <a href="index.html" class="header-logo-link">
+            <a href="index.html">
                 <img src="logo_furia.png" alt="Logo Colonia Della Furia" class="header-logo">
             </a>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li> 
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="warenkorb.html">Warenkorb (<span id="cart-count-nav">0</span>)</a></li>
+                    <li><a href="index.html">Start</a></li>
+                    <li><a href="mitglied.html">Mitglied</a></li>
+                    <li><a href="shop.html" style="color: #FF0000;">Shop</a></li>
+                    <li><a href="warenkorb.html">Warenkorb</a></li>
                 </ul>
             </nav>
         </div>
-    </header>
+    </div>
 
     <main>
         <section id="shop">
             <div class="container">
-                <h2>Unser Shop</h2>
-                <p>Wähle eine Kategorie, um die verfügbaren Artikel in den Warenkorb zu legen. Die Bestellung erfolgt per E-Mail-Anfrage.</p>
+                <h2>Colonia Della Furia Shop</h2>
                 
+                <p>Wähle eine Kategorie, um die verfügbaren Fanartikel zu sehen. Preise und Verfügbarkeit erhältst du über die Bestell-Anfrage im Warenkorb.</p>
+
                 <div class="shop-grid">
                     
-                    <div class="shop-item">
-                        <img src="{6EAED032-4739-4753-B586-53E1C00CECF5}.png" alt="Bekleidung">
+                    <div class="shop-category">
+                        <img src="https://via.placeholder.com/400x300/FF0000/FFFFFF?text=Bekleidung" alt="Bekleidung">
                         <h3>Bekleidung</h3>
-                        <p>T-Shirts, Hoodies und Fan-Trikots im Colonia Style.</p>
-                        <a href="bekleidung.html" class="cta-button">Zur Bekleidung</a>
+                        <p>Trikots, Hoodies, Shirts und mehr in Colonia-Furia-Optik.</p>
+                        <a href="bekleidung.html" class="cta-button">Zu Bekleidung</a>
                     </div>
                     
-                    <div class="shop-item">
-                        <img src="{4F7E3C7C-0A0E-468F-9598-ED9043E99BCD}.png" alt="Sticker & Accessoires">
+                    <div class="shop-category">
+                        <img src="https://via.placeholder.com/400x300/000000/FFFFFF?text=Sticker+%26+Accessoires" alt="Sticker & Accessoires">
                         <h3>Sticker & Accessoires</h3>
                         <p>Stickerbögen, Feuerzeuge und weitere Accessoires.</p>
                         <a href="sticker.html" class="cta-button">Zu Stickern & mehr</a>

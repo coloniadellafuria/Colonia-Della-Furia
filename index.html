@@ -7,6 +7,82 @@
     <link rel="icon" type="image/x-icon" href="logo_furia.png"> 
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* NEU: Responsive Anpassungen für Smartphones (max-width: 768px, da das das Standard-Breakpoint ist) */
+        @media (max-width: 768px) {
+            
+            /* Allgemein */
+            .container {
+                padding: 0 15px;
+            }
+
+            /* Header-Anpassung */
+            header .container {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 20px;
+            }
+            header .header-logo {
+                width: 100px;
+                margin: 0 auto 10px;
+            }
+            header h1 {
+                font-size: 2.5em;
+            }
+            header p {
+                font-size: 1.1em;
+            }
+
+            /* Navigation (Vertikal stapeln) */
+            header nav ul {
+                flex-direction: column;
+                gap: 5px;
+                margin-top: 15px;
+                padding: 0;
+            }
+            header nav ul li a {
+                padding: 8px 0;
+                font-size: 1em;
+            }
+            
+            /* News Grid (Spalten untereinander) */
+            .news-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            /* Galerie (Spalten untereinander) */
+            .image-gallery {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .gallery-item img {
+                width: 100%;
+                height: auto;
+            }
+
+            /* Spiele-Highlight */
+            .game-highlight-card {
+                padding: 20px;
+            }
+            .game-highlight-card h3 {
+                font-size: 1.5em;
+            }
+
+            /* Cookie-Banner */
+            #cookieConsent .container {
+                flex-direction: column;
+                text-align: center;
+                padding: 10px 15px;
+            }
+            #cookieConsent p {
+                margin-bottom: 10px;
+                font-size: 0.9em;
+            }
+        }
+        
+    </style>
 </head>
 <body>
     
@@ -45,7 +121,7 @@
         
         <section id="home" class="hero-section">
             <div class="container">
-                <img src="banner (3).png" alt="Banner Colonia Della Furia" class="hero-banner">
+                
             </div>
         </section>
 

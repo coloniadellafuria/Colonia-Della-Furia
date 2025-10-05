@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Spezifische Stile für das Formular */
+        /* Spezifische Stile für das Formular (Desktop-Basis) */
         #formular {
             padding: 80px 0;
             background-color: #1a1a1a; 
@@ -18,10 +18,10 @@
             text-align: left;
         }
         #formular .container {
-            max-width: 800px; /* Etwas schmaler als andere Seiten */
+            max-width: 800px;
             margin-top: 20px;
             padding: 30px;
-            background-color: #2b2b2b; /* Dunkelgrauer Container-Hintergrund */
+            background-color: #2b2b2b;
             border-radius: 8px;
         }
         #formular h2 {
@@ -54,7 +54,7 @@
             border-radius: 4px;
             background-color: #333;
             color: #ffffff;
-            box-sizing: border-box; /* Stellt sicher, dass padding die Breite nicht überschreitet */
+            box-sizing: border-box; 
         }
         .print-only {
             margin-top: 40px;
@@ -69,7 +69,7 @@
             padding: 5px 0;
         }
         
-        /* Druckstil für das Formular */
+        /* Druckstil für das Formular (WIRD BEIBEHALTEN) */
         @media print {
             body {
                 background-color: #ffffff !important;
@@ -99,6 +99,46 @@
                 color: #000000 !important;
             }
         }
+
+        /* NEU: Responsive Anpassungen für Smartphones */
+        @media (max-width: 768px) {
+            #formular h2 {
+                font-size: 2em;
+            }
+            #formular .container {
+                padding: 20px 15px;
+            }
+
+            /* Navigation auf Mobilgeräten stapeln und mittig zentrieren */
+            .fixed-compact-nav .container {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px 15px;
+            }
+            .fixed-compact-nav .header-logo {
+                margin: 0 0 10px 0;
+            }
+            .fixed-compact-nav nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .fixed-compact-nav nav a {
+                padding: 5px 10px;
+                font-size: 0.9em;
+            }
+            
+            /* Unterschriftenfelder, die ursprünglich Inline-Styles hatten, auf volle Breite setzen */
+            .print-only input[type="text"] {
+                width: 100% !important;
+                margin-bottom: 15px; /* Abstand zwischen den Feldern */
+            }
+            
+            /* CTA-Button volle Breite */
+            .cta-button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
     </style>
 </head>
 <body>
@@ -110,7 +150,7 @@
             </a>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#hero">Home</a></li>
                     <li><a href="index.html#news">Aktuelles</a></li>
                     <li><a href="index.html#about">Über uns</a></li>
                     <li><a href="anmeldeformular.html">Mitglied werden</a></li>

@@ -65,7 +65,7 @@
         .fixed-compact-nav nav a:hover {
             color: #FF0000;
         }
-        
+
         /* Produkt Grid */
         .product-grid {
             display: grid;
@@ -83,109 +83,138 @@
         }
         .product-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 6px 12px rgba(255, 0, 0, 0.5);
         }
         .product-item img {
             max-width: 100%;
             height: auto;
-            border-radius: 6px;
+            border-radius: 4px;
             margin-bottom: 15px;
-            border: 2px solid #FF0000;
         }
         .product-item h3 {
             color: #FF0000;
             margin-bottom: 10px;
-            font-family: 'Oswald', sans-serif;
+            font-size: 1.5em;
         }
         .product-item p {
-            font-size: 0.9em;
+            margin-bottom: 15px;
             color: #ccc;
-            margin-bottom: 20px;
-            min-height: 40px; /* Einheitliche Höhe für Beschreibung */
         }
-        
-        .add-to-cart-btn {
+        .product-item .price {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .cta-button {
             background-color: #FF0000;
             color: #ffffff;
             padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 700;
+            transition: background-color 0.3s ease;
             border: none;
-            border-radius: 5px;
             cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.1s;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            font-size: 1.1em;
+            width: 100%; /* Button-Breite auf Produktseite */
+            box-sizing: border-box;
         }
-        .add-to-cart-btn:hover {
-            background-color: #a9000c;
-            transform: scale(1.02);
+        .cta-button:hover {
+            background-color: #cc0000;
+        }
+
+        /* NEU: Responsive Anpassungen für Smartphones */
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr; /* Eine Spalte auf kleineren Bildschirmen */
+                gap: 20px;
+            }
+            .product-item {
+                padding: 20px;
+            }
+            #products {
+                padding-top: 60px;
+            }
+        }
+        @media (max-width: 600px) {
+             .fixed-compact-nav .container {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px 15px;
+            }
+            .fixed-compact-nav nav ul {
+                flex-direction: column;
+                margin-top: 10px;
+            }
+            .fixed-compact-nav nav a {
+                padding: 5px 15px;
+            }
+            .fixed-compact-nav .header-logo {
+                height: 25px;
+                margin-right: 0;
+            }
         }
     </style>
 </head>
 <body>
     
-    <header class="fixed-compact-nav">
+    <div class="fixed-compact-nav">
         <div class="container">
-            <a href="index.html" class="header-logo-link">
+            <a href="index.html">
                 <img src="logo_furia.png" alt="Logo Colonia Della Furia" class="header-logo">
             </a>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li> 
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="warenkorb.html">Warenkorb (<span id="cart-count-nav">0</span>)</a></li>
+                    <li><a href="index.html">Start</a></li>
+                    <li><a href="mitglied.html">Mitglied</a></li>
+                    <li><a href="shop.html" style="color: #FF0000;">Shop</a></li>
+                    <li><a href="warenkorb.html">Warenkorb</a></li>
                 </ul>
             </nav>
         </div>
-    </header>
+    </div>
 
     <main>
-        
         <section id="products">
             <div class="container">
                 <h2>Sticker & Accessoires</h2>
-                <p>Kleine, aber feine Fanartikel für den täglichen Gebrauch.</p>
                 
+                <p>Unsere Accessoires für den Alltag und die Fankurve.</p>
+
                 <div class="product-grid">
                     
                     <div class="product-item">
-                        <img src="{474C8F6C-0462-44A2-A5B4-3D0F07E124BC}.png" alt="Stickerbogen">
-                        <h3>Stickerbogen V.3</h3>
-                        <p>Der neueste Stickerbogen mit 10 Motiven.</p>
+                        <img src="https://via.placeholder.com/300x200/FF0000/FFFFFF?text=Stickerbogen+A4" alt="Stickerbogen">
+                        <h3>Stickerbogen</h3>
+                        <p>DIN A4 Bogen mit verschiedenen CDF-Motiven.</p>
                         <button class="cta-button add-to-cart-btn" 
-                                data-id="acce-sticker-v3" 
-                                data-name="Stickerbogen V.3" 
-                                data-description="10 verschiedene Motive">
+                                data-id="acce-sticker" 
+                                data-name="Stickerbogen A4" 
+                                data-description="Verschiedene Motive">
                             In den Warenkorb
                         </button>
                     </div>
                     
                     <div class="product-item">
-                        <img src="{632ABB9E-F495-42D1-AE85-1C9C1EB5922A}.png" alt="Feuerzeug">
-                        <h3>Colonia Feuerzeug</h3>
-                        <p>Hochwertiges nachfüllbares Feuerzeug mit Furia Logo.</p>
+                        <img src="https://via.placeholder.com/300x200/000000/FFFFFF?text=Feuerzeug+Logo" alt="Feuerzeug">
+                        <h3>Feuerzeug</h3>
+                        <p>Schwarzes Feuerzeug mit CDF-Logo.</p>
                         <button class="cta-button add-to-cart-btn" 
                                 data-id="acce-feuerzeug" 
-                                data-name="Colonia Feuerzeug" 
-                                data-description="Nachfüllbar, Furia Logo">
-                            In den Warenkorb
-                        </button>
-                    </div>
-                    
-                    <div class="product-item">
-                        <img src="{AAA7C0A9-3305-4E38-BA49-2E22DF91869D}.png" alt="Lanyard">
-                        <h3>Schlüsselband (Lanyard)</h3>
-                        <p>Praktisches Lanyard für Schlüssel oder Ausweise.</p>
-                        <button class="cta-button add-to-cart-btn" 
-                                data-id="acce-lanyard" 
-                                data-name="Schlüsselband (Lanyard)" 
-                                data-description="Schwarz/Rot, Textil">
+                                data-name="Feuerzeug CDF" 
+                                data-description="Schwarz, mit Logo">
                             In den Warenkorb
                         </button>
                     </div>
 
                     <div class="product-item">
-                        <img src="{6D60687D-21D1-4C59-90F6-8202A6DF53EC}.png" alt="Basecap">
+                        <img src="https://via.placeholder.com/300x200/FFFFFF/FF0000?text=Basecap+CDF" alt="Basecap">
                         <h3>Basecap 'CDP'</h3>
-                        <p>Stylisches Cap mit gesticktem Logo.</p>
+                        <p>Klassisches Cap mit gesticktem Logo.</p>
                         <button class="cta-button add-to-cart-btn" 
                                 data-id="acce-basecap" 
                                 data-name="Basecap 'CDP'" 
@@ -215,5 +244,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="cart.js"></script> 
 </body>
 </html>

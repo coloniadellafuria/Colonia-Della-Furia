@@ -72,43 +72,56 @@
             background-color: #FF0000;
         }
         
-        /* Gesamt-Info */
-        .total-info {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #FF0000;
-            margin-bottom: 30px;
-            padding: 15px;
+        /* Warenkorb-Zusammenfassung */
+        .cart-summary {
             background-color: #2b2b2b;
+            padding: 20px;
             border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: left;
+            margin-top: 30px;
         }
-        
-        /* Bestell-Button */
+        .cart-summary div {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-top: 1px solid #444;
+        }
+        .cart-summary div:first-child {
+            border-top: none;
+        }
+        .cart-summary .total strong {
+            color: #FF0000;
+            font-size: 1.5em;
+        }
         .cta-bestellen {
             background-color: #FF0000;
             color: #ffffff;
-            text-decoration: none;
             padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 1.1em;
-            cursor: pointer;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 700;
             transition: background-color 0.3s ease;
-            max-width: 400px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            font-size: 1.2em;
+            margin-top: 30px;
             display: block;
-            margin: 0 auto;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .cta-bestellen:hover {
-            background-color: #a9000c;
+            background-color: #cc0000;
         }
-
         .empty-cart-message {
             margin-top: 50px;
-            font-size: 1.2em;
-            color: #ccc;
+            font-size: 1.1em;
+            color: #aaa;
         }
-        
         /* Stil für die feste Navigation */
         .fixed-compact-nav {
             position: fixed;
@@ -147,38 +160,94 @@
         .fixed-compact-nav nav a:hover {
             color: #FF0000;
         }
+
+        /* NEU: Responsive Anpassungen für Smartphones */
+        @media (max-width: 600px) {
+            #cart-section {
+                padding-top: 60px;
+            }
+            #cart-section .container {
+                padding: 0 15px;
+            }
+            #cart-items li {
+                flex-direction: column; /* Elemente untereinander anordnen */
+                align-items: flex-start; /* Links ausrichten */
+                padding: 10px 0;
+                border-bottom: 2px solid #333;
+            }
+            .item-details {
+                text-align: left;
+                padding-right: 0;
+                margin-bottom: 5px;
+                width: 100%;
+            }
+            .item-quantity, .remove-btn {
+                width: 100%;
+                text-align: left;
+                margin-top: 5px;
+                margin-right: 0;
+            }
+            .remove-btn {
+                max-width: 150px;
+                padding: 8px 10px;
+            }
+             .fixed-compact-nav .container {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px 15px;
+            }
+            .fixed-compact-nav nav ul {
+                flex-direction: column;
+                margin-top: 10px;
+            }
+            .fixed-compact-nav nav a {
+                padding: 5px 15px;
+            }
+            .fixed-compact-nav .header-logo {
+                height: 25px;
+                margin-right: 0;
+            }
+            .cta-bestellen, #clear-cart-btn {
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
     
-    <header class="fixed-compact-nav">
+    <div class="fixed-compact-nav">
         <div class="container">
-            <a href="index.html" class="header-logo-link">
+            <a href="index.html">
                 <img src="logo_furia.png" alt="Logo Colonia Della Furia" class="header-logo">
             </a>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li> 
+                    <li><a href="index.html">Start</a></li>
+                    <li><a href="mitglied.html">Mitglied</a></li>
                     <li><a href="shop.html">Shop</a></li>
-                    <li><a href="warenkorb.html">Warenkorb (<span id="cart-count-nav">0</span>)</a></li>
+                    <li><a href="warenkorb.html" style="color: #FF0000;">Warenkorb</a></li>
                 </ul>
             </nav>
         </div>
-    </header>
+    </div>
 
     <main>
-        
         <section id="cart-section">
             <div class="container">
                 <h2>Dein Warenkorb</h2>
                 
+                <ul id="cart-items">
+                    </ul>
+
                 <div id="cart-content">
-                    <ul id="cart-items">
-                        </ul>
-                    
-                    <div class="total-info">
-                        Gesamtartikel: <span id="cart-total-items">0</span>
+                    <div class="cart-summary">
+                        <div class="total">
+                            <span>Artikel Gesamt:</span>
+                            <strong id="cart-count">0</strong>
+                        </div>
                     </div>
+
+                    <p style="margin-top: 20px; color: #ccc;">**Achtung:** Dies ist eine **Bestell-Anfrage**. Die Preise werden nicht angezeigt. Die tatsächlichen Preise und die Verfügbarkeit werden Ihnen in einer Bestätigungs-E-Mail mitgeteilt. Es ist keine rechtsverbindliche Bestellung.</p>
 
                     <button id="checkout-btn" class="cta-bestellen">Bestell-Anfrage senden</button>
                     <button id="clear-cart-btn" class="cta-button" style="background-color: #444; margin-top: 15px; max-width: 400px; display: block; margin-left: auto; margin-right: auto;">Warenkorb leeren</button>
@@ -205,5 +274,6 @@
     </footer>
 
     <script src="script.js"></script>
-</body>
+    <script src="cart.js"></script> 
+    </body>
 </html>

@@ -9,15 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Spezifische Stile für die Impressum-Seite */
+        /* Spezifische Stile für die Impressum-Seite (Desktop-Basis) */
         #impressum {
             padding: 80px 0;
-            background-color: #1a1a1a; /* Hintergrundfarbe vom Body/Footer beibehalten */
+            background-color: #1a1a1a;
             color: #ffffff;
             line-height: 1.6;
         }
         #impressum h2 {
-            color: #FF0000; /* Roter Titel */
+            color: #FF0000;
             margin-bottom: 30px;
             font-size: 2.5em;
             text-align: center;
@@ -30,7 +30,7 @@
             text-align: left;
         }
         .impressum-abschnitt {
-            border-left: 3px solid #FF0000; /* Rote Linie links */
+            border-left: 3px solid #FF0000;
             padding-left: 20px;
             margin-top: 30px;
         }
@@ -45,6 +45,33 @@
         }
         #impressum a:hover {
             text-decoration: underline;
+        }
+
+        /* NEU: Responsive Anpassungen für Smartphones */
+        @media (max-width: 768px) {
+            #impressum h2 {
+                font-size: 2em;
+            }
+            #impressum .container {
+                padding: 0 15px;
+            }
+            /* Navigation auf Mobilgeräten stapeln und mittig zentrieren */
+            .fixed-compact-nav .container {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px 15px;
+            }
+            .fixed-compact-nav .header-logo {
+                margin: 0 0 10px 0;
+            }
+            .fixed-compact-nav nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .fixed-compact-nav nav a {
+                padding: 5px 10px;
+                font-size: 0.9em;
+            }
         }
     </style>
 </head>

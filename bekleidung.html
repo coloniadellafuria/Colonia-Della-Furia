@@ -9,14 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Spezifische Stile für die Shop-Produktseite */
+        /* Spezifische Stile für die Shop-Produktseite (Desktop-Basis) */
         #products {
             padding: 80px 0 100px 0;
             background-color: #1a1a1a; 
             color: #ffffff;
             line-height: 1.6;
             text-align: center;
-            min-height: 100vh; /* Sorgt dafür, dass die Seite mindestens bildschirmhoch ist */
+            min-height: 100vh;
         }
         #products .container {
             max-width: 1200px;
@@ -66,7 +66,7 @@
             color: #FF0000;
         }
         
-        /* Produkt Grid */
+        /* Produkt Grid (Desktop-Basis) */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -101,7 +101,7 @@
             font-size: 0.9em;
             color: #ccc;
             margin-bottom: 20px;
-            min-height: 40px; /* Einheitliche Höhe für Beschreibung */
+            min-height: 40px;
         }
         
         .add-to-cart-btn {
@@ -117,6 +117,47 @@
         .add-to-cart-btn:hover {
             background-color: #a9000c;
             transform: scale(1.02);
+        }
+
+        /* NEU: Responsive Anpassungen für Smartphones */
+        @media (max-width: 768px) {
+            
+            #products h2 {
+                font-size: 2em;
+            }
+            
+            /* Navigation auf Mobilgeräten stapeln und mittig zentrieren */
+            .fixed-compact-nav .container {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px 15px;
+            }
+            .fixed-compact-nav .header-logo {
+                margin: 0 0 10px 0;
+            }
+            .fixed-compact-nav nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .fixed-compact-nav nav a {
+                padding: 5px 10px;
+                font-size: 0.9em;
+            }
+
+            /* Produktgitter: Produkte nehmen volle Breite ein */
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .product-item {
+                max-width: 100%; 
+            }
+            
+            .add-to-cart-btn {
+                width: 100%;
+                box-sizing: border-box;
+            }
         }
     </style>
 </head>
