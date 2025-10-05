@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anmeldeformular | Colonia Della Furia</title>
+    <link rel="icon" type="image/x-icon" href="logo_furia.png"> 
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Spezifische Stile für das Formular */
+        #formular {
+            padding: 80px 0;
+            background-color: #1a1a1a; 
+            color: #ffffff;
+            line-height: 1.6;
+            text-align: left;
+        }
+        #formular .container {
+            max-width: 800px; /* Etwas schmaler als andere Seiten */
+            margin-top: 20px;
+            padding: 30px;
+            background-color: #2b2b2b; /* Dunkelgrauer Container-Hintergrund */
+            border-radius: 8px;
+        }
+        #formular h2 {
+            color: #FF0000; 
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-align: center;
+        }
+        #formular h3 {
+            color: #ffffff;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 5px;
+        }
+        
+        /* Formular-Elemente */
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        .form-group input[type="text"], 
+        .form-group input[type="email"], 
+        .form-group input[type="tel"], 
+        .form-group input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-size: 1em;
+            box-sizing: border-box; /* Wichtig für 100% Breite */
+        }
+
+        /* Checkbox- und Radio-Gruppen */
+        .radio-group label {
+            display: inline-block;
+            margin-right: 20px;
+            font-weight: 400;
+        }
+
+        /* Navigationsstil (Übernahme der großen, fixierten Leiste) */
+        .fixed-compact-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #1a1a1a;
+            border-bottom: 3px solid #FF0000;
+            z-index: 1000;
+            padding: 20px 0;
+        }
+        .fixed-compact-nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .fixed-compact-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        .fixed-compact-nav li a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0 15px;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+        .fixed-compact-nav .header-logo-small {
+            height: 45px;
+            margin-right: 15px;
+        }
+        .fixed-compact-nav .header-title-small {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #FF0000;
+            margin-right: auto;
+        }
+        
+        /* Body-Padding für die fixierte Navigationsleiste */
+        body {
+            padding-top: 85px; 
+        }
+
+        /* Druck-Optimierung: Navigation, Footer und Scroll-Button ausblenden */
+        @media print {
+            .fixed-compact-nav, footer, #scrollToTopBtn {
+                display: none;
+            }
+            body {
+                padding-top: 0;
+                background-color: #ffffff;
+                color: #000000;
+            }
+            #formular {
+                padding: 20px;
+                background-color: #ffffff;
+                color: #000000;
+            }
+            #formular .container {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                background-color: #ffffff;
+                color: #000000;
+            }
+            #formular h2 {
+                color: #d60010;
+            }
+            #formular h3 {
+                color: #000000;
+                border-bottom: 1px solid #000;
+            }
+            .form-group input[type="text"], 
+            .form-group input[type="email"], 
+            .form-group input[type="tel"], 
+            .form-group input[type="date"] {
+                border: none;
+                border-bottom: 1px solid #000;
+                background-color: #ffffff;
+                color: #000000;
+                padding: 5px 0;
+            }
+            .print-only {
+                display: block !important;
+                margin-top: 40px;
+                padding-top: 15px;
+                border-top: 2px solid #000;
+            }
+            .cta-button {
+                display: none; /* Button zum Abschicken/Drucken ausblenden */
+            }
+        }
+
+        .print-only {
+            display: none; /* Standardmäßig auf dem Bildschirm versteckt */
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <nav class="fixed-compact-nav">
+        <div class="container">
+            <img src="logo_furia.png" alt="Logo" class="header-logo-small">
+            <div class="header-title-small">COLONIA DELLA FURIA</div>
+            <ul>
+                <li><a href="index.html">Home</a></li> 
+                <li><a href="index.html#news">Aktuelles</a></li>
+                <li><a href="index.html#about">Über uns</a></li>
+                <li><a href="mitgliedwerden.html">Mitglied werden</a></li>
+                <li><a href="shop.html">Shop</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="formular">
+            <div class="container">
+                <h2>Anmeldeformular</h2>
+                <p>Bitte füllen Sie das Formular vollständig aus und senden Sie es <strong>unterschrieben</strong> an die unten stehende Adresse. Um das Formular auszudrucken, klicken Sie auf den roten Button.</p>
+                <p><strong>Adresse:</strong> Timo Krauthausen, Rilkestraße 38, 50997 Köln</p>
+                
+                <form action="#" method="POST" onsubmit="alert('Achtung: Dieses Online-Formular dient nur zur Ansicht/zum Ausdruck. Es wird nichts verschickt.'); return false;">
+                    
+                    <h3>Persönliche Daten</h3>
+                    <div class="form-group">
+                        <label for="name">Name, Vorname *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="strasse">Straße, Hausnummer *</label>
+                        <input type="text" id="strasse" name="strasse" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="plz_ort">PLZ, Ort *</label>
+                        <input type="text" id="plz_ort" name="plz_ort" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="geburtsdatum">Geburtsdatum *</label>
+                        <input type="date" id="geburtsdatum" name="geburtsdatum" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefon">Telefonnummer</label>
+                        <input type="tel" id="telefon" name="telefon">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-Mail *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <h3>Mitgliedschaft</h3>
+                    <div class="form-group">
+                        <label>Ich beantrage die Mitgliedschaft als:</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="typ" value="erwachsen" required> Erwachsener (Jahresbeitrag [Betrag])</label>
+                            <label><input type="radio" name="typ" value="ermaessigt"> Ermäßigt (Jahresbeitrag [Betrag] - Schüler/Student/Rentner)</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="startdatum">Gewünschtes Startdatum</label>
+                        <input type="date" id="startdatum" name="startdatum">
+                    </div>
+
+                    <h3>Erklärung *</h3>
+                    <p>Ich erkenne die Satzung/Ordnung des Fanclubs "Colonia Della Furia" an und stimme der Verarbeitung meiner Daten zu den in der <a href="datenschutz.html" style="color: #FF0000;">Datenschutzerklärung</a> genannten Zwecken zu.</p>
+                    
+                    <div class="print-only">
+                        <div class="form-group">
+                            <label>Ort, Datum:</label>
+                            <input type="text" style="width: 50%;">
+                        </div>
+                        <div class="form-group">
+                            <label>Unterschrift:</label>
+                            <input type="text" style="width: 70%;">
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 30px; font-size: 0.9em; color: #aaa;">* Pflichtfelder. Dieses Online-Formular sendet keine Daten ab. Bitte das Formular ausdrucken, unterschreiben und per Post senden.</p>
+
+                    <button type="button" onclick="window.print()" class="cta-button">Formular ausdrucken</button>
+                    
+                </form>
+            </div>
+        </section>
+    </main>
+    
+    <button id="scrollToTopBtn" title="Zum Seitenanfang">↑</button>
+
+    <footer>
+        <div class="container">
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

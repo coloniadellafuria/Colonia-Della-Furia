@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitglied werden | Colonia Della Furia</title>
+    <link rel="icon" type="image/x-icon" href="logo_furia.png"> 
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Spezifische Stile für die Mitglied-Seite */
+        #mitgliedwerden {
+            padding: 80px 0;
+            background-color: #1a1a1a; 
+            color: #ffffff;
+            line-height: 1.6;
+            text-align: left;
+        }
+        #mitgliedwerden .container {
+            max-width: 900px;
+        }
+        #mitgliedwerden h2 {
+            color: #FF0000; 
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-align: center;
+        }
+        #mitgliedwerden p {
+            margin-bottom: 20px;
+        }
+        
+        /* Navigationsstil (Übernahme der großen, fixierten Leiste) */
+        .fixed-compact-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #1a1a1a;
+            border-bottom: 3px solid #FF0000;
+            z-index: 1000;
+            padding: 20px 0; /* Große Leiste */
+        }
+        .fixed-compact-nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px; 
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .fixed-compact-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        .fixed-compact-nav li a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0 15px;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+        .fixed-compact-nav .header-logo-small {
+            height: 45px; 
+            margin-right: 15px;
+        }
+        .fixed-compact-nav .header-title-small {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #FF0000;
+            margin-right: auto;
+        }
+        
+        /* Body-Padding für die fixierte Navigationsleiste */
+        body {
+            padding-top: 85px; /* Höhe der fixierten Leiste + etwas Abstand */
+        }
+        
+        /* Styling für den CTA Button (aus style.css) */
+        .cta-button {
+            display: inline-block;
+            background-color: #d60010; 
+            color: #ffffff; 
+            padding: 12px 25px;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .cta-button:hover {
+            background-color: #a9000c;
+            transform: scale(1.05);
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <nav class="fixed-compact-nav">
+        <div class="container">
+            <img src="logo_furia.png" alt="Logo" class="header-logo-small">
+            <div class="header-title-small">COLONIA DELLA FURIA</div>
+            <ul>
+                <li><a href="index.html">Home</a></li> 
+                <li><a href="index.html#news">Aktuelles</a></li>
+                <li><a href="index.html#about">Über uns</a></li>
+                <li><a href="mitgliedwerden.html">Mitglied werden</a></li> 
+                <li><a href="shop.html">Shop</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="mitgliedwerden">
+            <div class="container">
+                <h2>Mitglied werden</h2>
+                
+                <p>Unterstütze uns und sichere dir exklusive Vorteile wie **ermäßigte Auswärtsfahrten**, Zugang zu Fanclub-Events und natürlich die **beste Stimmung** im Stadion!</p>
+
+                <h3>So funktioniert die Mitgliedschaft</h3>
+                <p>
+                    Die Mitgliedschaft im unabhängigen Fanclub "Colonia Della Furia" bietet dir:<br>
+                    - **Ermäßigte Fahrpreise** bei organisierten Auswärtsfahrten.<br>
+                    - **Exklusiver Zugang** zu Fanclub-Treffen und internen Events.<br>
+                    - **Stimmrecht** bei Versammlungen (falls der Fanclub als e.V. organisiert ist).<br>
+                    - Den **jährlichen Fanclub-Schal** (oder ein anderes exklusives Mitgliedsgeschenk).
+                </p>
+
+                <h3>Anmeldung</h3>
+                <p>Lade unser **offizielles Anmeldeformular** herunter, fülle es aus und sende es unterschrieben per Post oder als Scan an unsere offizielle Adresse.</p>
+                <p>
+                    **Unsere Adresse:**<br>
+                    Timo Krauthausen<br>
+                    Rilkestraße 38<br>
+                    50997 Köln
+                </p>
+                
+                <a href="anmeldeformular.html" class="cta-button">Jetzt Mitglied werden</a>
+                
+                <h3>Mitgliedsbeiträge</h3>
+                <p>Der aktuelle Jahresbeitrag beträgt:</p>
+                <ul>
+                    <li>Erwachsene:  45€ pro Jahr</li>
+                    <li>Ermäßigt (Schüler, Studenten, Rentner): 30€ pro Jahr</li>
+                </ul>
+                <p>Die Zahlung erfolgt jährlich per Überweisung.</p>
+
+                <p>Wir freuen uns auf dich in der Furia-Familie!</p>
+            </div>
+        </section>
+    </main>
+    
+    <button id="scrollToTopBtn" title="Zum Seitenanfang">↑</button>
+
+    <footer>
+        <div class="container">
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

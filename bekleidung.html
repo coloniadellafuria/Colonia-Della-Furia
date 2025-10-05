@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bekleidung | Colonia Della Furia Shop</title>
+    <link rel="icon" type="image/x-icon" href="logo_furia.png"> 
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Spezifische Stile für die Shop-Produktseite */
+        #products {
+            padding: 80px 0 100px 0;
+            background-color: #1a1a1a; 
+            color: #ffffff;
+            line-height: 1.6;
+            text-align: center;
+            min-height: 100vh; 
+        }
+        #products .container {
+            max-width: 1200px;
+        }
+        #products h2 {
+            color: #FF0000; 
+            margin-bottom: 50px;
+            font-size: 2.5em;
+        }
+        
+        /* Stil für die feste Navigation */
+        .fixed-compact-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #1a1a1a;
+            border-bottom: 3px solid #FF0000;
+            z-index: 1000;
+            padding: 20px 0;
+        }
+        .fixed-compact-nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px; 
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .fixed-compact-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        .fixed-compact-nav li a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0 15px;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+        .fixed-compact-nav .header-logo-small {
+            height: 45px; 
+            margin-right: 15px;
+        }
+        .fixed-compact-nav .header-title-small {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #FF0000;
+            margin-right: auto;
+        }
+        body {
+            padding-top: 85px; 
+        }
+
+        /* Produkt-Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 20px 0;
+        }
+
+        .product-item {
+            background-color: #2b2b2b;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .product-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            max-height: 250px;
+            object-fit: cover;
+        }
+
+        .product-item h3 {
+            color: #FF0000;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+        
+        .product-item p {
+            color: #f0f0f0;
+            min-height: 40px; 
+            margin-bottom: 20px;
+        }
+        
+        /* Warenkorb Button */
+        .add-to-cart-btn {
+            background-color: #FF0000;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            display: block;
+            width: 100%;
+            max-width: 250px;
+            margin: 15px auto 0;
+            font-size: 1em;
+        }
+        
+        .add-to-cart-btn:hover {
+            background-color: #a9000c;
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body>
+    
+    <nav class="fixed-compact-nav">
+        <div class="container">
+            <img src="logo_furia.png" alt="Logo" class="header-logo-small">
+            <div class="header-title-small">COLONIA DELLA FURIA</div>
+            <ul>
+                <li><a href="index.html">Home</a></li> 
+                <li><a href="index.html#news">Aktuelles</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="warenkorb.html">Warenkorb (<span id="cart-count-nav">0</span>)</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="products">
+            <div class="container">
+                <h2>Bekleidung</h2>
+                <p>Hoodies, T-Shirts und Schals – hier findest du alles, um deine Furia im Stadion zu zeigen.</p>
+                
+                <div class="product-grid">
+                    
+                    <div class="product-item">
+                        <img src="https://via.placeholder.com/350x250/FF0000/FFFFFF?text=Hoodie+Logo" alt="Fan Hoodie Logo">
+                        <h3>Fan Hoodie 'Furia'</h3>
+                        <p>Hochwertiger Kapuzenpullover mit gesticktem Furia-Logo.</p>
+                        <button class="add-to-cart-btn" 
+                                data-id="bekl-hoodie-furia" 
+                                data-name="Fan Hoodie 'Furia'" 
+                                data-description="Kapuzenpullover, gesticktes Logo">
+                            In den Warenkorb
+                        </button>
+                    </div>
+                    
+                    <div class="product-item">
+                        <img src="https://via.placeholder.com/350x250/1a1a1a/f0f0f0?text=T-Shirt+Logo" alt="Fan T-Shirt Logo">
+                        <h3>Fan T-Shirt 'Logo'</h3>
+                        <p>Hochwertiges T-Shirt mit großem Logo-Print auf der Brust.</p>
+                        <button class="add-to-cart-btn" 
+                                data-id="bekl-shirt-logo" 
+                                data-name="Fan T-Shirt 'Logo'" 
+                                data-description="T-Shirt, Logo-Print">
+                            In den Warenkorb
+                        </button>
+                    </div>
+                    
+                    <div class="product-item">
+                        <img src="https://via.placeholder.com/350x250/FFFFFF/FF0000?text=Schal+Premium" alt="Premium Schal">
+                        <h3>Premium Strickschal</h3>
+                        <p>Ein Muss für die Arena: Der Premium-Strickschal.</p>
+                        <button class="add-to-cart-btn" 
+                                data-id="bekl-schal-premium" 
+                                data-name="Premium Strickschal" 
+                                data-description="Strickschal, Rot/Weiß/Schwarz">
+                            In den Warenkorb
+                        </button>
+                    </div>
+                    
+                    <div class="product-item">
+                        <img src="https://via.placeholder.com/350x250/1a1a1a/f0f0f0?text=Trikot+Replica" alt="Replica Trikot">
+                        <h3>Replica Trikot</h3>
+                        <p>Das aktuelle Trikot im Colonia-Style.</p>
+                        <button class="add-to-cart-btn" 
+                                data-id="bekl-trikot-replica" 
+                                data-name="Replica Trikot" 
+                                data-description="Colonia Style">
+                            In den Warenkorb
+                        </button>
+                    </div>
+                    
+                </div>
+                
+                <p style="margin-top: 50px;">Bestellungen und Informationen zu Größen, Verfügbarkeit und Preisen erfolgen über eine Bestell-Anfrage im <a href="warenkorb.html" style="color: #FF0000; text-decoration: none; font-weight: bold;">Warenkorb</a>.</p>
+            </div>
+        </section>
+        
+    </main>
+    
+    <button id="scrollToTopBtn" title="Zum Seitenanfang">↑</button>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Colonia Della Furia. Unabhängiger Fanclub. Alle Rechte vorbehalten. | <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></p>
+            <div class="social-links">
+                <a href="https://www.tiktok.com/@coloniadellafuria" target="_blank" aria-label="TikTok"><img src="tiktok.png" alt="TikTok"></a>
+                <a href="https://www.instagram.com/coloniadellanfuria/" target="_blank" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
