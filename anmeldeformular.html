@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Spezifische Stile für das Formular (Desktop-Basis) */
+        /* Spezifische Stile für das Formular */
         #formular {
             padding: 80px 0;
             background-color: #1a1a1a; 
@@ -18,10 +18,10 @@
             text-align: left;
         }
         #formular .container {
-            max-width: 800px;
+            max-width: 800px; 
             margin-top: 20px;
             padding: 30px;
-            background-color: #2b2b2b;
+            background-color: #2b2b2b; 
             border-radius: 8px;
         }
         #formular h2 {
@@ -31,187 +31,214 @@
             text-align: center;
         }
         #formular h3 {
-             color: #ffffff;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #FF0000;
+            color: #FF0000;
+            margin-top: 20px;
             padding-bottom: 5px;
+            border-bottom: 1px solid #FF0000;
         }
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             font-weight: bold;
         }
-        .form-group input[type="text"],
-        .form-group input[type="email"],
-        .form-group input[type="date"] {
+        .form-group input[type="text"], 
+        .form-group input[type="date"],
+        .form-group input[type="email"] {
             width: 100%;
             padding: 10px;
             border: 1px solid #444;
             border-radius: 4px;
-            background-color: #333;
+            background-color: #1a1a1a;
             color: #ffffff;
+            font-size: 1em;
             box-sizing: border-box; 
         }
-        .print-only {
-            margin-top: 40px;
-            border-top: 1px dashed #666;
-            padding-top: 20px;
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
         }
-        .print-only input[type="text"] {
-            border: none;
-            border-bottom: 1px solid #ffffff;
-            background-color: transparent;
-            border-radius: 0;
-            padding: 5px 0;
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
         }
         
-        /* Druckstil für das Formular (WIRD BEIBEHALTEN) */
-        @media print {
-            body {
-                background-color: #ffffff !important;
-                color: #000000 !important;
-            }
-            #formular {
-                padding: 0;
-            }
-            #formular .container {
-                max-width: 100%;
-                margin: 0;
-                padding: 20px;
-                background-color: #ffffff !important;
-                color: #000000 !important;
-                box-shadow: none;
-            }
-            /* Alles ausblenden, was nicht gedruckt werden soll */
-            header, nav, footer, .cta-button, #scrollToTopBtn, p:last-child {
-                display: none;
-            }
-            /* Druckspezifische Felder anzeigen */
-            .print-only {
-                display: block;
-            }
-            .print-only input[type="text"] {
-                border-color: #000000 !important;
-                color: #000000 !important;
-            }
+        /* Stil für die feste Navigation */
+        .fixed-compact-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 10px 0;
+            z-index: 999;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        .fixed-compact-nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .fixed-compact-nav .header-logo {
+            height: 30px;
+            margin-right: 20px;
+        }
+        .fixed-compact-nav nav ul {
+            display: flex;
+            list-style: none;
+        }
+        .fixed-compact-nav nav a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+        .fixed-compact-nav nav a:hover {
+            color: #FF0000;
         }
 
         /* NEU: Responsive Anpassungen für Smartphones */
-        @media (max-width: 768px) {
-            #formular h2 {
-                font-size: 2em;
+        @media (max-width: 600px) {
+            /* FIX: Hauptsektion nach unten schieben */
+            #formular {
+                padding-top: 75px !important; /* WICHTIG: Erhöhter Abstand, um unter der fixen Leiste zu starten */
             }
             #formular .container {
                 padding: 20px 15px;
             }
-
-            /* Navigation auf Mobilgeräten stapeln und mittig zentrieren */
+             /* FIX: Navigation kompakter machen (Falls sie per CSS gestackt wurde) */
             .fixed-compact-nav .container {
-                flex-direction: column;
-                align-items: center;
-                padding: 10px 15px;
+                /* flex-direction: column; entfernt, um horizontal zu bleiben */
+                padding: 0 10px;
             }
             .fixed-compact-nav .header-logo {
-                margin: 0 0 10px 0;
+                height: 25px; 
+                margin-right: 10px;
             }
             .fixed-compact-nav nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
+                flex-direction: row; /* WICHTIG: Horizontal beibehalten */
+                justify-content: flex-end;
             }
             .fixed-compact-nav nav a {
-                padding: 5px 10px;
-                font-size: 0.9em;
+                padding: 8px 5px; /* Sehr kompakte Links */
+                font-size: 0.7em; /* Kleinere Schrift */
             }
             
-            /* Unterschriftenfelder, die ursprünglich Inline-Styles hatten, auf volle Breite setzen */
-            .print-only input[type="text"] {
-                width: 100% !important;
-                margin-bottom: 15px; /* Abstand zwischen den Feldern */
+            .form-group {
+                margin-bottom: 10px;
             }
-            
-            /* CTA-Button volle Breite */
-            .cta-button {
+            .two-columns {
+                flex-direction: column;
+            }
+            .two-columns > div {
                 width: 100%;
-                box-sizing: border-box;
+                margin-bottom: 10px;
             }
         }
     </style>
 </head>
 <body>
     
-    <header class="fixed-compact-nav">
+    <div class="fixed-compact-nav">
         <div class="container">
-            <a href="index.html" class="header-logo-link">
+            <a href="index.html">
                 <img src="logo_furia.png" alt="Logo Colonia Della Furia" class="header-logo">
             </a>
             <nav>
                 <ul>
-                    <li><a href="index.html#hero">Home</a></li>
-                    <li><a href="index.html#news">Aktuelles</a></li>
-                    <li><a href="index.html#about">Über uns</a></li>
-                    <li><a href="anmeldeformular.html">Mitglied werden</a></li>
+                    <li><a href="index.html">Start</a></li>
+                    <li><a href="mitglied.html">Mitglied</a></li>
                     <li><a href="shop.html">Shop</a></li>
+                    <li><a href="warenkorb.html">Warenkorb</a></li>
                 </ul>
             </nav>
         </div>
-    </header>
+    </div>
 
     <main>
-        
         <section id="formular">
             <div class="container">
-                <h2>Mitgliedschaftsanmeldung</h2>
-                <p>Bitte füllen Sie das Formular vollständig aus, drucken Sie es aus und senden Sie es **unterschrieben per Post** an die im <a href="impressum.html" style="color: #FF0000;">Impressum</a> genannte Adresse.</p>
+                <h2>Anmeldeformular</h2>
                 
-                <form onsubmit="return false;">
-                    
+                <p>Bitte drucke dieses Formular aus, fülle es vollständig aus und sende es unterschrieben an die angegebene Adresse zurück.</p>
+                
+                <form id="mitgliedsformular">
                     <h3>Persönliche Daten</h3>
                     <div class="form-group">
-                        <label for="name">Vorname, Nachname *</label>
-                        <input type="text" id="name" name="name" required>
+                        <label for="nachname">* Nachname:</label>
+                        <input type="text" id="nachname" name="nachname" required>
                     </div>
                     <div class="form-group">
-                        <label for="strasse">Straße, Hausnummer *</label>
+                        <label for="vorname">* Vorname:</label>
+                        <input type="text" id="vorname" name="vorname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gebdatum">* Geburtsdatum:</label>
+                        <input type="date" id="gebdatum" name="gebdatum" required>
+                    </div>
+
+                    <h3>Adresse und Kontakt</h3>
+                    <div class="form-group">
+                        <label for="strasse">* Straße und Hausnummer:</label>
                         <input type="text" id="strasse" name="strasse" required>
                     </div>
-                    <div class="form-group">
-                        <label for="ort">PLZ, Ort *</label>
-                        <input type="text" id="ort" name="ort" required>
+                    <div class="two-columns" style="display: flex; gap: 20px;">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="plz">* PLZ:</label>
+                            <input type="text" id="plz" name="plz" style="width: 100%;" required>
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="ort">* Ort:</label>
+                            <input type="text" id="ort" name="ort" style="width: 100%;" required>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="geburtsdatum">Geburtsdatum *</label>
-                        <input type="date" id="geburtsdatum" name="geburtsdatum" required>
+                        <label for="email">E-Mail:</label>
+                        <input type="email" id="email" name="email">
                     </div>
                     <div class="form-group">
-                        <label for="email">E-Mail *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="telefon">Telefon</label>
+                        <label for="telefon">Telefon (optional):</label>
                         <input type="text" id="telefon" name="telefon">
                     </div>
 
-                    <h3>Mitgliedschaft</h3>
+                    <h3>Mitgliedsbeitrag</h3>
                     <div class="form-group">
-                        <label for="startdatum">Gewünschtes Startdatum (TT.MM.JJJJ)</label>
-                        <input type="text" id="startdatum" name="startdatum">
+                        <label>Gewünschte Mitgliedschaft:</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="erwachsen" name="mitgliedschaft" value="erwachsen">
+                            <label for="erwachsen">Erwachsener (45€ / Jahr)</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="ermaessigt" name="mitgliedschaft" value="ermaessigt">
+                            <label for="ermaessigt">Ermäßigt (Schüler, Student, etc. - 30€ / Jahr)</label>
+                        </div>
+                    </div>
+                    
+                    <h3>Einwilligung</h3>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="datenschutz-check" name="datenschutz-check" required>
+                        <label for="datenschutz-check">* Ich habe die <a href="datenschutz.html" target="_blank" style="color: #FF0000;">Datenschutzerklärung</a> gelesen und stimme ihr zu.</label>
                     </div>
 
-                    <h3>Erklärung *</h3>
-                    <p>Ich erkenne die Satzung/Ordnung des Fanclubs "Colonia Della Furia" an und stimme der Verarbeitung meiner Daten zu den in der <a href="datenschutz.html" style="color: #FF0000;">Datenschutzerklärung</a> genannten Zwecken zu.</p>
-                    
-                    <div class="print-only">
-                        <div class="form-group">
-                            <label>Ort, Datum:</label>
-                            <input type="text" style="width: 50%;">
+                    <div style="border: 1px dashed #666; padding: 20px; margin-top: 30px; text-align: center;">
+                        <p style="font-weight: bold; color: #FF0000; margin-bottom: 10px;">Bitte hier unterschreiben:</p>
+                        <div class="form-group" style="margin-bottom: 5px;">
+                            <label>Datum und Ort:</label>
+                            <input type="text" style="width: 100%;">
                         </div>
                         <div class="form-group">
                             <label>Unterschrift:</label>
-                            <input type="text" style="width: 70%;">
+                            <input type="text" style="width: 100%;">
                         </div>
                     </div>
 

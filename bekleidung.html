@@ -9,14 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Spezifische Stile für die Shop-Produktseite (Desktop-Basis) */
+        /* Spezifische Stile für die Shop-Produktseite */
         #products {
             padding: 80px 0 100px 0;
             background-color: #1a1a1a; 
             color: #ffffff;
             line-height: 1.6;
             text-align: center;
-            min-height: 100vh;
+            min-height: 100vh; /* Sorgt dafür, dass die Seite mindestens bildschirmhoch ist */
         }
         #products .container {
             max-width: 1200px;
@@ -65,8 +65,8 @@
         .fixed-compact-nav nav a:hover {
             color: #FF0000;
         }
-        
-        /* Produkt Grid (Desktop-Basis) */
+
+        /* Produkt Grid */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -83,142 +83,144 @@
         }
         .product-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 6px 12px rgba(255, 0, 0, 0.5);
         }
         .product-item img {
             max-width: 100%;
             height: auto;
-            border-radius: 6px;
+            border-radius: 4px;
             margin-bottom: 15px;
-            border: 2px solid #FF0000;
         }
         .product-item h3 {
             color: #FF0000;
             margin-bottom: 10px;
-            font-family: 'Oswald', sans-serif;
+            font-size: 1.5em;
         }
         .product-item p {
-            font-size: 0.9em;
+            margin-bottom: 15px;
             color: #ccc;
-            margin-bottom: 20px;
-            min-height: 40px;
         }
-        
-        .add-to-cart-btn {
+        .product-item .price {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .cta-button {
             background-color: #FF0000;
             color: #ffffff;
             padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 700;
+            transition: background-color 0.3s ease;
             border: none;
-            border-radius: 5px;
             cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.1s;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            font-size: 1.1em;
+            width: 100%; 
+            box-sizing: border-box;
         }
-        .add-to-cart-btn:hover {
-            background-color: #a9000c;
-            transform: scale(1.02);
+        .cta-button:hover {
+            background-color: #cc0000;
         }
 
         /* NEU: Responsive Anpassungen für Smartphones */
         @media (max-width: 768px) {
-            
-            #products h2 {
-                font-size: 2em;
-            }
-            
-            /* Navigation auf Mobilgeräten stapeln und mittig zentrieren */
-            .fixed-compact-nav .container {
-                flex-direction: column;
-                align-items: center;
-                padding: 10px 15px;
-            }
-            .fixed-compact-nav .header-logo {
-                margin: 0 0 10px 0;
-            }
-            .fixed-compact-nav nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .fixed-compact-nav nav a {
-                padding: 5px 10px;
-                font-size: 0.9em;
-            }
-
-            /* Produktgitter: Produkte nehmen volle Breite ein */
             .product-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; 
                 gap: 20px;
             }
-            
             .product-item {
-                max-width: 100%; 
+                padding: 20px;
             }
-            
-            .add-to-cart-btn {
-                width: 100%;
-                box-sizing: border-box;
+             /* FIX: Hauptsektion nach unten schieben */
+            #products {
+                padding-top: 75px !important; /* WICHTIG: Erhöhter Abstand, um unter der fixen Leiste zu starten */
+            }
+        }
+        @media (max-width: 600px) {
+             /* FIX: Navigation kompakter machen (Falls sie per CSS gestackt wurde) */
+            .fixed-compact-nav .container {
+                /* flex-direction: column; entfernt, um horizontal zu bleiben */
+                padding: 0 10px;
+            }
+            .fixed-compact-nav .header-logo {
+                height: 25px; 
+                margin-right: 10px;
+            }
+            .fixed-compact-nav nav ul {
+                flex-direction: row; /* WICHTIG: Horizontal beibehalten */
+                justify-content: flex-end;
+            }
+            .fixed-compact-nav nav a {
+                padding: 8px 5px; /* Sehr kompakte Links */
+                font-size: 0.7em; /* Kleinere Schrift */
             }
         }
     </style>
 </head>
 <body>
     
-    <header class="fixed-compact-nav">
+    <div class="fixed-compact-nav">
         <div class="container">
-            <a href="index.html" class="header-logo-link">
+            <a href="index.html">
                 <img src="logo_furia.png" alt="Logo Colonia Della Furia" class="header-logo">
             </a>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li> 
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="warenkorb.html">Warenkorb (<span id="cart-count-nav">0</span>)</a></li>
+                    <li><a href="index.html">Start</a></li>
+                    <li><a href="mitglied.html">Mitglied</a></li>
+                    <li><a href="shop.html" style="color: #FF0000;">Shop</a></li>
+                    <li><a href="warenkorb.html">Warenkorb</a></li>
                 </ul>
             </nav>
         </div>
-    </header>
+    </div>
 
     <main>
-        
         <section id="products">
             <div class="container">
                 <h2>Bekleidung</h2>
-                <p>Hochwertige Fan-Wear für die Arena und unterwegs.</p>
                 
+                <p>Hoodies, T-Shirts und Schals in Fanclub-Optik.</p>
+
                 <div class="product-grid">
                     
                     <div class="product-item">
-                        <img src="{886DAF98-F143-43D4-9230-B611AD6FC211}.png" alt="Fan T-Shirt Logo">
-                        <h3>Fan T-Shirt 'Logo'</h3>
-                        <p>Hochwertiges T-Shirt mit großem Logo-Print auf der Brust.</p>
+                        <img src="https://via.placeholder.com/300x200/FF0000/000000?text=Hoodie+Logo" alt="Hoodie mit Logo">
+                        <h3>Hoodie 'Furia'</h3>
+                        <p>Hochwertiger, schwarzer Kapuzenpullover mit rotem Logo-Stick.</p>
                         <button class="cta-button add-to-cart-btn" 
-                                data-id="bekl-tshirt-logo" 
-                                data-name="Fan T-Shirt 'Logo'" 
-                                data-description="Hochwertiges T-Shirt, Logo-Print">
+                                data-id="bekl-hoodie" 
+                                data-name="Hoodie 'Furia'" 
+                                data-description="Schwarz, Logo-Stick">
                             In den Warenkorb
                         </button>
                     </div>
                     
                     <div class="product-item">
-                        <img src="{6619C5F4-D068-4FD6-A003-0682FC7AB67B}.png" alt="Premium Schal">
-                        <h3>Premium Strickschal</h3>
-                        <p>Ein Muss für die Arena: Der Premium-Strickschal.</p>
+                        <img src="https://via.placeholder.com/300x200/FFFFFF/FF0000?text=T-Shirt+Furia" alt="T-Shirt">
+                        <h3>T-Shirt 'Support'</h3>
+                        <p>Weißes T-Shirt mit großem 'Support Your Local Team' Rückenprint.</p>
                         <button class="cta-button add-to-cart-btn" 
-                                data-id="bekl-strickschal" 
-                                data-name="Premium Strickschal" 
-                                data-description="Doppelt gewebt, hohe Qualität">
+                                data-id="bekl-shirt" 
+                                data-name="T-Shirt 'Support'" 
+                                data-description="Weiß, Rückenprint">
                             In den Warenkorb
                         </button>
                     </div>
-                    
+
                     <div class="product-item">
-                        <img src="{9A5DDE73-F6F8-4950-98D2-4C90DDDD7995}.png" alt="Replica Trikot">
-                        <h3>Replica Trikot</h3>
-                        <p>Das aktuelle Trikot im Colonia-Style.</p>
+                        <img src="https://via.placeholder.com/300x200/000000/FFFFFF?text=Schal+Doppelseitig" alt="Schal">
+                        <h3>Doppelseitiger Schal</h3>
+                        <p>Klassischer Fanschal, Rot und Schwarz, mit Fransen.</p>
                         <button class="cta-button add-to-cart-btn" 
-                                data-id="bekl-trikot-replica" 
-                                data-name="Replica Trikot" 
-                                data-description="Colonia Style">
+                                data-id="acc-schal-doppel" 
+                                data-name="Doppelseitiger Schal" 
+                                data-description="Rot-Schwarz">
                             In den Warenkorb
                         </button>
                     </div>
@@ -244,5 +246,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="cart.js"></script> 
 </body>
 </html>

@@ -9,15 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Spezifische Stile für die Impressum-Seite (Desktop-Basis) */
+        /* Spezifische Stile für die Impressum-Seite */
         #impressum {
             padding: 80px 0;
-            background-color: #1a1a1a;
+            background-color: #1a1a1a; 
             color: #ffffff;
             line-height: 1.6;
         }
         #impressum h2 {
-            color: #FF0000;
+            color: #FF0000; 
             margin-bottom: 30px;
             font-size: 2.5em;
             text-align: center;
@@ -27,117 +27,132 @@
             max-width: 900px;
             margin-left: auto;
             margin-right: auto;
-            text-align: left;
+            padding: 0 20px;
         }
-        .impressum-abschnitt {
-            border-left: 3px solid #FF0000;
-            padding-left: 20px;
-            margin-top: 30px;
-        }
-        .impressum-abschnitt h4 {
+        #impressum h3 {
             color: #FF0000;
-            margin-bottom: 15px;
-            margin-top: 30px;
+            margin-top: 40px;
         }
-        #impressum a {
-            color: #FF0000;
+        
+        /* Stil für die feste Navigation */
+        .fixed-compact-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 10px 0;
+            z-index: 999;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        .fixed-compact-nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .fixed-compact-nav .header-logo {
+            height: 30px;
+            margin-right: 20px;
+        }
+        .fixed-compact-nav nav ul {
+            display: flex;
+            list-style: none;
+        }
+        .fixed-compact-nav nav a {
+            color: #ffffff;
             text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            transition: color 0.3s ease;
         }
-        #impressum a:hover {
-            text-decoration: underline;
+        .fixed-compact-nav nav a:hover {
+            color: #FF0000;
         }
 
         /* NEU: Responsive Anpassungen für Smartphones */
-        @media (max-width: 768px) {
+        @media (max-width: 600px) {
+            /* FIX: Hauptsektion nach unten schieben */
+            #impressum {
+                padding-top: 75px !important; /* WICHTIG: Erhöhter Abstand, um unter der fixen Leiste zu starten */
+            }
             #impressum h2 {
                 font-size: 2em;
             }
-            #impressum .container {
-                padding: 0 15px;
-            }
-            /* Navigation auf Mobilgeräten stapeln und mittig zentrieren */
+             /* FIX: Navigation kompakter machen (Falls sie per CSS gestackt wurde) */
             .fixed-compact-nav .container {
-                flex-direction: column;
-                align-items: center;
-                padding: 10px 15px;
+                /* flex-direction: column; entfernt, um horizontal zu bleiben */
+                padding: 0 10px;
             }
             .fixed-compact-nav .header-logo {
-                margin: 0 0 10px 0;
+                height: 25px; 
+                margin-right: 10px;
             }
             .fixed-compact-nav nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
+                flex-direction: row; /* WICHTIG: Horizontal beibehalten */
+                justify-content: flex-end;
             }
             .fixed-compact-nav nav a {
-                padding: 5px 10px;
-                font-size: 0.9em;
+                padding: 8px 5px; /* Sehr kompakte Links */
+                font-size: 0.7em; /* Kleinere Schrift */
             }
         }
     </style>
 </head>
 <body>
     
-    <header class="fixed-compact-nav">
+    <div class="fixed-compact-nav">
         <div class="container">
-            <a href="index.html" class="header-logo-link">
+            <a href="index.html">
                 <img src="logo_furia.png" alt="Logo Colonia Della Furia" class="header-logo">
             </a>
             <nav>
                 <ul>
-                    <li><a href="index.html#hero">Home</a></li>
-                    <li><a href="index.html#news">Aktuelles</a></li>
-                    <li><a href="index.html#about">Über uns</a></li>
-                    <li><a href="anmeldeformular.html">Mitglied werden</a></li>
+                    <li><a href="index.html">Start</a></li>
+                    <li><a href="mitglied.html">Mitglied</a></li>
                     <li><a href="shop.html">Shop</a></li>
+                    <li><a href="warenkorb.html">Warenkorb</a></li>
                 </ul>
             </nav>
         </div>
-    </header>
+    </div>
 
     <main>
-        
         <section id="impressum">
             <div class="container">
                 <h2>Impressum</h2>
                 
-                <div class="impressum-abschnitt">
-                    <h4>Angaben gemäß § 5 TMG (Telemediengesetz)</h4>
-                    <p>
-                        **Colonia Della Furia**<br>
-                        Unabhängiger Fanclub der Kölner Haie<br>
-                        [Ihr Name / Vertretungsberechtigter]<br>
-                        [Ihre Straße und Hausnummer]<br>
-                        [Ihre Postleitzahl und Ort]<br>
-                        <br>
-                        **Kontakt:**<br>
-                        E-Mail: coloniadellafuria1972@gmail.com<br>
-                        Telefon: [Ihre Telefonnummer (optional)]<br>
-                    </p>
+                <div>
+                    <h3>Angaben gemäß § 5 TMG</h3>
+                    <p>Timo Krauthausen<br>
+                    Rilkestraße 38<br>
+                    50997 Köln</p>
                 </div>
                 
-                <div class="impressum-abschnitt">
-                    <h4>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h4>
-                    <p>
-                        [Name des Vertretungsberechtigten]<br>
-                        [Ihre Straße und Hausnummer]<br>
-                        [Ihre Postleitzahl und Ort]
-                    </p>
+                <div>
+                    <h3>Kontakt</h3>
+                    <p>E-Mail: coloniadellafuria1972@gmail.com</p>
+                    <p>Telefon: +49 (0) 176 832 770 20</p>
                 </div>
 
-                <div class="impressum-abschnitt">
-                    <h4>Haftung für Inhalte</h4>
-                    <p>
-                        Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
-                    </p>
-                    
-                    <h4>Haftung für Links</h4>
-                    <p>
-                        Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.
-                    </p>
-                    <h4>Urheberrecht</h4>
-                    <p>
-                        Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
-                    </p>
+                <div>
+                    <h3>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
+                    <p>Timo Krauthausen<br>
+                    Rilkestraße 38<br>
+                    50997 Köln</p>
+                </div>
+
+                <div>
+                    <h3>Haftung für Inhalte</h3>
+                    <p>Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
+                </div>
+                
+                <div>
+                    <h3>Urheberrecht</h3>
+                    <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p>
                 </div>
                 
             </div>
@@ -152,7 +167,7 @@
             <p>&copy; 2025 Colonia Della Furia. Unabhängiger Fanclub. Alle Rechte vorbehalten. | <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></p>
             <div class="social-links">
                 <a href="https://www.tiktok.com/@coloniadellafuria" target="_blank" aria-label="TikTok"><img src="tiktok.png" alt="TikTok"></a>
-                <a href="https://www.instagram.com/coloniadellanfuria/}" target="_blank" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
+                <a href="https://www.instagram.com/coloniadellanfuria/" target="_blank" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
             </div>
         </div>
     </footer>

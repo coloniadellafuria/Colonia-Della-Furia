@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Spezifische Stile für die Datenschutz-Seite (Desktop-Basis) */
+        /* Spezifische Stile für die Datenschutz-Seite */
         #datenschutz {
             padding: 80px 0;
             background-color: #1a1a1a; 
@@ -30,103 +30,135 @@
             color: #ffffff;
             margin-top: 30px;
             margin-bottom: 15px;
-            border-bottom: 1px solid #FF0000;
             padding-bottom: 5px;
+            border-bottom: 1px solid #FF0000;
         }
         #datenschutz p {
             margin-bottom: 20px;
         }
-        #datenschutz a {
-            color: #FF0000;
-            text-decoration: none;
-        }
-        #datenschutz a:hover {
-            text-decoration: underline;
-        }
 
+        /* Stil für die feste Navigation */
+        .fixed-compact-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 10px 0;
+            z-index: 999;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        .fixed-compact-nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .fixed-compact-nav .header-logo {
+            height: 30px;
+            margin-right: 20px;
+        }
+        .fixed-compact-nav nav ul {
+            display: flex;
+            list-style: none;
+        }
+        .fixed-compact-nav nav a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+        .fixed-compact-nav nav a:hover {
+            color: #FF0000;
+        }
+        
         /* NEU: Responsive Anpassungen für Smartphones */
-        @media (max-width: 768px) {
-            #datenschutz h2 {
-                font-size: 2em;
+        @media (max-width: 600px) {
+            /* FIX: Hauptsektion nach unten schieben */
+            #datenschutz {
+                padding-top: 75px !important; /* WICHTIG: Erhöhter Abstand, um unter der fixen Leiste zu starten */
             }
             #datenschutz .container {
                 padding: 0 15px;
             }
-            /* Navigation auf Mobilgeräten stapeln und mittig zentrieren */
+            #datenschutz h2 {
+                font-size: 2em;
+            }
+             /* FIX: Navigation kompakter machen (Falls sie per CSS gestackt wurde) */
             .fixed-compact-nav .container {
-                flex-direction: column;
-                align-items: center;
-                padding: 10px 15px;
+                /* flex-direction: column; entfernt, um horizontal zu bleiben */
+                padding: 0 10px;
             }
             .fixed-compact-nav .header-logo {
-                margin: 0 0 10px 0;
+                height: 25px; 
+                margin-right: 10px;
             }
             .fixed-compact-nav nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
+                flex-direction: row; /* WICHTIG: Horizontal beibehalten */
+                justify-content: flex-end;
             }
             .fixed-compact-nav nav a {
-                padding: 5px 10px;
-                font-size: 0.9em;
+                padding: 8px 5px; /* Sehr kompakte Links */
+                font-size: 0.7em; /* Kleinere Schrift */
             }
         }
     </style>
 </head>
 <body>
     
-   <header class="fixed-compact-nav">
-    <div class="container">
-        <a href="index.html" class="header-logo-link">
-            <img src="logo_furia.png" alt="Logo Colonia Della Furia" class="header-logo">
-        </a>
-        <nav>
-            <ul>
-                <li><a href="index.html#hero">Home</a></li>
-                <li><a href="index.html#news">Aktuelles</a></li>
-                <li><a href="index.html#about">Über uns</a></li>
-                <li><a href="anmeldeformular.html">Mitglied werden</a></li>
-                <li><a href="shop.html">Shop</a></li>
-            </ul>
-        </nav>
+    <div class="fixed-compact-nav">
+        <div class="container">
+            <a href="index.html">
+                <img src="logo_furia.png" alt="Logo Colonia Della Furia" class="header-logo">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Start</a></li>
+                    <li><a href="mitglied.html">Mitglied</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="warenkorb.html">Warenkorb</a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
-   </header>
 
     <main>
-        
         <section id="datenschutz">
             <div class="container">
                 <h2>Datenschutzerklärung</h2>
                 
-                <h3>1. Allgemeines</h3>
-                <p>Der Schutz Ihrer persönlichen Daten ist uns, dem Fanclub **Colonia Della Furia**, ein besonderes Anliegen. Wir verarbeiten Ihre Daten ausschließlich auf Grundlage der gesetzlichen Bestimmungen (DSGVO, BDSG). In dieser Datenschutzerklärung informieren wir Sie über die wichtigsten Aspekte der Datenverarbeitung im Rahmen unserer Website.</p>
+                <p>Der Schutz Ihrer persönlichen Daten ist uns sehr wichtig. Nachfolgend informieren wir Sie über die Verarbeitung Ihrer Daten im Rahmen der Nutzung unserer Website.</p>
+                
+                <h3>Verantwortliche Stelle</h3>
+                <p>Timo Krauthausen<br>
+                Rilkestraße 38<br>
+                50997 Köln<br>
+                E-Mail: coloniadellafuria1972@gmail.com</p>
 
-                <h3>2. Verantwortliche Stelle</h3>
-                <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist die im Impressum genannte Stelle (siehe <a href="impressum.html">Impressum</a>).</p>
+                <h3>Arten der verarbeiteten Daten</h3>
+                <p>Wir erheben und verarbeiten keine direkten personenbezogenen Daten (wie Namen, Adressen, E-Mail-Adressen) automatisch, es sei denn, Sie stellen uns diese freiwillig über E-Mail zur Verfügung (z.B. für eine Mitgliedsanfrage).</p>
 
-                <h3>3. Erfassung allgemeiner Daten und Informationen</h3>
-                <p>Unsere Website erfasst mit jedem Aufruf eine Reihe von allgemeinen Daten und Informationen. Diese werden in den Logfiles des Servers gespeichert. Erfasst werden können (abhängig vom verwendeten Zugriffs-Tool):</p>
+                <h3>Server-Logfiles</h3>
+                <p>Der Provider der Seiten erhebt und speichert automatisch Informationen in sogenannten Server-Logfiles, die Ihr Browser automatisch an uns übermittelt. Dies sind:</p>
                 <ul>
-                    <li>Browsertyp und -version</li>
-                    <li>Das vom zugreifenden System verwendete Betriebssystem</li>
-                    <li>Die Website, von welcher ein zugreifendes System auf unsere Website gelangt (Referrer)</li>
-                    <li>Die Unterwebseiten, welche über ein zugreifendes System auf unserer Website angesteuert werden</li>
-                    <li>Datum und Uhrzeit eines Zugriffs auf die Internetseite</li>
-                    <li>Eine Internet-Protokoll-Adresse (IP-Adresse)</li>
+                    <li>Browsertyp und Browserversion</li>
+                    <li>verwendetes Betriebssystem</li>
+                    <li>Referrer URL</li>
+                    <li>Hostname des zugreifenden Rechners</li>
+                    <li>Uhrzeit der Serveranfrage</li>
+                    <li>IP-Adresse</li>
                 </ul>
-                <p>Diese Daten werden nicht dazu verwendet, Rückschlüsse auf die betroffene Person zu ziehen. Diese Informationen sind erforderlich, um die Inhalte unserer Internetseite korrekt auszuliefern, die Funktionsfähigkeit unserer informationstechnologischen Systeme und der Technik unserer Internetseite zu gewährleisten sowie um Strafverfolgungsbehörden im Falle eines Cyberangriffes die zur Strafverfolgung notwendigen Informationen bereitzustellen.</p>
-
-                <h3>4. Cookies</h3>
-                <p>Unsere Website verwendet Cookies. Dabei handelt es sich um kleine Textdateien, die auf Ihrem Endgerät abgelegt werden. Einige der von uns verwendeten Cookies sind sogenannte „Session-Cookies“, die nach Ende der Browser-Sitzung automatisch gelöscht werden. Andere Cookies verbleiben auf Ihrem Endgerät, bis Sie diese löschen oder die Speicherdauer abläuft (Persistent Cookies).</p>
-                <p>Über den beim ersten Besuch eingeblendeten Cookie-Banner bitten wir um Ihre Zustimmung zur Nutzung von Cookies. Das Akzeptieren speichert lediglich einen technischen Cookie, der sich Ihre Entscheidung merkt.</p>
+                <p>Diese Daten sind nicht bestimmten Personen zuordenbar. Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Wir behalten uns vor, diese Daten nachträglich zu prüfen, wenn uns konkrete Anhaltspunkte für eine rechtswidrige Nutzung bekannt werden.</p>
                 
-                <h3>5. Kontaktmöglichkeit über E-Mail</h3>
-                <p>Wenn Sie uns per E-Mail kontaktieren, werden die von Ihnen mitgeteilten Daten (Ihre E-Mail-Adresse, ggf. Ihr Name und Ihre Telefonnummer) von uns gespeichert, um Ihre Fragen zu beantworten. Die in diesem Zusammenhang anfallenden Daten löschen wir, nachdem die Speicherung nicht mehr erforderlich ist, oder schränken die Verarbeitung ein, falls gesetzliche Aufbewahrungspflichten bestehen.</p>
+                <h3>Cookies</h3>
+                <p>Diese Website verwendet Cookies, um die Benutzerfreundlichkeit zu verbessern und die Funktion des Warenkorbs im Shop zu gewährleisten. Cookies sind kleine Textdateien, die auf Ihrem Endgerät abgelegt werden. Sie können die Speicherung der Cookies durch eine entsprechende Einstellung Ihrer Browser-Software verhindern.</p>
                 
-                <h3>6. Betroffenenrechte</h3>
-                <p>Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten (Art. 15 DSGVO). Sie haben außerdem ein Recht auf Berichtigung (Art. 16 DSGVO), Sperrung oder Löschung dieser Daten (Art. 17 DSGVO). Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit unter der im Impressum angegebenen Adresse an uns wenden. Des Weiteren steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu (Art. 77 DSGVO).</p>
-
-                <h3>7. Social Media Links</h3>
-                <p>Auf unserer Website finden Sie Verweise (Links) zu den Diensten TikTok und Instagram. Bei diesen Verlinkungen handelt es sich lediglich um direkte Links zu den jeweiligen Social Media Profilen. Es werden keine Social Media Plugins oder "Like-Buttons" verwendet, die bereits beim Laden unserer Website Daten an die Social Media Dienste senden. Durch das Klicken auf den Link verlassen Sie unsere Website und gelangen auf die externe Plattform, für deren Datenverarbeitung die jeweiligen Betreiber verantwortlich sind.</p>
+                <h3>Social Media Links (Externe Verlinkungen)</h3>
+                <p>Auf unserer Website finden Sie Verlinkungen zu externen Social Media Plattformen, insbesondere TikTok und Instagram. Bei diesen Verlinkungen handelt es sich lediglich um direkte Links zu den jeweiligen Social Media Profilen. Es werden keine Social Media Plugins oder "Like-Buttons" verwendet, die bereits beim Laden unserer Website Daten an die Social Media Dienste senden. Durch das Klicken auf den Link verlassen Sie unsere Website und gelangen auf die externe Plattform, für deren Datenverarbeitung die jeweiligen Betreiber verantwortlich sind.</p>
                 
                 <p>***</p>
                 <p>Diese Datenschutzerklärung wurde mit größter Sorgfalt erstellt. Sie ist nicht rechtsverbindlich und ersetzt keine juristische Beratung.</p>

@@ -30,7 +30,7 @@
             margin-bottom: 20px;
         }
         
-        /* Navigationsstil (Übernahme der großen, fixierten Leiste) */
+        /* Navigationsstil (Übernahme der kompakten, fixierten Leiste) */
         .fixed-compact-nav {
             position: fixed;
             top: 0;
@@ -39,7 +39,7 @@
             background-color: #1a1a1a;
             border-bottom: 3px solid #FF0000;
             z-index: 1000;
-            padding: 20px 0; /* Große Leiste */
+            padding: 10px 0; 
         }
         .fixed-compact-nav .container {
             display: flex;
@@ -48,6 +48,9 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+        .fixed-compact-nav .header-logo {
+            height: 30px;
         }
         .fixed-compact-nav ul {
             list-style: none;
@@ -58,21 +61,35 @@
 
         /* NEU: Responsive Anpassungen für Smartphones */
         @media (max-width: 600px) {
+             /* FIX: Navigation kompakter machen (Falls sie per CSS gestackt wurde) */
+            .fixed-compact-nav .container {
+                /* flex-direction: column; entfernt, um horizontal zu bleiben */
+                padding: 0 10px;
+            }
+            .fixed-compact-nav .header-logo {
+                height: 25px; 
+            }
+            .fixed-compact-nav nav ul {
+                flex-direction: row; /* WICHTIG: Horizontal beibehalten */
+                justify-content: flex-end;
+            }
+            .fixed-compact-nav nav a {
+                padding: 8px 5px; /* Sehr kompakte Links */
+                font-size: 0.7em; /* Kleinere Schrift */
+            }
+
+            /* FIX: Hauptsektion nach unten schieben */
             #mitgliedwerden {
-                padding: 60px 0; /* Weniger Padding oben/unten */
+                padding-top: 75px !important; /* WICHTIG: Erhöhter Abstand, um unter der fixen Leiste zu starten */
             }
             #mitgliedwerden .container {
-                padding: 0 15px; /* Seitenabstand für Mobilgeräte */
+                padding: 0 15px; 
             }
             #mitgliedwerden h2 {
                 font-size: 2em;
             }
-            #mitgliedwerden h3 {
-                font-size: 1.2em;
-                margin-top: 20px;
-            }
             .cta-button {
-                width: 100%; /* Button über die volle Breite */
+                width: 100%; 
                 padding: 15px 10px;
                 font-size: 1em;
             }

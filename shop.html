@@ -103,32 +103,34 @@
         /* NEU: Responsive Anpassungen für Smartphones */
         @media (max-width: 768px) {
             .shop-grid {
-                grid-template-columns: 1fr; /* Eine Spalte auf kleineren Bildschirmen */
+                grid-template-columns: 1fr; 
                 gap: 20px;
             }
             .shop-category {
                 padding: 20px;
             }
+            /* FIX: Hauptsektion nach unten schieben */
             #shop {
-                padding-top: 60px;
+                padding-top: 75px !important; /* WICHTIG: Erhöhter Abstand, um unter der fixen Leiste zu starten */
             }
         }
         @media (max-width: 600px) {
-             .fixed-compact-nav .container {
-                flex-direction: column;
-                align-items: center;
-                padding: 10px 15px;
-            }
-            .fixed-compact-nav nav ul {
-                flex-direction: column;
-                margin-top: 10px;
-            }
-            .fixed-compact-nav nav a {
-                padding: 5px 15px;
+             /* FIX: Navigation kompakter machen (Falls sie per CSS gestackt wurde) */
+            .fixed-compact-nav .container {
+                /* flex-direction: column; entfernt, um horizontal zu bleiben */
+                padding: 0 10px;
             }
             .fixed-compact-nav .header-logo {
-                height: 25px;
-                margin-right: 0;
+                height: 25px; 
+                margin-right: 10px;
+            }
+            .fixed-compact-nav nav ul {
+                flex-direction: row; /* WICHTIG: Horizontal beibehalten */
+                justify-content: flex-end;
+            }
+            .fixed-compact-nav nav a {
+                padding: 8px 5px; /* Sehr kompakte Links */
+                font-size: 0.7em; /* Kleinere Schrift */
             }
         }
     </style>

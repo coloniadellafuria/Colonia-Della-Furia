@@ -9,79 +9,570 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* NEU: Responsive Anpassungen für Smartphones (max-width: 768px, da das das Standard-Breakpoint ist) */
-        @media (max-width: 768px) {
-            
-            /* Allgemein */
-            .container {
-                padding: 0 15px;
-            }
+        /* CSS für den Cookie-Banner (bleibt gleich) */
+        #cookieConsent {
+            /* ... (Stile bleiben unverändert) ... */
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #ffffff;
+            padding: 15px 0;
+            z-index: 10000;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        #cookieConsent .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        #cookieConsent p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+        #cookieConsent .cta-button {
+            padding: 8px 15px;
+            font-size: 0.9em;
+            margin-left: 20px;
+        }
+        
+        /* HEADER (Wird beim Scrollen NICHT zu fixed-compact-nav) */
+        header {
+            background-image: url('banner (3).png');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0 50px;
+            color: #ffffff;
+            text-align: center;
+            position: relative;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6); /* Dunkle Overlay */
+            z-index: 1;
+        }
+        header .container {
+            position: relative;
+            z-index: 2;
+        }
+        .header-logo {
+            width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        header h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 4em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        header p {
+            font-size: 1.2em;
+            margin: 10px 0 0;
+            font-weight: 400;
+        }
+        
+        /* Haupt-Navigation unter dem Header (Wird beim Scrollen zu fixed-compact-nav) */
+        .main-nav {
+            background-color: #1a1a1a;
+            border-bottom: 3px solid #FF0000;
+            padding: 15px 0;
+            position: relative;
+            z-index: 900;
+        }
+        .main-nav .container {
+            display: flex;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .main-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        .main-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        .main-nav a:hover {
+            color: #FF0000;
+        }
+        /* Kompakte, fixe Navigation beim Scrollen (Wird per JS Klasse .fixed-compact-nav hinzugefügt) */
+        .fixed-compact-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 10px 0;
+            z-index: 999;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        .fixed-compact-nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .fixed-compact-nav .header-logo {
+            height: 30px;
+            margin-right: 20px;
+        }
+        .fixed-compact-nav h1,
+        .fixed-compact-nav p {
+            display: none;
+        } /* Titel und Subline ausblenden */
+        .fixed-compact-nav nav ul {
+            justify-content: flex-start;
+        }
+        
+        /* Allgemeiner Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        main section {
+            padding: 80px 0;
+        }
+        
+        h2 {
+            font-family: 'Oswald', sans-serif;
+            color: #FF0000; /* HAIE-ROT */
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        /* Hero-Section */
+        #hero {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .hero-image {
+            /* Das Banner-Bild (banner (3).png) wird für den Header verwendet, 
+               aber hier belassen wir es bei einem dunklen Hintergrund für den Text */
+            background-image: url('banner (3).png');
+            background-size: cover;
+            background-position: center;
+        }
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5); 
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        .hero-content h2 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            color: #ffffff; 
+        }
+        .hero-content p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+        
+        /* Buttons/CTAs */
+        .cta-button {
+            background-color: #FF0000; /* HAIE-ROT */
+            color: #ffffff;
+            padding: 12px 25px;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .cta-button:hover {
+            background-color: #cc0000; 
+            transform: translateY(-1px);
+        }
+        
+        .haie-rot {
+            color: #FF0000;
+        }
+        
+        /* News-Section (Dark) */
+        .dark-section {
+            background-color: #1a1a1a; 
+            color: #ffffff;
+        }
+        
+        /* NEUE SPIELKARTE FÜR ANSCHAULICHE DARSTELLUNG */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px; /* Abstand zur statischen News */
+        }
 
+        .game-card {
+            background-color: #2b2b2b;
+            color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+            display: flex; /* Wichtig für die Aufteilung */
+            min-height: 150px;
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .game-card:hover {
+            transform: translateY(-3px);
+            border-color: #FF0000;
+        }
+
+        /* Farbschema für Heimspiel (Rot-Fokus) */
+        .game-card-home {
+            border-left: 10px solid #FF0000; /* HAIE-ROT */
+        }
+        .game-card-home .game-date-time-box {
+            background-color: #cc0000;
+        }
+        
+        /* Farbschema für Auswärtsspiel (Schwarz-Fokus) */
+        .game-card-away {
+            border-left: 10px solid #aaaaaa; /* Grau */
+        }
+        .game-card-away .game-date-time-box {
+            background-color: #444444;
+        }
+
+        /* Zeit- und Datumsbereich (Links) */
+        .game-date-time-box {
+            flex-basis: 110px; 
+            flex-shrink: 0;
+            text-align: center;
+            padding: 15px 0;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+        .game-day {
+            font-size: 1.1em;
+            margin: 0;
+        }
+        .game-date {
+            font-size: 1.8em;
+            font-weight: 700;
+            line-height: 1.1;
+            margin: 0 0 5px 0;
+        }
+        .game-time {
+            font-size: 1.2em;
+            margin: 0;
+            font-weight: 400;
+        }
+        
+        /* Detailsbereich (Rechts) */
+        .game-details {
+            flex-grow: 1;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: left;
+        }
+        .game-tag {
+            display: inline-block;
+            background-color: #FF0000; 
+            color: #ffffff;
+            font-size: 0.7em;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 3px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        .game-card-away .game-tag {
+            background-color: #666666;
+        }
+
+        .game-opponent {
+            font-size: 1.4em;
+            font-family: 'Oswald', sans-serif;
+            margin: 0 0 5px 0;
+            color: #FF0000;
+        }
+        .game-location {
+            font-size: 0.9em;
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+        .game-cta {
+            padding: 8px 15px;
+            font-size: 0.9em;
+            max-width: 150px;
+            text-align: center;
+        }
+        
+        /* News-Section (Dark) */
+        .news-item {
+            background-color: #2b2b2b;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        /* NEUE NEWS ITEM STILE (mit festem Seitenverhältnis für das Bild) */
+        .news-item img {
+            width: 100%; 
+            height: 200px; /* Feste Höhe für Einheitlichkeit */
+            object-fit: cover; /* Bildausschnitt anpassen */
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        .news-item h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5em;
+            color: #FF0000;
+            margin-top: 0;
+        }
+        .news-item p {
+            font-size: 1em;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+        
+        /* About Us Section */
+        #about-us {
+            background-color: #ffffff;
+            color: #1a1a1a;
+        }
+        #about-us .content-wrapper {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+        #about-us .text-content {
+            flex: 1;
+        }
+        #about-us .image-content {
+            flex: 1;
+            text-align: center;
+        }
+        #about-us img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Gallery Section */
+        #gallery {
+            text-align: center;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .gallery-item {
+            background-color: #2b2b2b;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 200px; /* Feste Höhe für Einheitlichkeit */
+            object-fit: cover; /* Bildausschnitt anpassen */
+            border-radius: 4px;
+        }
+        .gallery-item p {
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        
+        /* Scroll-To-Top Button */
+        #scrollToTopBtn {
+            display: none; 
+            position: fixed; 
+            bottom: 30px; 
+            right: 30px; 
+            z-index: 99; 
+            border: none; 
+            outline: none; 
+            background-color: #FF0000; 
+            color: white; 
+            cursor: pointer; 
+            padding: 15px; 
+            border-radius: 50%; 
+            font-size: 18px; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s;
+        }
+        #scrollToTopBtn:hover {
+            background-color: #cc0000;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 20px 0;
+            font-size: 0.9em;
+            border-top: 3px solid #FF0000;
+        }
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        footer p {
+            margin: 0;
+        }
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: #FF0000;
+        }
+        .social-links img {
+            width: 24px;
+            height: 24px;
+            margin-left: 15px;
+            vertical-align: middle;
+        }
+
+        /* NEU: Responsive Anpassungen für Smartphones */
+        @media (max-width: 600px) {
+            
             /* Header-Anpassung */
             header .container {
                 flex-direction: column;
                 text-align: center;
-                padding-top: 20px;
+                padding: 10px 15px;
             }
             header .header-logo {
-                width: 100px;
-                margin: 0 auto 10px;
+                width: 80px; /* Logo kleiner */
+                margin: 10px auto 5px;
             }
             header h1 {
-                font-size: 2.5em;
+                font-size: 2em;
             }
             header p {
-                font-size: 1.1em;
-            }
-
-            /* Navigation (Vertikal stapeln) */
-            header nav ul {
-                flex-direction: column;
-                gap: 5px;
-                margin-top: 15px;
-                padding: 0;
-            }
-            header nav ul li a {
-                padding: 8px 0;
                 font-size: 1em;
             }
-            
-            /* News Grid (Spalten untereinander) */
-            .news-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
+
+            /* Navigation */
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px 0 0 0;
+            }
+            nav ul li a {
+                padding: 8px 15px;
             }
             
-            /* Galerie (Spalten untereinander) */
-            .image-gallery {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            .gallery-item img {
-                width: 100%;
-                height: auto;
+            /* Sektionen */
+            main section {
+                padding: 50px 0;
             }
 
-            /* Spiele-Highlight */
-            .game-highlight-card {
-                padding: 20px;
+            /* Über uns (Spalten auf volle Breite) */
+            #about-us .content-wrapper {
+                flex-direction: column;
+                gap: 30px;
             }
-            .game-highlight-card h3 {
-                font-size: 1.5em;
+            
+            /* Bildergalerie (Spalten auf volle Breite) */
+            .gallery-grid {
+                grid-template-columns: 1fr; /* Eine Spalte */
+                gap: 20px;
             }
 
             /* Cookie-Banner */
             #cookieConsent .container {
                 flex-direction: column;
                 text-align: center;
-                padding: 10px 15px;
             }
             #cookieConsent p {
                 margin-bottom: 10px;
-                font-size: 0.9em;
+            }
+            
+            /* News Grid (Spalten auf volle Breite) */
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Spielkarte Mobile-Anpassung */
+            .game-card {
+                flex-direction: column; /* Stapeln auf kleinen Bildschirmen */
+                min-height: initial;
+            }
+            .game-date-time-box {
+                flex-basis: auto;
+                padding: 10px;
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .game-day, .game-date, .game-time {
+                margin: 0;
+            }
+            .game-date {
+                 font-size: 1.5em; /* Kleiner auf Mobile */
+            }
+            .game-details {
+                text-align: center;
+            }
+            .game-opponent {
+                 font-size: 1.2em;
+            }
+            .game-cta {
+                margin: 10px auto 0;
             }
         }
-        
     </style>
 </head>
 <body>
@@ -101,105 +592,100 @@
         <h1><span class="haie-rot">Colonia Della Furia</span></h1>
         <br>
         <p>Unabhängiger Fanclub der Kölner Haie</p>
-        <br>
-        
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#games">Spiele</a></li>
-                <li><a href="#news">Aktuelles</a></li>
-                <li><a href="#about">Über uns</a></li>
-                <li><a href="mitgliedwerden.html">Mitglied werden</a></li>
-                <li><a href="shop.html">Shop</a></li>
-            </ul>
-        </nav>
-        
     </div>
-   </header>
-
+    
+    <nav class="main-nav">
+        <div class="container">
+            <ul>
+                <li><a href="index.html" class="active">Start</a></li>
+                <li><a href="aktuelles.html">Aktuelles</a></li>
+                <li><a href="bekleidung.html">Shop</a></li>
+                <li><a href="bilder.html">Bilder</a></li>
+                <li><a href="anmeldeformular.html">Mitglied werden</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+</header>
+    
     <main>
         
-        <section id="home" class="hero-section">
-            <div class="container">
-                
+        <section id="hero" class="hero-image">
+            <div class="hero-content">
+                <h2>LEIDENSCHAFT. RHEIN. EIS.</h2>
+                <p>Der unabhängige Fanclub für die Kölner Haie seit 2020.</p>
+                <a href="anmeldeformular.html" class="cta-button">Mitglied werden</a>
             </div>
         </section>
 
-        <section id="games">
-            <div class="container">
-                <h2>Nächste Spiele</h2>
-                
-                <div id="next-game-highlight" class="game-highlight-card">
-                    <p class="loading-text">Lade Spielplan...</p>
-                </div>
-                
-                <div id="upcoming-games-list-container" class="collapse-content">
-                    <div id="upcoming-games-list">
-                        </div>
-                </div>
-
-                <button id="toggle-games-btn" class="cta-button" style="margin-top: 30px;">
-                    Alle weiteren Spiele anzeigen
-                </button>
-
-            </div>
-        </section>
-        
         <section id="news" class="dark-section">
             <div class="container">
-                <h2>Aktuelles</h2>
+                
+                <h2>Nächste Spiele & News</h2> 
+                
+                <div id="upcoming-games-container" class="news-grid">
+                    </div>
+                
                 <div class="news-grid">
-                    
                     <div class="news-item">
-                        <img src="https://via.placeholder.com/400x250/FF0000/FFFFFF?text=News+1" alt="News 1">
-                        <h3>Erfolgreiche Auswärtsfahrt</h3>
-                        <p>Wir waren in Mannheim dabei und haben unser Team lautstark unterstützt!</p>
-                        <a href="#" class="read-more">Mehr lesen →</a>
+                        <img src="gegen_deg (4).jpg" alt="Fan-Stimmung nach dem Derby-Sieg">
+                        <h3>Derby-Sieg gegen die DEG!</h3>
+                        <p>Ein dramatisches Spiel endet mit 5:4 nach Verlängerung. Die Stimmung in der Arena war phänomenal.</p>
+                        <a href="aktuelles.html" class="haie-rot">Mehr lesen...</a>
                     </div>
                     
                     <div class="news-item">
-                        <img src="https://via.placeholder.com/400x250/1a1a1a/FFFFFF?text=News+2" alt="News 2">
-                        <h3>Neues Mitglieds-Event</h3>
-                        <p>Am nächsten Dienstag findet unser monatlicher Stammtisch statt. Alle Infos im Forum.</p>
-                        <a href="#" class="read-more">Mehr lesen →</a>
+                        <img src="https://via.placeholder.com/400x300/000000/FFFFFF?text=Neues+Merch" alt="Neues Merchandise">
+                        <h3>Neue Fan-Kollektion ist da!</h3>
+                        <p>Limitierte Hoodies und Schals im 'Colonia'-Style jetzt im Shop erhältlich. Nur solange der Vorrat reicht.</p>
+                        <a href="bekleidung.html" class="haie-rot">Zum Shop...</a>
                     </div>
                     
                     <div class="news-item">
-                        <img src="https://via.placeholder.com/400x250/FFFFFF/FF0000?text=News+3" alt="News 3">
-                        <h3>Neue Fanartikel im Shop</h3>
-                        <p>Das neue Cap und der neue Stickerbogen sind jetzt verfügbar! Schaut vorbei.</p>
-                        <a href="shop.html" class="read-more">Zum Shop →</a>
+                        <img src="https://via.placeholder.com/400x300/FF0000/FFFFFF?text=Auswärtsfahrt+Bus" alt="Fanbus">
+                        <h3>Auswärtsfahrt nach Berlin</h3>
+                        <p>Der Bus für das Spiel am 15.11. ist fast ausgebucht. Meldet euch schnell an!</p>
+                        <a href="kontakt.html" class="haie-rot">Zur Anmeldung...</a>
                     </div>
-                    
                 </div>
             </div>
         </section>
-        
-        <section id="about">
+
+        <section id="about-us">
             <div class="container">
-                <h2>Über uns</h2>
-                <p>Colonia Della Furia ist ein unabhängiger Fanclub der Kölner Haie. Seit 2005 unterstützen wir unseren KEC bei jedem Heim- und Auswärtsspiel. Unsere Leidenschaft ist der Eishockeysport, unser Zuhause die LANXESS arena.</p>
-                <p>Wir organisieren regelmäßig gemeinsame Auswärtsfahrten, Fan-Treffen und soziales Engagement in Köln. Werde Teil unserer Furia-Familie und erlebe die Spiele mit uns!</p>
-                <a href="mitgliedwerden.html" class="cta-button">Mitglied werden</a>
+                <h2>Wer wir sind</h2>
+                
+                <div class="content-wrapper">
+                    <div class="text-content">
+                        <p>Wir sind die **Colonia Della Furia**, ein Zusammenschluss von Kölner Haie Fans, die den Verein nicht nur lieben, sondern leben. Seit unserer Gründung 2020 stehen wir für bedingungslose Unterstützung, lautstarken Support in der Lanxess Arena und organisierte Auswärtsfahrten quer durch Deutschland.</p>
+                        <p>Bei uns steht die Gemeinschaft im Vordergrund. Wir organisieren regelmäßige Treffen, Fanturniere und engagieren uns für soziale Projekte in Köln. Egal ob jung oder alt, bei uns ist jeder willkommen, der die Haie im Herzen trägt.</p>
+                        <a href="anmeldeformular.html" class="cta-button">Werde Teil der Furia!</a>
+                    </div>
+                    <div class="image-content">
+                        <img src="banner (3).png" alt="Colonia Della Furia Banner">
+                    </div>
+                </div>
+                
             </div>
         </section>
 
         <section id="gallery" class="dark-section">
             <div class="container">
-                <h2>Galerie</h2>
-                <p>Eindrücke aus der Arena und von unseren Fahrten.</p>
-                <div class="image-gallery">
+                <h2>Impressionen</h2>
+                
+                <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="https://via.placeholder.com/300x200/FF0000/FFFFFF?text=Haie+Fan+1" alt="Haie Fanclub Bild 1">
+                        <img src="gegen_deg (4).jpg" alt="Haie Fanclub Bild 1">
                         <p>Stimmung in der Arena!</p>
                     </div>
                     <div class="gallery-item">
-                        <img src="https://via.placeholder.com/300x200/000000/FFFFFF?text=Haie+Fan+2" alt="Haie Fanclub Bild 2">
-                        <p>Auswärtsfahrt nach Mannheim</p>
+                        <img src="gegen_deg (1).jpg" alt="Haie Fanclub Bild 2">
+                        <p>Gemeinsame Auswärtsfahrt!</p>
                     </div>
                      <div class="gallery-item">
-                        <img src="https://via.placeholder.com/300x200/FFFFFF/FF0000?text=Haie+Fan+3" alt="Unser Banner">
-                        <p>Unser Banner</p>
+                        <img src="banner (3).png" alt="Unser Banner">
+                        <p>Colonia Della Furia Banner</p>
                     </div>
                 </div>
             </div>
@@ -209,16 +695,15 @@
     
     <button id="scrollToTopBtn" title="Zum Seitenanfang">↑</button>
 
-<footer>
-    <div class="container">
-        <p>&copy; 2025 Colonia Della Furia. Unabhängiger Fanclub. Alle Rechte vorbehalten. | <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></p>
-        <div class="social-links">
-            <a href="https://www.tiktok.com/@coloniadellafuria" target="_blank" aria-label="TikTok"><img src="tiktok.png" alt="TikTok"></a>
-            
-            <a href="https://www.instagram.com/coloniadellanfuria/" target="_blank" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Colonia Della Furia. Unabhängiger Fanclub. Alle Rechte vorbehalten. | <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></p>
+            <div class="social-links">
+                <a href="https://www.tiktok.com/@coloniadellafuria" target="_blank" aria-label="TikTok"><img src="tiktok.png" alt="TikTok"></a>
+                <a href="https://www.instagram.com/coloniadellanfuria/" target="_blank" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
     <script src="script.js"></script>
 </body>
