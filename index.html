@@ -4,14 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Colonia Della Furia</title>
-    <link rel="icon" type="image/x-icon" href="logo_furia.png"> 
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="../bilder/logo_furia.png"> 
+    <link rel="stylesheet" href="../CSS/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* CSS für den Cookie-Banner (bleibt gleich) */
+        /* NEU: Wichtige globale Korrektur für das Flackern */
+        body {
+            background-color: #1a1a1a; /* Verhindert das Aufblitzen des weißen Standard-Hintergrunds */
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+        }
+
+        /* Allgemeine Container-Stile */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        main section {
+            padding: 80px 0;
+        }
+        h2 {
+            font-family: 'Oswald', sans-serif;
+            color: #FF0000; 
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .cta-button {
+            background-color: #FF0000; 
+            color: #ffffff;
+            padding: 12px 25px;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .cta-button:hover {
+            background-color: #cc0000; 
+            transform: translateY(-1px);
+        }
+        .haie-rot {
+            color: #FF0000;
+        }
+        .dark-section {
+            background-color: #1a1a1a; 
+            color: #ffffff;
+        }
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px; 
+        }
+
+        /* Cookie-Banner */
         #cookieConsent {
-            /* ... (Stile bleiben unverändert) ... */
             position: fixed;
             bottom: 0;
             left: 0;
@@ -41,8 +95,9 @@
             margin-left: 20px;
         }
         
-        /* HEADER (Wird beim Scrollen NICHT zu fixed-compact-nav) */
+        /* HEADER */
         header {
+            background-color: #1a1a1a; /* Hintergrundfarbe für nahtlosen Übergang */
             background-image: url('');
             background-size: cover;
             background-position: center;
@@ -58,7 +113,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 0.6); /* Dunkle Overlay */
+            background-color: rgba(0, 0, 0, 0.6); 
             z-index: 1;
         }
         header .container {
@@ -82,7 +137,7 @@
             font-weight: 400;
         }
         
-        /* Haupt-Navigation unter dem Header (Wird beim Scrollen zu fixed-compact-nav) */
+        /* Navigation */
         .main-nav {
             background-color: #1a1a1a;
             border-bottom: 3px solid #FF0000;
@@ -116,7 +171,7 @@
         .main-nav a:hover {
             color: #FF0000;
         }
-        /* Kompakte, fixe Navigation beim Scrollen (Wird per JS Klasse .fixed-compact-nav hinzugefügt) */
+        /* Fixierte Navigation (WICHTIG: Performance-Fix) */
         .fixed-compact-nav {
             position: fixed;
             top: 0;
@@ -127,6 +182,7 @@
             z-index: 999;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
             transition: all 0.3s ease;
+            transform: translateZ(0); /* NEU: Hardware-Beschleunigung gegen Jitter/Ruckeln */
         }
         .fixed-compact-nav .container {
             display: flex;
@@ -143,28 +199,9 @@
         .fixed-compact-nav h1,
         .fixed-compact-nav p {
             display: none;
-        } /* Titel und Subline ausblenden */
+        } 
         .fixed-compact-nav nav ul {
             justify-content: flex-start;
-        }
-        
-        /* Allgemeiner Content */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        main section {
-            padding: 80px 0;
-        }
-        
-        h2 {
-            font-family: 'Oswald', sans-serif;
-            color: #FF0000; /* HAIE-ROT */
-            font-size: 2.5em;
-            text-align: center;
-            margin-bottom: 50px;
         }
         
         /* Hero-Section */
@@ -177,9 +214,7 @@
             text-align: center;
         }
         .hero-image {
-            /* Das Banner-Bild (banner (3).png) wird für den Header verwendet, 
-               aber hier belassen wir es bei einem dunklen Hintergrund für den Text */
-            background-image: url('logokec (1).jpeg');
+            background-image: url('../bilder/banner (3).png');
             background-size: cover;
             background-position: center;
         }
@@ -208,51 +243,14 @@
             margin-bottom: 30px;
         }
         
-        /* Buttons/CTAs */
-        .cta-button {
-            background-color: #FF0000; /* HAIE-ROT */
-            color: #ffffff;
-            padding: 12px 25px;
-            text-decoration: none;
-            font-family: 'Oswald', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.1s ease;
-            border-radius: 5px;
-            display: inline-block;
-        }
-        .cta-button:hover {
-            background-color: #cc0000; 
-            transform: translateY(-1px);
-        }
-        
-        .haie-rot {
-            color: #FF0000;
-        }
-        
-        /* News-Section (Dark) */
-        .dark-section {
-            background-color: #1a1a1a; 
-            color: #ffffff;
-        }
-        
-        /* NEUE SPIELKARTE FÜR ANSCHAULICHE DARSTELLUNG */
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px; /* Abstand zur statischen News */
-        }
-
+        /* Spielkarten & News (Unverändert) */
         .game-card {
             background-color: #2b2b2b;
             color: #ffffff;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
-            display: flex; /* Wichtig für die Aufteilung */
+            display: flex; 
             min-height: 150px;
             transition: transform 0.3s ease;
             border: 2px solid transparent;
@@ -261,28 +259,21 @@
             transform: translateY(-3px);
             border-color: #FF0000;
         }
-
-        /* Farbschema für Heimspiel (Rot-Fokus) */
         .game-card-home {
-            border-left: 10px solid #FF0000; /* HAIE-ROT */
+            border-left: 10px solid #FF0000; 
         }
         .game-card-home .game-date-time-box {
             background-color: #cc0000;
         }
-        /* NEUE KORREKTUR: Datum-Zahlen der Heimspiele in Schwarz setzen */
         .game-card-home .game-date {
             color: #000000; 
         }
-        
-        /* Farbschema für Auswärtsspiel (Schwarz-Fokus) */
         .game-card-away {
-            border-left: 10px solid #aaaaaa; /* Grau */
+            border-left: 10px solid #aaaaaa; 
         }
         .game-card-away .game-date-time-box {
             background-color: #444444;
         }
-
-        /* Zeit- und Datumsbereich (Links) */
         .game-date-time-box {
             flex-basis: 110px; 
             flex-shrink: 0;
@@ -306,8 +297,6 @@
             margin: 0;
             font-weight: 400;
         }
-        
-        /* Detailsbereich (Rechts) */
         .game-details {
             flex-grow: 1;
             padding: 15px;
@@ -330,7 +319,6 @@
         .game-card-away .game-tag {
             background-color: #666666;
         }
-
         .game-opponent {
             font-size: 1.4em;
             font-family: 'Oswald', sans-serif;
@@ -340,7 +328,6 @@
         .game-card-away .game-opponent {
             color: #ffffff;
         }
-
         .game-location {
             font-size: 0.9em;
             color: #ccc;
@@ -352,8 +339,6 @@
             max-width: 150px;
             text-align: center;
         }
-        
-        /* News-Section (Dark) */
         .news-item {
             background-color: #2b2b2b;
             padding: 20px;
@@ -361,11 +346,10 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             text-align: center;
         }
-        /* NEUE NEWS ITEM STILE (mit festem Seitenverhältnis für das Bild) */
         .news-item img {
             width: 100%; 
-            height: 200px; /* Feste Höhe für Einheitlichkeit */
-            object-fit: cover; /* Bildausschnitt anpassen */
+            height: 200px; 
+            object-fit: cover; 
             border-radius: 4px;
             margin-bottom: 15px;
         }
@@ -380,14 +364,10 @@
             line-height: 1.4;
             margin-bottom: 15px;
         }
-        
-        /* HIER BEGINNT DIE ANPASSUNG FÜR DIE BUTTONS */
         .news-item .cta-button {
              margin-top: 15px; 
              max-width: 150px; 
         }
-        /* HIER ENDET DIE ANPASSUNG FÜR DIE BUTTONS */
-
         
         /* About Us Section */
         #about-us {
@@ -434,8 +414,8 @@
         }
         .gallery-item img {
             width: 100%;
-            height: 200px; /* Feste Höhe für Einheitlichkeit */
-            object-fit: cover; /* Bildausschnitt anpassen */
+            height: 200px; 
+            object-fit: cover; 
             border-radius: 4px;
         }
         .gallery-item p {
@@ -499,17 +479,15 @@
             vertical-align: middle;
         }
 
-        /* NEU: Responsive Anpassungen für Smartphones */
+        /* Responsive Anpassungen für Smartphones */
         @media (max-width: 600px) {
-            
-            /* Header-Anpassung */
             header .container {
                 flex-direction: column;
                 text-align: center;
                 padding: 10px 15px;
             }
             header .header-logo {
-                width: 80px; /* Logo kleiner */
+                width: 80px; 
                 margin: 10px auto 5px;
             }
             header h1 {
@@ -518,8 +496,6 @@
             header p {
                 font-size: 1em;
             }
-
-            /* Navigation */
             nav ul {
                 flex-direction: column;
                 gap: 10px;
@@ -528,25 +504,17 @@
             nav ul li a {
                 padding: 8px 15px;
             }
-            
-            /* Sektionen */
             main section {
                 padding: 50px 0;
             }
-
-            /* Über uns (Spalten auf volle Breite) */
             #about-us .content-wrapper {
                 flex-direction: column;
                 gap: 30px;
             }
-            
-            /* Bildergalerie (Spalten auf volle Breite) */
             .gallery-grid {
-                grid-template-columns: 1fr; /* Eine Spalte */
+                grid-template-columns: 1fr; 
                 gap: 20px;
             }
-
-            /* Cookie-Banner */
             #cookieConsent .container {
                 flex-direction: column;
                 text-align: center;
@@ -554,15 +522,11 @@
             #cookieConsent p {
                 margin-bottom: 10px;
             }
-            
-            /* News Grid (Spalten auf volle Breite) */
             .news-grid {
                 grid-template-columns: 1fr;
             }
-            
-            /* Spielkarte Mobile-Anpassung */
             .game-card {
-                flex-direction: column; /* Stapeln auf kleinen Bildschirmen */
+                flex-direction: column; 
                 min-height: initial;
             }
             .game-date-time-box {
@@ -577,7 +541,7 @@
                 margin: 0;
             }
             .game-date {
-                 font-size: 1.5em; /* Kleiner auf Mobile */
+                 font-size: 1.5em; 
             }
             .game-details {
                 text-align: center;
@@ -603,20 +567,25 @@
    <header>
     <div class="container">
         
-        <img src="logo_furia.png" alt="Logo Colonia Della Furia" class="header-logo">
+        <img src="../bilder/logo_furia.png" alt="Logo Colonia Della Furia" class="header-logo">
         
         <h1><span class="haie-rot">Colonia Della Furia</span></h1>
         <br>
         <p>Unabhängiger Fanclub der Kölner Haie</p>
+        <br>
+        <br>
+        <br>
     </div>
     
     <nav class="main-nav">
         <div class="container">
             <ul>
                 <li><a href="index.html" class="active">Start</a></li>
+                <li><a href="#hero" class="active">Spiele</a></li>
                 <li><a href="shop.html">Shop</a></li>
-                <li><a href="anmeldeformular.html">Mitglied werden</a></li>
+                <li><a href="mitglied.html">Mitglied werden</a></li>
                 <li><a href="kontakt.html">Kontakt</a></li>
+                
             </ul>
         </div>
     </nav>
@@ -636,31 +605,11 @@
         <section id="news" class="dark-section">
             <div class="container">
                 
-                <h2>Nächste Spiele & News</h2> 
+                <h2>Nächste Spiele</h2> 
                 
                 <div id="upcoming-games-container" class="news-grid">
+                    <a href="shop.html" class="cta-button game-cta">Tickets</a>
                     </div>
-                
-                <div class="news-grid">
-                    <div class="news-item">
-                        <img src="gegen_deg (4).jpg" alt="Fan-Stimmung nach dem Derby-Sieg">
-                        <h3>Derby-Sieg gegen die DEG!</h3>
-                        <p>Ein dramatisches Spiel endet mit 5:4 nach Verlängerung. Die Stimmung in der Arena war phänomenal.</p>
-                        <a href="aktuelles.html" class="cta-button">Mehr lesen...</a>
-                    </div>
-                    
-                    <div class="news-item">
-                        <img src="https://via.placeholder.com/400x300/000000/FFFFFF?text=Neues+Merch" alt="Neues Merchandise">
-                        <h3>Neue Fan-Kollektion ist da!</h3>
-                        <p>Limitierte Hoodies und Schals im 'Colonia'-Style jetzt im Shop erhältlich. Nur solange der Vorrat reicht.</p>
-                        <a href="bekleidung.html" class="cta-button">Zum Shop...</a>
-                    </div>
-                    
-                    <div class="news-item">
-                        <img src="https://via.placeholder.com/400x300/FF0000/FFFFFF?text=Auswärtsfahrt+Bus" alt="Fanbus">
-                        <h3>Auswärtsfahrt nach Berlin</h3>
-                        <p>Der Bus für das Spiel am 15.11. ist fast ausgebucht. Meldet euch schnell an!</p>
-                        <a href="kontakt.html" class="cta-button">Zur Anmeldung...</a>
                     </div>
                 </div>
             </div>
@@ -676,7 +625,7 @@
                         <a href="anmeldeformular.html" class="cta-button">Werde Teil der Furia!</a>
                     </div>
                     <div class="image-content">
-                        <img src="banner (3).png" alt="Colonia Della Furia Banner">
+                        <img src="../bilder/logo_furia.png" alt="Colonia Della Furia Banner">
                     </div>
                 </div>
                 
@@ -689,15 +638,15 @@
                 
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="gegen_deg (4).jpg" alt="Haie Fanclub Bild 1">
+                        <img src="../bilder/banner (3).png" alt="Haie Fanclub Bild 1">
                         <p>Stimmung in der Arena!</p>
                     </div>
                     <div class="gallery-item">
-                        <img src="gegen_deg (1).jpg" alt="Haie Fanclub Bild 2">
+                        <img src="../bilder/gegen_deg (1).png" alt="Haie Fanclub Bild 2">
                         <p>Gemeinsame Auswärtsfahrt!</p>
                     </div>
                      <div class="gallery-item">
-                        <img src="banner (3).png" alt="Unser Banner">
+                        <img src="../bilder/logokec (1).jpeg" alt="Unser Banner">
                         <p>Colonia Della Furia Banner</p>
                     </div>
                 </div>
@@ -712,8 +661,8 @@
         <div class="container">
             <p>&copy; 2025 Colonia Della Furia. Unabhängiger Fanclub. Alle Rechte vorbehalten. | <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></p>
             <div class="social-links">
-                <a href="https://www.tiktok.com/@coloniadellafuria" target="_blank" aria-label="TikTok"><img src="tiktok.png" alt="TikTok"></a>
-                <a href="https://www.instagram.com/coloniadellanfuria/" target="_blank" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
+                <a href="https://www.tiktok.com/@coloniadellafuria" target="_blank" aria-label="TikTok"><img src="../bilder/tiktok.png" alt="TikTok"></a>
+                <a href="https://www.instagram.com/coloniadellanfuria/" target="_blank" aria-label="Instagram"><img src="../bilder/instagram.png" alt="Instagram"></a>
             </div>
         </div>
     </footer>
@@ -721,38 +670,30 @@
     <script>
         
         // **********************************************
-        // FUNKTION ZUM RENDERN DER SPIELKARTEN
+        // SPIELKARTEN LOGIK (Unverändert)
         // **********************************************
 
-        // Hilfsfunktion zur Umwandlung des Spiel-Objekts in das gewünschte Format
         function mapGameData(game) {
             const dateObj = new Date(game.datum);
-
-            // Datum und Uhrzeit auf Deutsch formatieren
             const dateOptions = { day: '2-digit', month: '2-digit' };
             const dayOptions = { weekday: 'short' };
             
             return {
                 opponent: game.gegner,
-                // Entfernt den Punkt am Ende des Wochentags (z.B. 'Do' statt 'Do.')
                 day: dateObj.toLocaleDateString('de-DE', dayOptions).replace('.', ''), 
                 date: dateObj.toLocaleDateString('de-DE', dateOptions),
-                // Stellt sicher, dass die Uhrzeit im HH:MM-Format ist (ohne Sekunden)
                 time: dateObj.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }),
                 location: game.arena,
-                // 'isHome' ist true, wenn 'ort' gleich 'Heimspiel' ist
                 isHome: game.ort === "Heimspiel",
-                // Ticket-Link anpassen
-                ticketLink: game.ort === "Heimspiel" ? "#" : "kontakt.html" 
+                ticketLink: game.ort === "Heimspiel" ? "#" : "shop.html" 
             };
         }
 
-        // Funktion zum Erstellen der HTML-Struktur für eine einzelne Spielkarte
         function createGameCardHTML(game) {
             const gameClass = game.isHome ? 'game-card-home' : 'game-card-away';
             const tagText = game.isHome ? 'Heimspiel' : 'Auswärts';
             const ctaText = game.isHome ? 'Tickets' : 'Fanbus';
-            const ctaLink = game.isHome ? game.ticketLink : 'kontakt.html'; 
+            const ctaLink = game.isHome ? game.ticketLink : 'shop.html'; 
 
             return `
                 <div class="game-card ${gameClass}">
@@ -773,15 +714,12 @@
             `;
         }
         
-        // Hauptfunktion: Lädt, filtert und rendert die Spiele
         async function loadAndRenderUpcomingGames() {
             const container = document.getElementById('upcoming-games-container');
             
             try {
-                // Daten aus der JSON-Datei laden (Pfad muss korrekt sein!)
-                const response = await fetch('spiele.json'); 
+                const response = await fetch('../JSON/spiele.json'); 
                 
-                // Prüfen, ob der Ladevorgang erfolgreich war
                 if (!response.ok) {
                     throw new Error(`HTTP-Fehler! Status: ${response.status}. Stelle sicher, dass 'spiele.json' existiert.`);
                 }
@@ -789,13 +727,10 @@
                 const rawGames = await response.json();
                 const now = new Date();
 
-                // 1. Zukünftige Spiele filtern: Nur Spiele, die heute oder später stattfinden
                 const futureGames = rawGames
                     .filter(game => new Date(game.datum) >= now) 
-                    // 2. Datenstruktur anpassen und Datum/Zeit formatieren
                     .map(mapGameData); 
                 
-                // 3. Nur die nächsten 3 Spiele anzeigen
                 const gamesToShow = futureGames.slice(0, 3); 
                 
                 let htmlContent = '';
@@ -812,13 +747,13 @@
 
             } catch (error) {
                 console.error("Fehler beim Laden der Spieldaten:", error);
-                container.innerHTML = '<p style="text-align: center; width: 100%; color: #FF0000;">Fehler beim Laden der Spieldaten. Bitte stellen Sie sicher, dass die Datei <code style="color: #ffffff;">spiele.json</code> existiert.</p>';
+                container.innerHTML = '<p style="text-align: center; width: 100%; color: #FF0000;">Fehler beim Laden der Spieldaten. Bitte stellen Sie sicher, dass die Datei <code style="color: #ffffff;">../JSON/spiele.json</code> existiert.</p>';
             }
         }
 
 
         // **********************************************
-        // COOKIE BANNER LOGIK (Beibehalten)
+        // COOKIE BANNER LOGIK (Unverändert)
         // **********************************************
         function checkCookieConsent() {
             const consent = localStorage.getItem('cookieConsent');
@@ -838,11 +773,10 @@
 
 
         // **********************************************
-        // NAVIGATION SCROLL LOGIK (Beibehalten)
+        // NAVIGATION SCROLL LOGIK (Unverändert)
         // **********************************************
         function handleScrollNav() {
             const mainNav = document.querySelector('.main-nav');
-            // Holen Sie die Höhe des Headers, um zu wissen, wann die Nav fixiert werden soll
             const header = document.querySelector('header');
             const mainNavTop = header ? header.offsetHeight : 200; 
 
@@ -856,7 +790,7 @@
         }
         
         // **********************************************
-        // SCROLL TO TOP LOGIK (Beibehalten)
+        // SCROLL TO TOP LOGIK (Unverändert)
         // **********************************************
         function handleScrollToTop() {
             const scrollToTopBtn = document.getElementById("scrollToTopBtn");
@@ -876,20 +810,34 @@
 
 
         // **********************************************
+        // THROTTLING / PERFORMANCE FIX (Unverändert, da korrekt)
+        // **********************************************
+        let isThrottled = false;
+        function throttleScroll() {
+            if (!isThrottled) {
+                isThrottled = true;
+                
+                window.requestAnimationFrame(() => {
+                    handleScrollNav();
+                    handleScrollToTop();
+                    isThrottled = false;
+                });
+            }
+        }
+
+
+        // **********************************************
         // INITIALISIERUNG
         // **********************************************
         document.addEventListener('DOMContentLoaded', () => {
             checkCookieConsent();
-            loadAndRenderUpcomingGames(); // Lädt die Spielkarten aus JSON beim Start
+            loadAndRenderUpcomingGames(); 
         });
 
-        window.addEventListener('scroll', () => {
-             handleScrollNav();
-             handleScrollToTop();
-        });
+        window.addEventListener('scroll', throttleScroll);
 
 
     </script>
-    <script src="script.js"></script>
+    <script src="../JavaScript/script.js"></script>
 </body>
 </html>
