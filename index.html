@@ -549,8 +549,14 @@
             .game-opponent {
                  font-size: 1.2em;
             }
+            /* Die Buttons sind groß (wie gewünscht) und klickbar */
             .game-cta {
                 margin: 10px auto 0;
+                width: 100%; 
+                max-width: none; 
+                box-sizing: border-box; 
+                position: relative; 
+                z-index: 10; 
             }
         }
     </style>
@@ -602,18 +608,16 @@
             </div>
         </section>
 
-        <section id="news" class="dark-section">
-            <div class="container">
-                
-                <h2>Nächste Spiele</h2> 
-                
-                <div id="upcoming-games-container" class="news-grid">
-                    <a href="shop.html" class="cta-button game-cta">Tickets</a>
-                    </div>
-                    </div>
-                </div>
+<section id="next-games">
+    <div class="container">
+        <h2>NÄCHSTE SPIELE</h2>
+        
+        <div id="game-list" class="game-list-grid">
             </div>
-        </section>
+        
+        
+    </div>
+</section>
         <section id="about-us">
             <div class="container">
                 <h2>Wer wir sind</h2>
@@ -670,7 +674,7 @@
     <script>
         
         // **********************************************
-        // SPIELKARTEN LOGIK (Unverändert)
+        // SPIELKARTEN LOGIK 
         // **********************************************
 
         function mapGameData(game) {
@@ -685,14 +689,17 @@
                 time: dateObj.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }),
                 location: game.arena,
                 isHome: game.ort === "Heimspiel",
-                ticketLink: game.ort === "Heimspiel" ? "#" : "shop.html" 
+                // KORREKTUR: Linkt jetzt immer zum Shop, wie gewünscht
+                ticketLink: "shop.html" 
             };
         }
 
         function createGameCardHTML(game) {
             const gameClass = game.isHome ? 'game-card-home' : 'game-card-away';
             const tagText = game.isHome ? 'Heimspiel' : 'Auswärts';
-            const ctaText = game.isHome ? 'Tickets' : 'Fanbus';
+            const ctaText = game.isHome ? 'Tickets' : 'Tickets'; 
+            
+            // Verwendet ticketLink für Heimspiele und hardcodet shop.html für Auswärtsspiele (kann jetzt auf game.ticketLink geändert werden, ist aber so auch funktional)
             const ctaLink = game.isHome ? game.ticketLink : 'shop.html'; 
 
             return `
@@ -715,7 +722,7 @@
         }
         
         async function loadAndRenderUpcomingGames() {
-            const container = document.getElementById('upcoming-games-container');
+            const container = document.getElementById('game-list');
             
             try {
                 const response = await fetch('../JSON/spiele.json'); 
@@ -731,6 +738,7 @@
                     .filter(game => new Date(game.datum) >= now) 
                     .map(mapGameData); 
                 
+                // Anzeige ist auf die nächsten 3 Spiele begrenzt
                 const gamesToShow = futureGames.slice(0, 3); 
                 
                 let htmlContent = '';
@@ -810,7 +818,7 @@
 
 
         // **********************************************
-        // THROTTLING / PERFORMANCE FIX (Unverändert, da korrekt)
+        // THROTTLING / PERFORMANCE FIX (Unverändert)
         // **********************************************
         let isThrottled = false;
         function throttleScroll() {

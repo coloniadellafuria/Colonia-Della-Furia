@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tickets | Colonia Della Furia</title>
+    <link rel="icon" type="image/x-icon" href="../bilder/logo_furia.png"> 
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Spezifische Stile für die Tickets-Seite, basierend auf index.html#spiele */
+        #tickets-section {
+            padding: 80px 0 100px 0;
+            background-color: #1a1a1a; 
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+            text-align: center;
+        }
+        #tickets-section .container {
+            max-width: 1200px;
+        }
+        #tickets-section h2 {
+            font-family: 'Oswald', sans-serif;
+            color: #FF0000; 
+            margin-bottom: 50px;
+            font-size: 2.5em;
+        }
+        
+        /* Karten-Layout */
+        .game-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        /* Einzelne Spielkarte */
+        .game-card {
+            background-color: #2b2b2b;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .game-card-info {
+            padding: 25px;
+            flex-grow: 1; /* Lässt den Info-Teil wachsen, damit der Button unten bleibt */
+        }
+
+        .game-card-info h3 {
+            color: #FF0000;
+            margin-bottom: 10px;
+            font-size: 1.8em;
+            text-transform: uppercase;
+        }
+
+        .game-card-info p {
+            margin-bottom: 8px;
+            color: #ccc;
+        }
+
+        .game-card-info .date-time {
+            font-weight: bold;
+            color: #ffffff;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .game-card-action {
+            /* Trennlinie oberhalb des Buttons */
+            border-top: 2px solid #FF0000; 
+        }
+
+        /* Button-Stil (wie in style.css, aber lokal für die Karte) */
+        .game-card-action .cta-button {
+            display: block; 
+            width: 100%;
+            margin: 0;
+            padding: 18px 25px;
+            
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5em;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 0 0 8px 8px; 
+            
+            background-color: #FF0000; 
+            color: #fff;
+            border: none;
+            box-shadow: 0 6px 0 0 #a00;
+            cursor: pointer;
+            
+            transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+        }
+
+        .game-card-action .cta-button:hover {
+            background-color: #cc0000; 
+            transform: translateY(1px);
+            box-shadow: 0 5px 0 0 #a00;
+        }
+        
+        /* Stil für ausgeblendete Spiele (falls vorhanden) */
+        .game-card.hidden-game {
+            display: none;
+        }
+        .game-card.hidden-game.visible {
+            display: flex;
+        }
+
+        /* Button für "Weitere Spiele" */
+        #toggle-games-btn {
+            background-color: #444;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            margin-top: 40px;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+        }
+        #toggle-games-btn:hover {
+            background-color: #666;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html">
+                <img src="../bilder/logo_furia.png" alt="Colonia Della Furia Logo" class="header-logo">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Startseite</a></li>
+                    <li><a href="index.html#team">Team</a></li>
+                    <li><a href="#tickets-section">Tickets</a></li>
+                    <li><a href="index.html#kontakt">Kontakt</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="warenkorb.html">Warenkorb (<span id="cart-count-nav">0</span>)</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="tickets-section">
+            <div class="container">
+                <h2>Verfügbare Auswärtsfahrten</h2>
+                <p class="subtitle" style="color: #ccc; margin-bottom: 40px;">Buche jetzt deinen Platz in unserem Fanbus für die nächsten Auswärtsspiele!</p>
+
+                <div id="game-list" class="game-list">
+                    </div>
+                
+                <button id="toggle-games-btn" style="display: none;">Weitere Spiele laden</button>
+            </div>
+        </section>
+        
+    </main>
+    
+    <button id="scrollToTopBtn" title="Zum Seitenanfang">↑</button>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Colonia Della Furia. Unabhängiger Fanclub. Alle Rechte vorbehalten. | <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></p>
+            <div class="social-links">
+                <a href="https://www.tiktok.com/@coloniadellafuria" target="_blank" aria-label="TikTok"><img src="../bilder/tiktok.png" alt="TikTok"></a>
+                <a href="https://www.instagram.com/coloniadellanfuria/" target="_blank" aria-label="Instagram"><img src="../bilder/instagram.png" alt="Instagram"></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // **********************************************
+        // WARENKORB & SCROLL LOGIK (Unverändert von anfrage.html)
+        // **********************************************
+        const CART_STORAGE_KEY = 'coloniaFuriaCart';
+        
+        function getCart() {
+            try {
+                const cartString = localStorage.getItem(CART_STORAGE_KEY);
+                return cartString ? JSON.parse(cartString) : [];
+            } catch (e) {
+                return [];
+            }
+        }
+        
+        function updateCartCount() {
+            const cart = getCart();
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const countElements = document.querySelectorAll('#cart-count-nav');
+            countElements.forEach(el => { el.textContent = totalItems; });
+        }
+        
+        function handleScrollToTop() {
+            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        }
+
+        // **********************************************
+        // SPIEL-DATEN (Simulierte Daten für die Ticket-Seite)
+        // **********************************************
+        const UPCOMING_GAMES = [
+            { opponent: 'Löwen Frankfurt', date: '01.12.2025', time: '19:30', isAway: true, isBookable: true, ticketsLeft: 12 },
+            { opponent: 'Düsseldorfer EG', date: '05.12.2025', time: '16:30', isAway: true, isBookable: true, ticketsLeft: 8 },
+            { opponent: 'Eisbären Berlin', date: '10.12.2025', time: '19:00', isAway: true, isBookable: true, ticketsLeft: 25 },
+            { opponent: 'Iserlohn Roosters', date: '17.12.2025', time: '19:30', isAway: true, isBookable: true, ticketsLeft: 0 }, // Ausgebucht
+            { opponent: 'Grizzlys Wolfsburg', date: '22.12.2025', time: '14:00', isAway: true, isBookable: true, ticketsLeft: 18 },
+            { opponent: 'Adler Mannheim', date: '28.12.2025', time: '17:00', isAway: false, isBookable: false }, // Heimspiel
+            { opponent: 'Straubing Tigers', date: '03.01.2026', time: '19:30', isAway: true, isBookable: true, ticketsLeft: 30 },
+            { opponent: 'ERC Ingolstadt', date: '08.01.2026', time: '19:30', isAway: true, isBookable: true, ticketsLeft: 22 }
+        ];
+
+        // **********************************************
+        // RENDERING & LOGIK DER SPIELE
+        // **********************************************
+        function renderGameCard(game) {
+            const isBookable = game.isAway && game.isBookable && game.ticketsLeft > 0;
+            const linkUrl = isBookable 
+                ? `anfrage.html?type=fahrt&destination=${encodeURIComponent(game.opponent)}&date=${encodeURIComponent(game.date)}`
+                : 'javascript:void(0)'; // Bleibt auf der Seite
+
+            let buttonText = 'Buchungsanfrage senden';
+            let buttonClass = 'cta-button';
+            let infoText = 'Sichere dir deinen Platz im Bus!';
+
+            if (!game.isAway) {
+                buttonText = 'Heimspiel (Keine Busfahrt)';
+                buttonClass += ' disabled';
+                infoText = 'Dies ist ein Heimspiel in Köln.';
+            } else if (!game.isBookable) {
+                 buttonText = 'Buchung noch nicht möglich';
+                 buttonClass += ' disabled';
+                 infoText = 'Details zur Busfahrt folgen in Kürze.';
+            } else if (game.ticketsLeft === 0) {
+                buttonText = 'Ausgebucht';
+                buttonClass += ' disabled sold-out';
+                infoText = 'Alle Plätze im Bus sind belegt.';
+            } else {
+                infoText = `Nur noch ${game.ticketsLeft} Plätze verfügbar!`;
+            }
+
+            // HTML-Struktur der Spielkarte
+            return `
+                <div class="game-card ${!isBookable ? 'hidden-game' : ''}" data-opponent="${game.opponent.replace(/\s/g, '-')}" data-away="${game.isAway}">
+                    <div class="game-card-info">
+                        <h3>gegen ${game.opponent}</h3>
+                        <p class="date-time">${game.date} | ${game.time} Uhr</p>
+                        <p>${infoText}</p>
+                    </div>
+                    <div class="game-card-action">
+                        <a href="${linkUrl}" class="${buttonClass}" ${!isBookable ? 'onclick="return false;"' : ''}>
+                            ${buttonText}
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadAndRenderGames() {
+            const container = document.getElementById('game-list');
+            const toggleBtn = document.getElementById('toggle-games-btn');
+            
+            if (!container) return;
+
+            // Sortierung: Zuerst buchbare Spiele (TicketsLeft > 0), dann ausgebuchte, dann nicht buchbare/Heimspiele
+            const sortedGames = UPCOMING_GAMES.sort((a, b) => {
+                const bookableA = a.isAway && a.isBookable && a.ticketsLeft > 0;
+                const bookableB = b.isAway && b.isBookable && b.ticketsLeft > 0;
+
+                if (bookableA && !bookableB) return -1;
+                if (!bookableA && bookableB) return 1;
+                
+                // Buchungsdatum (für sortierung) - Hier würden Sie echtes Datum-Parsing verwenden.
+                // Da hier nur String-Daten vorhanden sind, wird die Reihenfolge der Arrays beibehalten.
+                return 0; 
+            });
+
+
+            // Trennung für das "Weitere anzeigen" Feature (wir zeigen nur die ersten 4 an)
+            const gamesToShowInitially = 4;
+            const initialGames = sortedGames.slice(0, gamesToShowInitially);
+            const hiddenGames = sortedGames.slice(gamesToShowInitially);
+
+            // Rendern der initialen Spiele
+            container.innerHTML = initialGames.map(renderGameCard).join('');
+            
+            // Rendern der versteckten Spiele (nur falls mehr als 4 vorhanden)
+            if (hiddenGames.length > 0) {
+                toggleBtn.style.display = 'block';
+                container.innerHTML += hiddenGames.map(game => {
+                    // Fügt die Klasse 'hidden-game' hinzu, die per CSS ausgeblendet wird
+                    return renderGameCard(game).replace('<div class="game-card', '<div class="game-card hidden-game');
+                }).join('');
+                
+                // Listener für den "Weitere anzeigen" Button setzen
+                setupToggleListener(container, toggleBtn);
+            } else {
+                toggleBtn.style.display = 'none';
+            }
+        }
+        
+        function setupToggleListener(gameListContainer, toggleBtn) {
+            const hiddenGames = gameListContainer.querySelectorAll('.game-card.hidden-game');
+
+            toggleBtn.removeEventListener('click', handleToggleClick); 
+            toggleBtn.addEventListener('click', handleToggleClick);
+
+            // Initialen Text setzen
+            toggleBtn.textContent = 'Alle weiteren Spiele anzeigen';
+        
+            function handleToggleClick() {
+                const isActive = gameListContainer.classList.toggle('active-all-games');
+
+                hiddenGames.forEach(game => {
+                    game.classList.toggle('visible', isActive);
+                });
+
+                if (isActive) {
+                    toggleBtn.textContent = 'Weitere Spiele ausblenden ▲';
+                } else {
+                    toggleBtn.textContent = 'Alle weiteren Spiele anzeigen';
+                }
+            }
+        }
+
+
+        // **********************************************
+        // INITIALISIERUNG
+        // **********************************************
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAndRenderGames();
+            updateCartCount(); 
+            
+            // Scroll-to-Top Listener
+            document.getElementById("scrollToTopBtn")?.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+            window.addEventListener('scroll', handleScrollToTop);
+        });
+
+    </script>
+</body>
+</html>

@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Warenkorb | Colonia Della Furia Shop</title>
-    <link rel="icon" type="image/x-icon" href="logo_furia.png"> 
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="../bilder/logo_furia.png"> 
+    <link rel="stylesheet" href="../CSS/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
+        /* ================================================= */
+        /* WARENKORB SPEZIFISCHE STYLES (Inline CSS) */
+        /* ================================================= */
         #cart-section {
             padding: 80px 0 100px 0;
             background-color: #1a1a1a; 
@@ -36,7 +39,6 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             text-align: left;
         }
-        /* NEU: Stil für die Listen-Einträge im Warenkorb */
         .cart-item {
             display: flex;
             justify-content: space-between;
@@ -57,7 +59,6 @@
             color: #FF0000;
             display: block;
         }
-        /* NEU: Anzeige für Einzelpreis und Beschreibung */
         .item-details .item-price, 
         .item-details .item-description {
             display: block;
@@ -70,32 +71,41 @@
             align-items: center;
             gap: 15px;
             flex-shrink: 0;
-            white-space: nowrap; /* Verhindert Umbruch bei Kontrollen */
+            white-space: nowrap;
         }
-        /* NEU: Zwischensumme */
         .item-subtotal {
             font-weight: bold;
             color: #ffffff; 
         }
+
+        /* VERBESSERTES KONTROLL-DESIGN */
         .quantity-input {
-            padding: 5px;
-            border: none;
+            width: 50px; 
+            padding: 6px; 
+            border: 1px solid #444; 
             border-radius: 4px;
             text-align: center;
-            background-color: #1a1a1a;
+            background-color: #333; 
             color: #fff;
+            font-size: 1em;
+            margin-left: 5px; 
         }
+        
         .remove-btn {
-            background-color: #444;
+            background-color: #A00000; 
             color: #ffffff;
             border: none;
-            padding: 5px 10px;
+            padding: 7px 14px; 
             border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            font-weight: 700;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            transition: background-color 0.3s, transform 0.1s;
         }
         .remove-btn:hover {
-            background-color: #CC0000;
+            background-color: #FF0000; 
+            transform: translateY(-1px);
         }
         
         /* Warenkorb Zusammenfassung und Buttons */
@@ -131,7 +141,7 @@
             border-radius: 8px;
         }
 
-        /* NEU: Gesamtpreis-Block */
+        /* Gesamtpreis-Block */
         .cart-summary {
             text-align: right;
             margin-top: 30px;
@@ -146,28 +156,36 @@
             font-weight: 700;
             color: #ffffff;
             margin: 5px 0;
-            padding-right: 20px; /* Ausrichtung mit Warenkorb-Liste */
+            padding-right: 20px;
         }
         .cart-summary span.total-price {
-            color: #FF0000; /* Hervorheben des Preises */
+            color: #FF0000;
         }
 
-        /* Stil für die Benachrichtigung (Toast) */
+        /* ================================================= */
+        /* TOAST-BENACHRICHTIGUNG (Pushup) STYLES */
+        /* ================================================= */
         #toast-notification {
-            visibility: hidden;
+            /* Ausgangszustand: unsichtbar */
+            visibility: hidden; 
             min-width: 250px;
-            background-color: #FF0000; 
+            
+            /* GRÜNES DESIGN für erfolgreiche Aktionen */
+            background-color: #ff0000; /* Dunkelgrün */
             color: #fff;
+            
             text-align: center;
             border-radius: 8px;
             padding: 16px;
+            
+            /* Positionierung */
             position: fixed;
             z-index: 1000;
             left: 50%;
             bottom: 30px;
             transform: translateX(-50%);
-            font-family: 'Roboto', sans-serif;
-            font-size: 1em;
+            
+            /* Schatten und Animation */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
             opacity: 0;
             transition: visibility 0s, opacity 0.5s linear;
@@ -207,16 +225,15 @@
     <header>
         <div class="container">
             <a href="index.html">
-                <img src="logo_furia.png" alt="Colonia Della Furia Logo" class="header-logo">
+                <img src="../bilder/logo_furia.png" alt="Colonia Della Furia Logo" class="header-logo">
             </a>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="index.html#home">Home</a></li>
-                    <li><a href="index.html#team">Team</a></li>
-                    <li><a href="index.html#spiele">Spiele</a></li>
+                    <li><a href="../html/index.html">Startseite</a></li>
+                    <li><a href="../html/mitglied.html">Mitglied werden</a></li>
                     <li><a href="index.html#kontakt">Kontakt</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="warenkorb.html" class="active">Warenkorb (<span id="cart-count-nav">0</span>)</a></li>
+                    <li><a href="shop.html">Zurück zum Shop</a></li>
+                    <li><a href="../html/warenkorb.html" class="active">Warenkorb (<span id="cart-count-nav">0</span>)</a></li>
                 </ul>
             </nav>
         </div>
@@ -228,23 +245,24 @@
             <div class="container">
                 <h2>Dein Warenkorb</h2>
                 
-                <div id="cart-content" style="display: none;">
-                    
-                    <ul id="cart-items">
-                        </ul>
+            <div class="cart-content">
+                <ul id="cart-items">
+                    </ul>
+                
+                <div id="cart-summary-wrapper"> 
                     
                     <div class="cart-summary">
                         <p>Gesamtpreis: <span id="cart-total-price" class="total-price">0.00</span> €</p>
                     </div>
 
                     <div class="cart-actions">
-                        <p style="font-size: 1.1em; color: #ccc;">Gesamtzahl der Artikel: <span id="cart-total-items">0</span></p>
-                        <button id="checkout-btn" class="cta-bestellen">Bestell-Anfrage senden</button>
+                        <p style="font-size: 1.1em; color: #ccc;">Gesamtzahl der Artikel: <span id="cart-total-items">0</span></p> 
+                        <button id="order-request-btn" class="cta-bestellen">Bestell-Anfrage senden</button>
                         <button id="clear-cart-btn" class="cta-button" style="background-color: #444; margin-top: 15px; max-width: 400px; display: block; margin-left: auto; margin-right: auto;">Warenkorb leeren</button>
                     </div>
                 </div>
-
-                <div id="empty-cart-message" class="empty-cart-message" style="display: block;">
+                
+                <div id="empty-cart-message" class="empty-cart-message" style="display: none;">
                     Dein Warenkorb ist leer. Füge Produkte aus dem <a href="shop.html" style="color: #FF0000; text-decoration: none; font-weight: bold;">Shop</a> hinzu.
                 </div>
             </div>
@@ -265,7 +283,308 @@
             </div>
         </div>
     </footer>
+    
+    <script>
+        // =================================================================
+        // WARENKORB-SPEICHERUNG (localStorage)
+        // =================================================================
 
-    <script src="script.js"></script>
+        const CART_STORAGE_KEY = 'coloniaFuriaCart';
+
+        function getCart() {
+            try {
+                const cartString = localStorage.getItem(CART_STORAGE_KEY);
+                return cartString ? JSON.parse(cartString) : [];
+            } catch (e) {
+                console.error("Fehler beim Laden des Warenkorbs:", e);
+                return [];
+            }
+        }
+
+        function saveCart(cart) {
+            try {
+                localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+                updateCartCount();
+                
+                // WICHTIG: Wenn die Warenkorbseite offen ist, neu rendern
+                if (document.getElementById('cart-section')) {
+                    renderCart();
+                }
+            } catch (e) {
+                console.error("Fehler beim Speichern des Warenkorbs:", e);
+            }
+        }
+
+        // =================================================================
+        // UI-FUNKTION (Toast-Benachrichtigung - PUSHUP)
+        // =================================================================
+
+        /**
+         * Zeigt eine Toast-Benachrichtigung am unteren Bildschirmrand an.
+         * @param {string} message - Der anzuzeigende Text.
+         */
+        function showToast(message) {
+            const toast = document.getElementById("toast-notification");
+            if (toast) {
+                // Stoppe alle laufenden Animationen/Timeouts (falls Taste schnell gedrückt wird)
+                clearTimeout(toast.timeoutId);
+                
+                // Setze die Nachricht
+                toast.textContent = message;
+                
+                // Zeige den Toast an
+                toast.classList.add("show");
+                
+                // Verstecke den Toast nach 3 Sekunden
+                toast.timeoutId = setTimeout(function(){ 
+                    toast.classList.remove("show"); 
+                }, 3000);
+            }
+        }
+
+        // =================================================================
+        // WARENKORB-LOGIK
+        // =================================================================
+
+        /**
+         * Aktualisiert die Anzahl der Artikel im Warenkorb (in der Navigationsleiste).
+         */
+        function updateCartCount() {
+            const cart = getCart();
+            // Berechnet die Gesamtanzahl der Produkte im Warenkorb
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const countElements = document.querySelectorAll('#cart-count-nav');
+            
+            countElements.forEach(el => {
+                el.textContent = totalItems;
+            });
+        }
+
+        /**
+         * Fügt einen Artikel zum Warenkorb hinzu oder erhöht die Menge.
+         * HINWEIS: Wird auf warenkorb.html nicht verwendet, ist aber für die Konsistenz enthalten.
+         */
+        function addItem(product) {
+            const cart = getCart();
+            const existingItem = cart.find(item => item.name === product.name);
+
+            if (existingItem) {
+                existingItem.quantity += product.quantity;
+            } else {
+                product.price = parseFloat(product.price);
+                cart.push(product);
+            }
+            
+            saveCart(cart);
+        }
+
+        /**
+         * Entfernt einen Artikel komplett aus dem Warenkorb.
+         * @param {string} productName - Der Name des zu entfernenden Artikels.
+         */
+        function removeItem(productName) {
+            let cart = getCart();
+            cart = cart.filter(item => item.name !== productName);
+            saveCart(cart);
+            showToast(`${productName} entfernt.`); // Zeigt Toast nach Entfernen
+        }
+
+        // Nur benötigt, falls der Button auf einer Produktseite geklickt wird (nicht auf warenkorb.html)
+        function handleAddToCartClick(e) {
+            const button = e.target;
+            const name = button.getAttribute('data-name');
+            const description = button.getAttribute('data-description');
+            const price = button.getAttribute('data-price');
+            const quantity = 1; 
+            addItem({ name, description, price, quantity });
+            showToast(`${name} hinzugefügt.`);
+        }
+
+        // =================================================================
+        // WARENKORB-SEITE RENDERING
+        // =================================================================
+
+        /**
+         * Rendert die Warenkorb-Liste und die Zusammenfassung auf warenkorb.html.
+         */
+        function renderCart() {
+            const cart = getCart();
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotalPrice = document.getElementById('cart-total-price');
+            const cartTotalItems = document.getElementById('cart-total-items');
+            const emptyMessage = document.getElementById('empty-cart-message');
+            const summaryWrapper = document.getElementById('cart-summary-wrapper');
+            let total = 0;
+            let totalItems = 0;
+
+            if (!cartItemsContainer || !cartTotalPrice) return; 
+
+            // Sichtbarkeit der Elemente steuern
+            if (cart.length === 0) {
+                emptyMessage.style.display = 'block';
+                summaryWrapper.style.display = 'none';
+                cartItemsContainer.innerHTML = '';
+                cartTotalPrice.textContent = '0.00';
+                cartTotalItems.textContent = '0';
+                return;
+            } else {
+                emptyMessage.style.display = 'none';
+                summaryWrapper.style.display = 'block';
+            }
+
+            cartItemsContainer.innerHTML = ''; 
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                totalItems += item.quantity;
+
+                const listItem = document.createElement('li');
+                listItem.className = 'cart-item';
+                listItem.innerHTML = `
+                    <div class="item-details">
+                        <span class="item-name">${item.name}</span>
+                        <span class="item-description">${item.description}</span>
+                        <span class="item-price">Einzelpreis: ${parseFloat(item.price).toFixed(2)} €</span>
+                    </div>
+                    <div class="item-controls">
+                        <label for="quantity-${item.name}">Menge:</label>
+                        <input type="number" 
+                            id="quantity-${item.name}" 
+                            class="quantity-input" 
+                            data-name="${item.name}" 
+                            value="${item.quantity}" 
+                            min="1" 
+                            max="99">
+                        <span class="item-subtotal">${itemTotal.toFixed(2)} €</span>
+                        <button class="remove-btn" data-name="${item.name}">Entfernen</button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(listItem);
+            });
+
+            cartTotalPrice.textContent = total.toFixed(2);
+            cartTotalItems.textContent = totalItems;
+            
+            setupCartListeners(); 
+        }
+
+        /**
+         * Setzt Event Listener für Mengen-Inputs und Entfernen-Buttons auf der Warenkorb-Seite.
+         */
+        function setupCartListeners() {
+            // 1. Mengen-Änderungen
+            document.querySelectorAll('.quantity-input').forEach(input => {
+                input.removeEventListener('change', handleQuantityChange);
+                input.addEventListener('change', handleQuantityChange);
+            });
+
+            // 2. Entfernen-Buttons
+            document.querySelectorAll('.remove-btn').forEach(button => {
+                button.removeEventListener('click', handleRemoveClick);
+                button.addEventListener('click', handleRemoveClick);
+            });
+            
+            // 3. Warenkorb leeren Button
+            const clearBtn = document.getElementById('clear-cart-btn');
+            if (clearBtn) {
+                clearBtn.removeEventListener('click', clearCart);
+                clearBtn.addEventListener('click', clearCart);
+            }
+
+            // 4. Bestell-Anfrage Button
+            const orderBtn = document.getElementById('order-request-btn');
+            if (orderBtn) {
+                orderBtn.removeEventListener('click', handleOrderRequest);
+                orderBtn.addEventListener('click', handleOrderRequest);
+            }
+        }
+
+        function handleQuantityChange(e) {
+            const input = e.target;
+            const productName = input.getAttribute('data-name');
+            let newQuantity = parseInt(input.value);
+
+            if (isNaN(newQuantity) || newQuantity < 1) {
+                newQuantity = 1;
+                input.value = 1;
+            }
+
+            updateItemQuantity(productName, newQuantity);
+        }
+
+        function handleRemoveClick(e) {
+            const productName = e.target.getAttribute('data-name');
+            removeItem(productName);
+        }
+
+        function updateItemQuantity(productName, newQuantity) {
+            const cart = getCart();
+            const item = cart.find(i => i.name === productName);
+            if (item) {
+                item.quantity = newQuantity;
+                saveCart(cart); 
+                showToast(`Menge von ${productName} aktualisiert.`);
+            }
+        }
+
+        /**
+         * Leert den gesamten Warenkorb.
+         */
+        function clearCart() {
+            localStorage.removeItem(CART_STORAGE_KEY);
+            saveCart([]); 
+            showToast('Warenkorb geleert.');
+        }
+
+        /**
+         * Behandelt den Klick auf den Bestell-Anfrage Button.
+         */
+        function handleOrderRequest() {
+            showToast('Bestell-Anfrage wird verarbeitet...');
+            // HIER KÖNNTE LOGIK FOLGEN, UM DIE BESTELLUNG PER E-MAIL ZU SENDEN
+        }
+
+        // =================================================================
+        // INITIALISIERUNG
+        // =================================================================
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Zähler beim initialen Laden der Seite aktualisieren
+            updateCartCount(); 
+
+            // 2. Event Listener für Buttons auf Produktseiten (falls man von hier aus zum Shop geht)
+            document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+                button.addEventListener('click', handleAddToCartClick);
+            });
+            
+            // 3. Warenkorb-Seite initialisieren
+            if (document.getElementById('cart-section')) {
+                renderCart(); // STARTET DIE ANZEIGE DES WARENKORBS
+            }
+        });
+        
+        // **********************************************
+        // SCROLL TO TOP LOGIK
+        // **********************************************
+        function handleScrollToTop() {
+            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        }
+
+        document.getElementById("scrollToTopBtn")?.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+
+        window.addEventListener('scroll', handleScrollToTop);
+
+    </script> 
 </body>
 </html>

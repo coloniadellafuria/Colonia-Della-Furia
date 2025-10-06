@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Anfrage | Colonia Della Furia</title>
+    <link rel="icon" type="image/x-icon" href="../bilder/logo_furia.png"> 
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Spezifische Stile für die Anfrage-Seite */
+        #form-section {
+            padding: 80px 0 100px 0;
+            background-color: #1a1a1a; 
+            color: #ffffff;
+            line-height: 1.8;
+            min-height: 100vh; 
+            text-align: center;
+        }
+        #form-section .container {
+            max-width: 700px;
+        }
+        #form-section h2 {
+            color: #FF0000; 
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        #form-section p.subtitle {
+            margin-bottom: 40px;
+            font-size: 1.1em;
+            color: #ccc;
+        }
+
+        /* Formular-Stil */
+        .furia-form {
+            background-color: #2b2b2b;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            text-align: left;
+        }
+        
+        .furia-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #FF0000;
+        }
+        
+        .furia-form input[type="text"],
+        .furia-form input[type="email"],
+        .furia-form input[type="number"],
+        .furia-form textarea,
+        .furia-form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+        
+        .furia-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        /* Absende-Button */
+        .cta-bestellen {
+            display: block;
+            width: 100%;
+            background-color: #FF0000;
+            color: #ffffff;
+            padding: 15px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.2s;
+            border: none;
+            cursor: pointer;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            font-size: 1.2em;
+            margin-top: 20px;
+            box-shadow: 0 4px 0 0 #a00;
+        }
+        .cta-bestellen:hover {
+            background-color: #cc0000;
+            transform: translateY(1px);
+            box-shadow: 0 3px 0 0 #a00;
+        }
+
+        /* Erfolgs-Nachricht */
+        #success-message {
+            display: none;
+            padding: 30px;
+            background-color: #388e3c;
+            border-radius: 8px;
+            margin-top: 30px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+        
+        /* Neuer Mail-Button im Success-Fenster */
+        #mail-link-btn {
+            /* NEU: Wichtig, damit der Button wie der Link vorher aussieht */
+            display: inline-block;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            padding: 12px 30px;
+            margin-top: 25px;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            border: none; /* Entfernt den Standard-Button-Rand */
+            cursor: pointer;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+        #mail-link-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Optional: Visueller Hinweis für fehlende Felder */
+        .furia-form input:invalid:not(:focus),
+        .furia-form select:invalid:not(:focus) {
+            box-shadow: none; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html">
+                <img src="../bilder/logo_furia.png" alt="Colonia Della Furia Logo" class="header-logo">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Startseite</a></li>
+                    <li><a href="index.html#team">Team</a></li>
+                    <li><a href="tickets.html">Tickets</a></li>
+                    <li><a href="index.html#kontakt">Kontakt</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="warenkorb.html">Warenkorb (<span id="cart-count-nav">0</span>)</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="form-section">
+            <div class="container">
+                <h2 id="form-title"></h2>
+                <p class="subtitle" id="form-subtitle"></p>
+                
+                <form id="contact-form" class="furia-form" onsubmit="return handleFormSubmit(event)">
+                    
+                    <input type="hidden" id="form-type" name="form-type" value="">
+                    
+                    <div id="trip-specific-fields" style="display: none;">
+                        <div class="form-group">
+                            <label for="trip-destination">Ziel der Auswärtsfahrt</label>
+                            <input type="text" id="trip-destination" name="trip-destination" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="trip-quantity">Anzahl der Plätze (inkl. dir)</label>
+                            <input type="number" id="trip-quantity" name="trip-quantity" min="1" max="10" value="1">
+                        </div>
+                    </div>
+
+                    <div id="anmeldung-specific-fields" style="display: none;">
+                         <div class="form-group">
+                            <label for="birth-date">Geburtsdatum</label>
+                            <input type="text" id="birth-date" name="birth-date" placeholder="TT.MM.JJJJ">
+                        </div>
+                        <div class="form-group">
+                            <label for="membership-type">Art der Mitgliedschaft</label>
+                            <select id="membership-type" name="membership-type">
+                                <option value="" disabled selected>Bitte auswählen</option>
+                                <option value="Vollmitglied">Vollmitglied (Erwachsene)</option>
+                                <option value="Familienmitglied">Familienmitglied</option>
+                                <option value="Fördermitglied">Fördermitglied</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="full-name">Vollständiger Name</label>
+                        <input type="text" id="full-name" name="full-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-Mail Adresse</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Nachricht / Anmerkungen (Optional)</label>
+                        <textarea id="message" name="message" placeholder="Deine Nachricht an den Fanclub..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="cta-bestellen" id="submit-btn">Anfrage jetzt senden</button>
+                    
+                    <p id="validation-error" style="color: #ffcc00; margin-top: 15px; display: none; font-weight: bold;">Bitte fülle alle markierten, erforderlichen Felder aus.</p>
+                </form>
+
+                <div id="success-message">
+                    <p>Deine Anfrage wurde erfolgreich vorbereitet! Die Details sind gespeichert.</p>
+                    <p style="margin-top: 15px;">**Um die Anfrage abzuschließen, klicke auf den Button und sende die E-Mail aktiv ab!**</p>
+                    <button type="button" id="mail-link-btn" role="button" aria-label="E-Mail jetzt senden">E-Mail jetzt senden</button>
+                </div>
+
+            </div>
+        </section>
+        
+        <div id="toast-notification" style="display: none;"></div>
+        
+    </main>
+    
+    <button id="scrollToTopBtn" title="Zum Seitenanfang">↑</button>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Colonia Della Furia. Unabhängiger Fanclub. Alle Rechte vorbehalten. | <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></p>
+            <div class="social-links">
+                <a href="https://www.tiktok.com/@coloniadellafuria" target="_blank" aria-label="TikTok"><img src="../bilder/tiktok.png" alt="TikTok"></a>
+                <a href="https://www.instagram.com/coloniadellanfuria/" target="_blank" aria-label="Instagram"><img src="../bilder/instagram.png" alt="Instagram"></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // **********************************************
+        // NEU: Globale Variable für den Mailto-Link
+        // **********************************************
+        let generatedMailtoLink = null; 
+        
+        // **********************************************
+        // URL-Parameter lesen (Funktion unverändert)
+        // **********************************************
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            const results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+        
+        /**
+         * Generiert den vollständigen mailto:-Link aus den Formulardaten.
+         * (Funktion unverändert, da korrekt)
+         */
+        function generateMailtoLink() {
+            const type = document.getElementById('form-type').value;
+            const name = document.getElementById('full-name').value;
+            const email = document.getElementById('email').value;
+            const optionalMessage = document.getElementById('message').value;
+
+            let subject = `Allgemeine Anfrage von ${name}`;
+            let baseBody = `Hallo Colonia Della Furia Team,\n\n`;
+            let specificDetails = ``;
+            
+            if (type === 'fahrt') {
+                const destination = document.getElementById('trip-destination').value;
+                const quantity = document.getElementById('trip-quantity').value;
+                
+                subject = `Buchungsanfrage: ${destination} (${quantity} Plätze)`;
+                baseBody += `hiermit buche ich verbindlich ${quantity} Plätze für die Auswärtsfahrt nach ${destination}.\n\n`;
+                specificDetails = `ANFRAGE: ${destination}\nAnzahl der Plätze: ${quantity}\n`;
+            
+            } else if (type === 'anmeldung') {
+                const birthDate = document.getElementById('birth-date').value;
+                const membershipType = document.getElementById('membership-type').value;
+
+                subject = `Mitgliedsantrag: ${name}`;
+                baseBody += `hiermit möchte ich die Mitgliedschaft '${membershipType}' beantragen.\n\n`;
+                specificDetails = `GEBURTSTAG: ${birthDate}\nGEWÜNSCHTE MITGLIEDSCHAFT: ${membershipType}\n`;
+
+            } else {
+                 baseBody += `ich habe eine allgemeine Anfrage:\n\n`;
+            }
+
+            let finalBody = baseBody;
+            finalBody += `--- Angaben zur Anfrage ---\n`;
+            finalBody += specificDetails;
+            finalBody += `VOLLSTÄNDIGER NAME: ${name}\n`;
+            finalBody += `E-MAIL (Antwortadresse): ${email}\n\n`;
+            
+            if (optionalMessage) {
+                 finalBody += `--- Zusätzliche Nachricht ---\n`;
+                 finalBody += `${optionalMessage}\n\n`;
+            } else {
+                 finalBody += `Keine zusätzliche Nachricht angegeben.\n\n`;
+            }
+            
+            finalBody += `Vielen Dank und bis bald in der Halle!\n`;
+            
+            return `mailto:coloniadellafuria1972@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(finalBody)}`;
+        }
+
+        
+        // **********************************************
+        // FORMULAR ABSENDEN (ERSTER KLICK) - JETZT ROBUST
+        // **********************************************
+        function handleFormSubmit(event) {
+            
+            const form = document.getElementById('contact-form');
+            const errorMsg = document.getElementById('validation-error');
+            
+            // 1. WICHTIG: Seiten-Reload verhindern
+            event.preventDefault(); 
+            
+            // 2. HTML5-Validierung für allgemeine Felder (Name, E-Mail)
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                errorMsg.style.display = 'block';
+                return false;
+            }
+
+            // 3. Manuelle Validierung der optionalen/konditionalen Felder
+            const type = document.getElementById('form-type').value;
+            let requiredFieldsOk = true;
+
+            // Zurücksetzen aller roten Ränder (wichtig für erneutes Absenden)
+            document.querySelectorAll('.furia-form input, .furia-form select').forEach(el => {
+                el.style.borderColor = '#444'; 
+            });
+            errorMsg.style.display = 'none';
+            
+            if (type === 'fahrt') {
+                const quantityInput = document.getElementById('trip-quantity');
+                const quantity = quantityInput.value;
+                
+                if (!quantity || parseInt(quantity) < 1) {
+                    requiredFieldsOk = false;
+                    quantityInput.style.borderColor = 'red';
+                }
+            
+            } else if (type === 'anmeldung') {
+                const birthDateInput = document.getElementById('birth-date');
+                const membershipTypeSelect = document.getElementById('membership-type');
+                
+                if (!birthDateInput.value) {
+                    requiredFieldsOk = false;
+                    birthDateInput.style.borderColor = 'red';
+                }
+                
+                if (!membershipTypeSelect.value) {
+                    requiredFieldsOk = false;
+                    membershipTypeSelect.style.borderColor = 'red';
+                }
+            }
+            
+            if (!requiredFieldsOk) {
+                errorMsg.style.display = 'block';
+                return false; // Skript stoppt, Formular muss korrigiert werden
+            }
+
+            // 4. Wenn alles OK ist: Mailto-Link generieren und in globaler Variable speichern
+            const mailtoLink = generateMailtoLink();
+            if (mailtoLink) {
+                generatedMailtoLink = mailtoLink; // WICHTIG: Link in globaler Variable speichern
+            } else {
+                // Fallback, falls Link-Generierung fehlschlägt
+                 alert("Fehler: Die E-Mail-Adresse konnte nicht vorbereitet werden.");
+                 return false;
+            }
+
+            // 5. BESTÄTIGUNG ANZEIGEN (Erfolgreicher 1. Klick)
+            document.getElementById('contact-form').style.display = 'none';
+            document.getElementById('success-message').style.display = 'block';
+
+            return false;
+        }
+        
+        // **********************************************
+        // INITIALISIERUNG
+        // **********************************************
+        document.addEventListener('DOMContentLoaded', () => {
+            const type = getUrlParameter('type');
+            const destination = getUrlParameter('destination');
+            const date = getUrlParameter('date');
+            
+            // UI-Anpassung
+            const titleEl = document.getElementById('form-title');
+            const subtitleEl = document.getElementById('form-subtitle');
+            const formTypeEl = document.getElementById('form-type');
+            const tripFields = document.getElementById('trip-specific-fields');
+            const anmeldungFields = document.getElementById('anmeldung-specific-fields');
+            const tripDestinationEl = document.getElementById('trip-destination');
+            const pageTitleEl = document.getElementById('page-title');
+
+            formTypeEl.value = type;
+
+            if (type === 'fahrt') {
+                pageTitleEl.textContent = 'Fahrt buchen | Colonia Della Furia';
+                titleEl.textContent = 'Buchungsanfrage Auswärtsfahrt';
+                subtitleEl.textContent = `Du buchst eine Fahrt zum Spiel gegen ${destination} am ${date || 'Datum fehlt'}.`;
+                tripFields.style.display = 'block';
+                tripDestinationEl.value = `${destination} (${date})`;
+            } else if (type === 'anmeldung') {
+                pageTitleEl.textContent = 'Mitglied werden | Colonia Della Furia';
+                titleEl.textContent = 'Mitgliedsantrag';
+                subtitleEl.textContent = 'Fülle das Formular aus, um deine Mitgliedsanfrage an den Fanclub zu senden.';
+                anmeldungFields.style.display = 'block';
+            } else {
+                pageTitleEl.textContent = 'Kontaktanfrage | Colonia Della Furia';
+                titleEl.textContent = 'Allgemeine Kontaktanfrage';
+                subtitleEl.textContent = 'Bitte fülle alle Felder aus, um uns eine Nachricht zu senden.';
+            }
+
+            // NEU: Listener für den ZWEITEN Klick (den E-Mail-Button)
+            const mailBtn = document.getElementById('mail-link-btn');
+            if(mailBtn) {
+                 mailBtn.addEventListener('click', (e) => {
+                    e.preventDefault(); // Verhindert Standard-Aktion
+                    
+                    if (generatedMailtoLink) {
+                        // ULTIMATIVER FIX: Temporären, unsichtbaren A-Tag verwenden
+                        const tempLink = document.createElement('a');
+                        tempLink.href = generatedMailtoLink;
+                        tempLink.style.display = 'none'; 
+                        document.body.appendChild(tempLink);
+                        
+                        // Der programmatische Klick, der die Browser-Sicherheit umgeht
+                        tempLink.click();
+                        
+                        // Das temporäre Element sofort wieder entfernen
+                        document.body.removeChild(tempLink);
+                        
+                        // Fallback-Meldung für den Nutzer, die auch bei Erfolg nicht stört
+                        alert("Dein E-Mail-Programm sollte sich jetzt geöffnet haben. Falls nicht, kannst du den vorbereiteten Link kopieren und manuell in die Adressleiste deines Browsers einfügen:\n\n" + generatedMailtoLink);
+                        
+                    } else {
+                        // Notfall-Meldung
+                         alert("Fehler: E-Mail-Link ist nicht verfügbar. Bitte fülle das Formular erneut aus.");
+                    }
+                });
+            }
+
+            // Warenkorb Zähler (Für die Navigationsleiste)
+            updateCartCount(); 
+            
+            // Scroll-to-Top Listener
+            document.getElementById("scrollToTopBtn")?.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+            window.addEventListener('scroll', handleScrollToTop);
+        });
+
+        // **********************************************
+        // Allgemeine Skripte (für Navigation und Scroll)
+        // **********************************************
+        const CART_STORAGE_KEY = 'coloniaFuriaCart';
+        function getCart() {
+            try {
+                const cartString = localStorage.getItem(CART_STORAGE_KEY);
+                return cartString ? JSON.parse(cartString) : [];
+            } catch (e) {
+                return [];
+            }
+        }
+        function updateCartCount() {
+            const cart = getCart();
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const countElements = document.querySelectorAll('#cart-count-nav');
+            countElements.forEach(el => { el.textContent = totalItems; });
+        }
+        function handleScrollToTop() {
+            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

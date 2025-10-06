@@ -181,12 +181,14 @@ section h2 {
 
 
 /* Game List (Ausklappbarer Teil) */
+/* DIESER ABSCHNITT WURDE FÜR DIE NEUE KARTENANSICHT VERMUTLICH NICHT MEHR BENÖTIGT UND WIRD ENTFERNT */
+/*
 #upcoming-games-list {
     margin-top: 30px;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    padding-top: 30px; /* Abstand nach dem Ausklappen */
+    padding-top: 30px; 
 }
 
 .game-item {
@@ -207,7 +209,7 @@ section h2 {
 .date-info {
     font-weight: 700;
     color: var(--haie-rot);
-    flex: 0 0 150px; /* Feste Breite für Datum/Uhrzeit */
+    flex: 0 0 150px; 
     text-align: left;
 }
 
@@ -221,9 +223,10 @@ section h2 {
 .location-info {
     font-size: 0.9em;
     color: var(--text-grau);
-    flex: 0 0 180px; /* Feste Breite für Ort */
+    flex: 0 0 180px; 
     text-align: right;
 }
+*/
 
 /* News Section */
 .news-grid {
@@ -394,34 +397,8 @@ footer a:hover {
     font-size: 0.9em;
 }
 
-/* --- NEUE STILE FÜR AUSKLAPPBARE SPIELLISTE --- */
-/* Versteckt den Container der Spielliste standardmäßig */
-#upcoming-games-list-container {
-    max-height: 0; /* Wichtig für die CSS-Animation */
-    overflow: hidden;
-    transition: max-height 0.5s ease-in-out; /* Sanfter Ausklapp-Effekt */
-    margin-bottom: 0;
-}
-
-/* Zeigt den Container, wenn die Klasse 'active' hinzugefügt wird */
-#upcoming-games-list-container.active {
-    max-height: 2000px; /* Muss groß genug sein, um alle Inhalte anzuzeigen */
-    margin-bottom: 30px;
-}
-
-/* Stil für den Button beim Aufklappen */
-#toggle-games-btn {
-    transition: transform 0.3s ease;
-}
-
-/* Fügt ein Dreieck hinzu und dreht es beim Ausklappen */
-#toggle-games-btn.active::after {
-    content: " ▲";
-}
-
-#toggle-games-btn::after {
-    content: " ▼";
-}
+/* --- VERALTETE STILE FÜR AUSKLAPPBARE SPIELLISTE WURDEN HIER ENTFERNT --- */
+/* (Da die Logik nun ist, dass immer alle Spiele angezeigt werden) */
 
 
 /* Responsive Design */
@@ -462,16 +439,7 @@ footer a:hover {
         grid-template-columns: 1fr;
     }
 
-    .game-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 5px;
-    }
-    
-    .date-info, .opponent-info, .location-info {
-        flex: 1 1 100%;
-        text-align: left;
-    }
+    /* Die alten Game-Item Stile wurden entfernt, falls sie existierten. */
     
     #cookieConsent .container {
         flex-direction: column;
@@ -535,19 +503,12 @@ footer a:hover {
     font-weight: 700;
 }
 
-/* Weitere Spiele Liste */
+/* Weitere Spiele Liste (Diese Sektion wurde vereinfacht, da die Ausblenden-Funktion entfällt) */
 #game-list-container {
     margin: 30px auto 0 auto;
     max-width: 600px;
-    /* Initial ausgeblendet und per JS gesteuert */
-    height: 0;
-    overflow: hidden;
-    transition: height 0.5s ease-out, opacity 0.5s ease-out;
-    opacity: 0;
-}
-#game-list-container.active {
-    /* Wird per JavaScript gesteuert, um sichtbar zu werden */
     height: auto; 
+    overflow: visible; 
     opacity: 1;
 }
 
@@ -572,11 +533,176 @@ footer a:hover {
     font-style: italic;
     color: #ccc;
 }
-#toggle-games-btn {
-    max-width: 600px;
-    width: 100%;
-    background-color: #444; 
+/* #toggle-games-btn wurde entfernt */
+
+/* =================================== */
+/* 3. NÄCHSTE SPIELE SEKTION */
+/* =================================== */
+
+#next-games {
+    background-color: #1a1a1a; /* Dunkler Hintergrund */
+    padding: 80px 0;
+    text-align: center;
 }
-#toggle-games-btn.active {
-    background-color: #FF0000;
+
+/* Container für die Spielkarten (Grid-Layout) */
+.game-list-grid {
+    display: grid;
+    /* Sorgt für 3 Spalten auf Desktop, passt sich flexibel an */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px; 
+    margin-top: 40px;
+    margin-bottom: 30px;
+    
+    /* Animation zum Aus-/Einblenden wurde entfernt */
+    max-height: initial; /* Zeigt den Inhalt immer an */
+}
+
+
+/* Stil für die einzelne Spielkarte */
+.game-card {
+    background-color: #2b2b2b; 
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    border: 1px solid #3a3a3a;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: left; 
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 0, 0, 0.2); /* Roter Schatten bei Hover */
+}
+
+/* Inhalt der Karte */
+.game-card-content {
+    padding: 20px;
+}
+
+/* Spielüberschrift (z.B. "Colonia vs Gegner") */
+.game-card-content h3 {
+    font-family: 'Oswald', sans-serif;
+    color: #FF0000; 
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #3a3a3a;
+    padding-bottom: 10px;
+}
+
+/* Spieldaten (Datum, Uhrzeit, Ort) */
+.game-card-content p {
+    margin: 5px 0;
+    font-size: 1.1em;
+    color: #cccccc;
+}
+
+/* Highlight für Datum */
+.game-card-content p strong {
+    color: #fff;
+    font-weight: 700;
+}
+
+/* =================================== */
+/* AKTIONEN FÜR SPIELKARTEN (BUTTON-BEREICH) */
+/* =================================== */
+
+/* Der Button-Container am unteren Rand der Karte */
+.game-card-action {
+    /* Hintergrund auf transparent, damit der rote Button das einzige Highlight ist. */
+    background-color: transparent; 
+    padding: 0; /* Entfernt den inneren Abstand */
+    text-align: center;
+    /* Rote, dicke Linie als optische Abtrennung zum Inhalt */
+    border-top: 3px solid #FF0000; 
+    margin-top: 15px; /* Abstand zur Spielinfo */
+    /* Achtung: Stellen Sie sicher, dass die Karte selbst (z.B. .game-card) einen border-radius hat! */
+}
+
+/* Der Button selbst: Das rote Banner / Die Plakette */
+.game-card-action .cta-button {
+    /* Basis-Stil */
+    display: block; 
+    width: 100%; /* WICHTIG: Füllt die gesamte Breite des Containers */
+    margin: 0; /* Stellt sicher, dass er links und rechts bündig ist */
+    padding: 18px 25px; /* Sehr große Füllung */
+    
+    /* Text-Stil */
+    font-family: 'Oswald', sans-serif; /* Markantere Schrift für mehr Wucht */
+    font-size: 1.5em; /* SEHR großer Text */
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    /* Nur unten abgerundet, oben bündig mit der roten Trennlinie */
+    border-radius: 0 0 8px 8px; 
+    
+    /* Coole 3D-Akzente */
+    background-color: #FF0000; /* Leuchtendes Rot */
+    color: #fff;
+    border: none; /* Keine extra Ränder */
+    box-shadow: 0 6px 0 0 #a00; /* Tiefer 3D-Schatten */
+    
+    /* Übergänge für flüssige Animationen */
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+/* Hover-Effekt: Der Button hebt sich stärker an */
+.game-card-action .cta-button:hover {
+    background-color: #E60000; 
+    transform: translateY(-4px); /* Hebt den Button SEHR STARK an */
+    box-shadow: 0 10px 0 0 #a00; /* Extrem starker Schatten */
+}
+
+/* Klick-Effekt: Der Button wird "gedrückt" */
+.game-card-action .cta-button:active {
+    transform: translateY(2px);
+    box-shadow: 0 0 0 0 #a00; /* Schatten verschwindet beim Klicken */
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    /* ... (Responsive Stile von oben) ... */
+    
+    .game-card-action .cta-button {
+        font-size: 1.2em; /* Etwas kleiner auf Mobilgeräten */
+        padding: 15px 10px;
+    }
+}
+/* ================================================= */
+/* WARENKORB-BENACHRICHTIGUNG (Toast) */
+/* ================================================= */
+
+#toast-notification {
+    /* Ausgangszustand: unsichtbar */
+    visibility: hidden; 
+    min-width: 250px;
+    
+    /* GRÜNES DESIGN für erfolgreiches Hinzufügen */
+    background-color: #28a745; /* Dunkelgrün */
+    color: #fff;
+    
+    text-align: center;
+    border-radius: 8px;
+    padding: 16px;
+    
+    /* Positionierung */
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    
+    /* Schatten für bessere Sichtbarkeit */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    
+    /* Transparenz für Animation */
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+}
+
+#toast-notification.show {
+    visibility: visible;
+    opacity: 1;
 }
