@@ -99,7 +99,7 @@
             box-shadow: 0 3px 0 0 #a00;
         }
 
-        /* Erfolgs-Nachricht */
+        /* Erfolgs-Nachricht Container */
         #success-message {
             display: none;
             padding: 30px;
@@ -110,9 +110,8 @@
             text-align: center;
         }
         
-        /* Neuer Mail-Button im Success-Fenster */
+        /* Button zum Öffnen der E-Mail */
         #mail-link-btn {
-            /* NEU: Wichtig, damit der Button wie der Link vorher aussieht */
             display: inline-block;
             background-color: #ffffff;
             color: #1a1a1a;
@@ -121,13 +120,41 @@
             border-radius: 6px;
             font-weight: bold;
             transition: background-color 0.2s;
-            border: none; /* Entfernt den Standard-Button-Rand */
+            border: none; 
             cursor: pointer;
             font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
         }
         #mail-link-btn:hover {
             background-color: #f0f0f0;
+        }
+        
+        /* Neuer Stil für die finale Bestätigung */
+        #final-confirmation {
+            display: none; /* Am Anfang versteckt */
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #1a1a1a;
+            border-radius: 6px;
+            border: 2px solid #FF0000;
+        }
+        
+        /* Button für Rückkehr zum Hauptmenü */
+        #back-to-home-btn {
+            display: inline-block;
+            background-color: #FF0000;
+            color: #ffffff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 700;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+        #back-to-home-btn:hover {
+            background-color: #cc0000;
         }
 
         /* Optional: Visueller Hinweis für fehlende Felder */
@@ -214,9 +241,16 @@
                 </form>
 
                 <div id="success-message">
-                    <p>Deine Anfrage wurde erfolgreich vorbereitet! Die Details sind gespeichert.</p>
-                    <p style="margin-top: 15px;">**Um die Anfrage abzuschließen, klicke auf den Button und sende die E-Mail aktiv ab!**</p>
+                    <p>Deine Anfrage wurde erfolgreich vorbereitet! Klicke nun auf den Button, um dein E-Mail-Programm zu öffnen.</p>
+                    <p style="margin-top: 15px; font-weight: bold;">**WICHTIG:** Im E-Mail-Programm musst du dann noch auf **'Senden'** klicken!</p>
+                    
                     <button type="button" id="mail-link-btn" role="button" aria-label="E-Mail jetzt senden">E-Mail jetzt senden</button>
+
+                    <div id="final-confirmation">
+                        <p style="font-size: 1.1em; color: #fff;">**E-Mail-Programm geöffnet!**</p>
+                        <p>Sobald du die E-Mail **abgeschickt** hast, kannst du zurück zur Startseite.</p>
+                        <a href="index.html" id="back-to-home-btn">Zurück zum Hauptmenü</a>
+                    </div>
                 </div>
 
             </div>
@@ -240,7 +274,7 @@
 
     <script>
         // **********************************************
-        // NEU: Globale Variable für den Mailto-Link
+        // Globale Variable für den Mailto-Link
         // **********************************************
         let generatedMailtoLink = null; 
         
@@ -256,7 +290,6 @@
         
         /**
          * Generiert den vollständigen mailto:-Link aus den Formulardaten.
-         * (Funktion unverändert, da korrekt)
          */
         function generateMailtoLink() {
             const type = document.getElementById('form-type').value;
@@ -308,28 +341,24 @@
 
         
         // **********************************************
-        // FORMULAR ABSENDEN (ERSTER KLICK) - JETZT ROBUST
+        // FORMULAR ABSENDEN (ERSTER KLICK)
         // **********************************************
         function handleFormSubmit(event) {
             
             const form = document.getElementById('contact-form');
             const errorMsg = document.getElementById('validation-error');
             
-            // 1. WICHTIG: Seiten-Reload verhindern
             event.preventDefault(); 
             
-            // 2. HTML5-Validierung für allgemeine Felder (Name, E-Mail)
             if (!form.checkValidity()) {
                 form.reportValidity();
                 errorMsg.style.display = 'block';
                 return false;
             }
 
-            // 3. Manuelle Validierung der optionalen/konditionalen Felder
             const type = document.getElementById('form-type').value;
             let requiredFieldsOk = true;
 
-            // Zurücksetzen aller roten Ränder (wichtig für erneutes Absenden)
             document.querySelectorAll('.furia-form input, .furia-form select').forEach(el => {
                 el.style.borderColor = '#444'; 
             });
@@ -361,20 +390,19 @@
             
             if (!requiredFieldsOk) {
                 errorMsg.style.display = 'block';
-                return false; // Skript stoppt, Formular muss korrigiert werden
+                return false; 
             }
 
-            // 4. Wenn alles OK ist: Mailto-Link generieren und in globaler Variable speichern
+            // Link generieren und speichern
             const mailtoLink = generateMailtoLink();
             if (mailtoLink) {
-                generatedMailtoLink = mailtoLink; // WICHTIG: Link in globaler Variable speichern
+                generatedMailtoLink = mailtoLink; 
             } else {
-                // Fallback, falls Link-Generierung fehlschlägt
                  alert("Fehler: Die E-Mail-Adresse konnte nicht vorbereitet werden.");
                  return false;
             }
 
-            // 5. BESTÄTIGUNG ANZEIGEN (Erfolgreicher 1. Klick)
+            // Bestätigung anzeigen
             document.getElementById('contact-form').style.display = 'none';
             document.getElementById('success-message').style.display = 'block';
 
@@ -382,7 +410,7 @@
         }
         
         // **********************************************
-        // INITIALISIERUNG
+        // INITIALISIERUNG & ZWEITER KLICK (E-MAIL SENDEN)
         // **********************************************
         document.addEventListener('DOMContentLoaded', () => {
             const type = getUrlParameter('type');
@@ -397,6 +425,8 @@
             const anmeldungFields = document.getElementById('anmeldung-specific-fields');
             const tripDestinationEl = document.getElementById('trip-destination');
             const pageTitleEl = document.getElementById('page-title');
+            const mailBtn = document.getElementById('mail-link-btn');
+            const finalConfirmation = document.getElementById('final-confirmation');
 
             formTypeEl.value = type;
 
@@ -418,10 +448,9 @@
             }
 
             // NEU: Listener für den ZWEITEN Klick (den E-Mail-Button)
-            const mailBtn = document.getElementById('mail-link-btn');
             if(mailBtn) {
                  mailBtn.addEventListener('click', (e) => {
-                    e.preventDefault(); // Verhindert Standard-Aktion
+                    e.preventDefault(); 
                     
                     if (generatedMailtoLink) {
                         // ULTIMATIVER FIX: Temporären, unsichtbaren A-Tag verwenden
@@ -430,35 +459,34 @@
                         tempLink.style.display = 'none'; 
                         document.body.appendChild(tempLink);
                         
-                        // Der programmatische Klick, der die Browser-Sicherheit umgeht
+                        // Der programmatische Klick
                         tempLink.click();
                         
                         // Das temporäre Element sofort wieder entfernen
                         document.body.removeChild(tempLink);
                         
+                        // WICHTIG: Den Button deaktivieren und die finale Bestätigung anzeigen
+                        mailBtn.style.display = 'none';
+                        finalConfirmation.style.display = 'block';
+
                         // Fallback-Meldung für den Nutzer, die auch bei Erfolg nicht stört
-                        alert("Dein E-Mail-Programm sollte sich jetzt geöffnet haben. Falls nicht, kannst du den vorbereiteten Link kopieren und manuell in die Adressleiste deines Browsers einfügen:\n\n" + generatedMailtoLink);
+                        alert("WICHTIG: Dein E-Mail-Programm sollte sich jetzt geöffnet haben. Bitte klicke dort auf 'Senden' um die Anfrage abzuschicken. Danach kannst du zurück zum Hauptmenü.");
                         
                     } else {
-                        // Notfall-Meldung
                          alert("Fehler: E-Mail-Link ist nicht verfügbar. Bitte fülle das Formular erneut aus.");
                     }
                 });
             }
 
-            // Warenkorb Zähler (Für die Navigationsleiste)
+            // Allgemeine Skripte für Navigation und Scroll
             updateCartCount(); 
             
-            // Scroll-to-Top Listener
             document.getElementById("scrollToTopBtn")?.addEventListener("click", () => {
                 window.scrollTo({ top: 0, behavior: "smooth" });
             });
             window.addEventListener('scroll', handleScrollToTop);
         });
 
-        // **********************************************
-        // Allgemeine Skripte (für Navigation und Scroll)
-        // **********************************************
         const CART_STORAGE_KEY = 'coloniaFuriaCart';
         function getCart() {
             try {
