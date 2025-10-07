@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Colonia Della Furia</title>
-    <link rel="icon" type="image/x-icon" href="../bilder/logo_furia.png"> 
-    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="icon" type="image/x-icon" href="logo_furia.png"> 
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
@@ -214,7 +214,7 @@
             text-align: center;
         }
         .hero-image {
-            background-image: url('../bilder/banner (3).png');
+            background-image: url('banner (3).png');
             background-size: cover;
             background-position: center;
         }
@@ -573,7 +573,7 @@
    <header>
     <div class="container">
         
-        <img src="../bilder/logo_furia.png" alt="Logo Colonia Della Furia" class="header-logo">
+        <img src="logo_furia.png" alt="Logo Colonia Della Furia" class="header-logo">
         
         <h1><span class="haie-rot">Colonia Della Furia</span></h1>
         <br>
@@ -629,7 +629,7 @@
                         <a href="anmeldeformular.html" class="cta-button">Werde Teil der Furia!</a>
                     </div>
                     <div class="image-content">
-                        <img src="../bilder/logo_furia.png" alt="Colonia Della Furia Banner">
+                        <img src="logo_furia.png" alt="Colonia Della Furia Banner">
                     </div>
                 </div>
                 
@@ -642,15 +642,15 @@
                 
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="../bilder/banner (3).png" alt="Haie Fanclub Bild 1">
+                        <img src="banner (3).png" alt="Haie Fanclub Bild 1">
                         <p>Stimmung in der Arena!</p>
                     </div>
                     <div class="gallery-item">
-                        <img src="../bilder/gegen_deg (1).png" alt="Haie Fanclub Bild 2">
+                        <img src="gegen_deg (1).png" alt="Haie Fanclub Bild 2">
                         <p>Gemeinsame Auswärtsfahrt!</p>
                     </div>
                      <div class="gallery-item">
-                        <img src="../bilder/logokec (1).jpeg" alt="Unser Banner">
+                        <img src="logokec (1).jpeg" alt="Unser Banner">
                         <p>Colonia Della Furia Banner</p>
                     </div>
                 </div>
@@ -665,8 +665,8 @@
         <div class="container">
             <p>&copy; 2025 Colonia Della Furia. Unabhängiger Fanclub. Alle Rechte vorbehalten. | <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></p>
             <div class="social-links">
-                <a href="https://www.tiktok.com/@coloniadellafuria" target="_blank" aria-label="TikTok"><img src="../bilder/tiktok.png" alt="TikTok"></a>
-                <a href="https://www.instagram.com/coloniadellanfuria/" target="_blank" aria-label="Instagram"><img src="../bilder/instagram.png" alt="Instagram"></a>
+                <a href="https://www.tiktok.com/@coloniadellafuria" target="_blank" aria-label="TikTok"><img src="tiktok.png" alt="TikTok"></a>
+                <a href="https://www.instagram.com/coloniadellanfuria/" target="_blank" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
             </div>
         </div>
     </footer>
@@ -725,7 +725,7 @@
             const container = document.getElementById('game-list');
             
             try {
-                const response = await fetch('../JSON/spiele.json'); 
+                const response = await fetch('spiele.json'); 
                 
                 if (!response.ok) {
                     throw new Error(`HTTP-Fehler! Status: ${response.status}. Stelle sicher, dass 'spiele.json' existiert.`);
@@ -755,7 +755,7 @@
 
             } catch (error) {
                 console.error("Fehler beim Laden der Spieldaten:", error);
-                container.innerHTML = '<p style="text-align: center; width: 100%; color: #FF0000;">Fehler beim Laden der Spieldaten. Bitte stellen Sie sicher, dass die Datei <code style="color: #ffffff;">../JSON/spiele.json</code> existiert.</p>';
+                container.innerHTML = '<p style="text-align: center; width: 100%; color: #FF0000;">Fehler beim Laden der Spieldaten. Bitte stellen Sie sicher, dass die Datei <code style="color: #ffffff;">spiele.json</code> existiert.</p>';
             }
         }
 
@@ -846,6 +846,6 @@
 
 
     </script>
-    <script src="../JavaScript/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

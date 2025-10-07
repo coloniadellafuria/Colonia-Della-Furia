@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Warenkorb | Colonia Della Furia Shop</title>
-    <link rel="icon" type="image/x-icon" href="../bilder/logo_furia.png"> 
-    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="icon" type="image/x-icon" href="logo_furia.png"> 
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
@@ -163,29 +163,140 @@
         }
 
         /* ================================================= */
+        /* ZWEITE SEITE (KUNDENFORMULAR & ERFOLGSANSICHT) STYLES */
+        /* ================================================= */
+
+        /* Kundenformular (Neu) */
+        #customer-form-wrapper {
+            background-color: #2b2b2b;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 40px;
+            text-align: left;
+        }
+        #customer-form-wrapper h3 {
+            color: #FF0000;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.8em;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #FF0000;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-size: 1em;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+
+        /* Erfolgs-Nachricht Container (Neu) */
+        #success-message-wrapper {
+            padding: 30px;
+            background-color: #2b2b2b; 
+            border-radius: 8px;
+            margin-top: 30px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+        
+        /* Container für den kopierbaren E-Mail-Text */
+        #copy-container {
+            background-color: #1a1a1a; 
+            padding: 15px; 
+            border-radius: 5px; 
+            margin: 20px 0; 
+            border: 1px solid #FF0000; 
+            text-align: left; 
+            white-space: pre-wrap; 
+            word-break: break-word; 
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+
+        #email-body-content {
+            margin: 0; 
+            color: #f0f0f0;
+        }
+        
+        /* Button zum Kopieren */
+        #copy-btn {
+            display: inline-block;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            padding: 12px 30px;
+            margin-top: 15px;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            border: none; 
+            cursor: pointer;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            font-size: 1em;
+        }
+        #copy-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Button zum Öffnen der E-Mail */
+        .mail-link-style {
+            display: inline-block;
+            background-color: #388e3c; 
+            color: #ffffff;
+            padding: 15px 30px;
+            margin-top: 25px;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            border: none; 
+            cursor: pointer;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            font-size: 1.1em;
+            text-decoration: none; 
+        }
+        .mail-link-style:hover {
+            background-color: #2e7d32;
+        }
+        
+        #final-confirmation {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #1a1a1a;
+            border-radius: 6px;
+            border: 2px solid #FF0000;
+        }
+
+        /* ================================================= */
         /* TOAST-BENACHRICHTIGUNG (Pushup) STYLES */
         /* ================================================= */
         #toast-notification {
-            /* Ausgangszustand: unsichtbar */
             visibility: hidden; 
             min-width: 250px;
-            
-            /* GRÜNES DESIGN für erfolgreiche Aktionen */
-            background-color: #ff0000; /* Dunkelgrün */
+            background-color: #ff0000; /* Standardfarbe */
             color: #fff;
-            
             text-align: center;
             border-radius: 8px;
             padding: 16px;
-            
-            /* Positionierung */
             position: fixed;
             z-index: 1000;
             left: 50%;
             bottom: 30px;
             transform: translateX(-50%);
-            
-            /* Schatten und Animation */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
             opacity: 0;
             transition: visibility 0s, opacity 0.5s linear;
@@ -225,15 +336,14 @@
     <header>
         <div class="container">
             <a href="index.html">
-                <img src="../bilder/logo_furia.png" alt="Colonia Della Furia Logo" class="header-logo">
+                <img src="logo_furia.png" alt="Colonia Della Furia Logo" class="header-logo">
             </a>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="../html/index.html">Startseite</a></li>
-                    <li><a href="../html/mitglied.html">Mitglied werden</a></li>
-                    <li><a href="index.html#kontakt">Kontakt</a></li>
+                    <li><a href="index.html">Startseite</a></li>
+                    <li><a href="mitglied.html">Mitglied werden</a></li>
                     <li><a href="shop.html">Zurück zum Shop</a></li>
-                    <li><a href="../html/warenkorb.html" class="active">Warenkorb (<span id="cart-count-nav">0</span>)</a></li>
+                    <li><a href="#" class="active">Warenkorb (<span id="cart-count-nav">0</span>)</a></li>
                 </ul>
             </nav>
         </div>
@@ -245,58 +355,124 @@
             <div class="container">
                 <h2>Dein Warenkorb</h2>
                 
-            <div class="cart-content">
-                <ul id="cart-items">
-                    </ul>
-                
-                <div id="cart-summary-wrapper"> 
-                    
-                    <div class="cart-summary">
-                        <p>Gesamtpreis: <span id="cart-total-price" class="total-price">0.00</span> €</p>
+                <div id="view-cart-content">
+                    <div class="cart-content">
+                        <ul id="cart-items"> </ul>
+                        <div id="cart-summary-wrapper" style="display:none;">
+                            <div class="cart-summary">
+                                <p>Gesamtpreis: <span id="cart-total-price" class="total-price">0.00</span> €</p>
+                            </div>
+                            <div class="cart-actions">
+                                <p style="font-size: 1.1em; color: #ccc;">Gesamtzahl der Artikel: <span id="cart-total-items">0</span></p>
+                                <button id="order-request-btn" class="cta-bestellen">Bestell-Anfrage senden</button>
+                                <button id="clear-cart-btn" class="cta-button" style="background-color: #444; margin-top: 15px; max-width: 400px; display: block; margin-left: auto; margin-right: auto;">Warenkorb leeren</button>
+                            </div>
+                        </div>
+                        <div id="empty-cart-message" class="empty-cart-message" style="display: none;">
+                            Dein Warenkorb ist leer. Füge Produkte aus dem <a href="shop.html" style="color: #FF0000; text-decoration: none; font-weight: bold;">Shop</a> hinzu.
+                        </div>
                     </div>
+                </div>
 
-                    <div class="cart-actions">
-                        <p style="font-size: 1.1em; color: #ccc;">Gesamtzahl der Artikel: <span id="cart-total-items">0</span></p> 
-                        <button id="order-request-btn" class="cta-bestellen">Bestell-Anfrage senden</button>
-                        <button id="clear-cart-btn" class="cta-button" style="background-color: #444; margin-top: 15px; max-width: 400px; display: block; margin-left: auto; margin-right: auto;">Warenkorb leeren</button>
+                <form id="customer-order-form" onsubmit="return handleFormSubmit(event)" novalidate style="display:none;">
+                    <div id="customer-form-wrapper">
+                        <h3>Deine Kontaktdaten für die Bestellung</h3>
+                        <p>Bitte fülle diese Zeilen aus und fügen den Automatisch kopierten Text in ein Emailprogramm ein und schicke uns deine Produktbestellung.</p>
+                        <div class="form-group">
+                            <label for="full-name">Vollständiger Name*</label>
+                            <input type="text" id="full-name" name="full-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-Mail Adresse*</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Lieferadresse* (Straße, Hausnummer, PLZ, Ort)</label>
+                            <input type="text" id="address" name="address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="note">Anmerkungen zur Bestellung (Optional)</label>
+                            <textarea id="note" name="note" style="min-height: 100px;"></textarea>
+                        </div>
+                        <p id="validation-error" style="color: #ffcc00; margin-top: 15px; display: none; font-weight: bold; text-align: center;">Bitte fülle alle erforderlichen Felder aus (*).</p>
+                    </div>
+                    <button type="submit" class="cta-bestellen">Jetzt Bestellanfrage vorbereiten</button>
+                    <button type="button" onclick="showView('view-cart-content')" class="cta-bestellen" style="background-color: #444; margin-top: 15px;">Zurück zum Warenkorb</button>
+                </form>
+
+                <div id="view-success" style="display:none;">
+                    <div id="success-message-wrapper">
+                        <p style="color: #ffcc00;">Deine Bestellanfrage wurde vorbereitet!</p>
+                        <h3 style="margin-bottom: 25px;">Bitte führe folgende Schritte durch:</h3>
+                        <p style="font-size: 1.1em;">1. Kopiere den gesamten Inhalt des Feldes (Klick auf den Button) und schicke uns eine E-Mail an diese Adresse: .</p>
+                        <div id="copy-container">
+                            <p id="email-body-content" style="margin: 0; color: #f0f0f0;"></p>
+                        </div>
+                        <button type="button" id="copy-btn" role="button" aria-label="Inhalt kopieren">Inhalt kopieren</button>
+                        
+                        <p style="margin-top: 30px; font-weight: bold; font-size: 1.1em; color: #ffffff;">Hier kommst du zurück zum Hauptmenü</p>
+
+                        <a href="index.html" class="cta-bestellen" role="button" style="background-color: #444; max-width: 400px; display: block; margin: 15px auto 0 auto; text-decoration: none;">Zurück zum Hauptmenü</a>
+                    </div>
+                    <div id="final-confirmation" style="display:none;">
+                        <p style="color: #ffcc00; font-size: 1.5em; font-weight: bold;">✅ Erfolgreich gesendet!</p>
+                        <p style="margin-top: 15px;">Vielen Dank für deine Bestellanfrage. Wir werden uns in Kürze bei dir melden.</p>
+                        <a href="index.html" class="cta-bestellen" style="margin-top: 30px;">Zurück zur Startseite</a>
                     </div>
                 </div>
-                
-                <div id="empty-cart-message" class="empty-cart-message" style="display: none;">
-                    Dein Warenkorb ist leer. Füge Produkte aus dem <a href="shop.html" style="color: #FF0000; text-decoration: none; font-weight: bold;">Shop</a> hinzu.
-                </div>
+
             </div>
         </section>
-        
         <div id="toast-notification"></div>
-        
+        <button id="scrollToTopBtn" title="Nach oben"></button>
+
     </main>
-    
-    <button id="scrollToTopBtn" title="Zum Seitenanfang">↑</button>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Colonia Della Furia. Unabhängiger Fanclub. Alle Rechte vorbehalten. | <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></p>
-            <div class="social-links">
-                <a href="https://www.tiktok.com/@coloniadellafuria" target="_blank" aria-label="TikTok"><img src="tiktok.png" alt="TikTok"></a>
-                <a href="https://www.instagram.com/coloniadellanfuria/" target="_blank" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
+            <div class="footer-links">
+                <a href="impressum.html">Impressum</a>
+                <a href="datenschutz.html">Datenschutz</a>
             </div>
+            <p>&copy; 2024 Colonia Della Furia. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
-    
+
     <script>
         // =================================================================
-        // WARENKORB-SPEICHERUNG (localStorage)
+        // KONSTANTEN & HILFSFUNKTIONEN FÜR WARENKORB
         // =================================================================
-
         const CART_STORAGE_KEY = 'coloniaFuriaCart';
+
+        function showToast(message, isError = false) {
+            const toast = document.getElementById("toast-notification");
+            if (toast) {
+                clearTimeout(toast.timeoutId);
+                toast.textContent = message;
+
+                // Farbe für Fehlermeldungen anpassen
+                if (isError) {
+                    toast.style.backgroundColor = '#d32f2f'; // Dunkleres Rot für Fehler
+                } else {
+                    toast.style.backgroundColor = '#ff0000'; // Standardrot
+                }
+                
+                toast.classList.add("show");
+                
+                // Setze eine neue Timeout-ID
+                toast.timeoutId = setTimeout(function(){ 
+                    toast.classList.remove("show"); 
+                    toast.style.backgroundColor = '#ff0000'; // Farbe zurücksetzen
+                }, 3000);
+            }
+        }
 
         function getCart() {
             try {
                 const cartString = localStorage.getItem(CART_STORAGE_KEY);
                 return cartString ? JSON.parse(cartString) : [];
             } catch (e) {
-                console.error("Fehler beim Laden des Warenkorbs:", e);
+                showToast("Fehler beim Laden des Warenkorbs.", true);
                 return [];
             }
         }
@@ -304,269 +480,341 @@
         function saveCart(cart) {
             try {
                 localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
-                updateCartCount();
-                
-                // WICHTIG: Wenn die Warenkorbseite offen ist, neu rendern
-                if (document.getElementById('cart-section')) {
-                    renderCart();
-                }
             } catch (e) {
-                console.error("Fehler beim Speichern des Warenkorbs:", e);
+                showToast("Fehler beim Speichern des Warenkorbs.", true);
             }
         }
 
-        // =================================================================
-        // UI-FUNKTION (Toast-Benachrichtigung - PUSHUP)
-        // =================================================================
-
-        /**
-         * Zeigt eine Toast-Benachrichtigung am unteren Bildschirmrand an.
-         * @param {string} message - Der anzuzeigende Text.
-         */
-        function showToast(message) {
-            const toast = document.getElementById("toast-notification");
-            if (toast) {
-                // Stoppe alle laufenden Animationen/Timeouts (falls Taste schnell gedrückt wird)
-                clearTimeout(toast.timeoutId);
-                
-                // Setze die Nachricht
-                toast.textContent = message;
-                
-                // Zeige den Toast an
-                toast.classList.add("show");
-                
-                // Verstecke den Toast nach 3 Sekunden
-                toast.timeoutId = setTimeout(function(){ 
-                    toast.classList.remove("show"); 
-                }, 3000);
-            }
+        function updateCartCount() {
+            const cart = getCart();
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const countElements = document.querySelectorAll('#cart-count-nav');
+            countElements.forEach(el => { el.textContent = totalItems; });
         }
-
+        
         // =================================================================
         // WARENKORB-LOGIK
         // =================================================================
-
-        /**
-         * Aktualisiert die Anzahl der Artikel im Warenkorb (in der Navigationsleiste).
-         */
-        function updateCartCount() {
-            const cart = getCart();
-            // Berechnet die Gesamtanzahl der Produkte im Warenkorb
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            const countElements = document.querySelectorAll('#cart-count-nav');
+        
+        function showView(viewId) {
+            document.getElementById('view-cart-content').style.display = 'none';
+            document.getElementById('customer-order-form').style.display = 'none';
+            document.getElementById('view-success').style.display = 'none';
             
-            countElements.forEach(el => {
-                el.textContent = totalItems;
-            });
-        }
-
-        /**
-         * Fügt einen Artikel zum Warenkorb hinzu oder erhöht die Menge.
-         * HINWEIS: Wird auf warenkorb.html nicht verwendet, ist aber für die Konsistenz enthalten.
-         */
-        function addItem(product) {
-            const cart = getCart();
-            const existingItem = cart.find(item => item.name === product.name);
-
-            if (existingItem) {
-                existingItem.quantity += product.quantity;
-            } else {
-                product.price = parseFloat(product.price);
-                cart.push(product);
+            // Nur die angeforderte Ansicht anzeigen
+            const targetView = document.getElementById(viewId);
+            if(targetView) {
+                targetView.style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-            
-            saveCart(cart);
         }
 
-        /**
-         * Entfernt einen Artikel komplett aus dem Warenkorb.
-         * @param {string} productName - Der Name des zu entfernenden Artikels.
-         */
-        function removeItem(productName) {
+
+        // Funktion zur Aktualisierung der Menge
+        function updateQuantity(itemName, newQuantity) {
             let cart = getCart();
-            cart = cart.filter(item => item.name !== productName);
-            saveCart(cart);
-            showToast(`${productName} entfernt.`); // Zeigt Toast nach Entfernen
+            const index = cart.findIndex(item => item.name === itemName);
+
+            if (index !== -1) {
+                newQuantity = parseInt(newQuantity);
+                if (isNaN(newQuantity) || newQuantity <= 0) {
+                    // Falls ungültige Eingabe, entferne Artikel
+                    cart.splice(index, 1);
+                    showToast(`"${itemName}" aus Warenkorb entfernt.`);
+                } else {
+                    cart[index].quantity = newQuantity;
+                    showToast(`Menge für "${itemName}" auf ${newQuantity} aktualisiert.`);
+                }
+                saveCart(cart);
+                renderCart();
+            }
         }
 
-        // Nur benötigt, falls der Button auf einer Produktseite geklickt wird (nicht auf warenkorb.html)
-        function handleAddToCartClick(e) {
-            const button = e.target;
-            const name = button.getAttribute('data-name');
-            const description = button.getAttribute('data-description');
-            const price = button.getAttribute('data-price');
-            const quantity = 1; 
-            addItem({ name, description, price, quantity });
-            showToast(`${name} hinzugefügt.`);
+        // Funktion zum Entfernen eines Artikels
+        function removeFromCart(itemName) {
+            let cart = getCart();
+            const initialLength = cart.length;
+            cart = cart.filter(item => item.name !== itemName);
+            if (cart.length < initialLength) {
+                saveCart(cart);
+                renderCart();
+                showToast(`"${itemName}" wurde entfernt.`);
+            }
         }
 
-        // =================================================================
-        // WARENKORB-SEITE RENDERING
-        // =================================================================
-
-        /**
-         * Rendert die Warenkorb-Liste und die Zusammenfassung auf warenkorb.html.
-         */
+        // Funktion zum Rendern (Anzeigen) des Warenkorbs
         function renderCart() {
             const cart = getCart();
             const cartItemsContainer = document.getElementById('cart-items');
-            const cartTotalPrice = document.getElementById('cart-total-price');
-            const cartTotalItems = document.getElementById('cart-total-items');
-            const emptyMessage = document.getElementById('empty-cart-message');
-            const summaryWrapper = document.getElementById('cart-summary-wrapper');
-            let total = 0;
-            let totalItems = 0;
+            const cartSummaryContainer = document.getElementById('cart-summary-wrapper');
+            const emptyMessageContainer = document.getElementById('empty-cart-message');
+            const orderRequestBtn = document.getElementById('order-request-btn');
+            const clearCartBtn = document.getElementById('clear-cart-btn');
 
-            if (!cartItemsContainer || !cartTotalPrice) return; 
-
-            // Sichtbarkeit der Elemente steuern
             if (cart.length === 0) {
-                emptyMessage.style.display = 'block';
-                summaryWrapper.style.display = 'none';
-                cartItemsContainer.innerHTML = '';
-                cartTotalPrice.textContent = '0.00';
-                cartTotalItems.textContent = '0';
-                return;
+                if(cartItemsContainer) cartItemsContainer.innerHTML = '';
+                if(cartSummaryContainer) cartSummaryContainer.style.display = 'none';
+                if(emptyMessageContainer) emptyMessageContainer.style.display = 'block';
             } else {
-                emptyMessage.style.display = 'none';
-                summaryWrapper.style.display = 'block';
-            }
-
-            cartItemsContainer.innerHTML = ''; 
-
-            cart.forEach(item => {
-                const itemTotal = item.price * item.quantity;
-                total += itemTotal;
-                totalItems += item.quantity;
-
-                const listItem = document.createElement('li');
-                listItem.className = 'cart-item';
-                listItem.innerHTML = `
-                    <div class="item-details">
-                        <span class="item-name">${item.name}</span>
-                        <span class="item-description">${item.description}</span>
-                        <span class="item-price">Einzelpreis: ${parseFloat(item.price).toFixed(2)} €</span>
-                    </div>
-                    <div class="item-controls">
-                        <label for="quantity-${item.name}">Menge:</label>
-                        <input type="number" 
-                            id="quantity-${item.name}" 
-                            class="quantity-input" 
-                            data-name="${item.name}" 
-                            value="${item.quantity}" 
-                            min="1" 
-                            max="99">
-                        <span class="item-subtotal">${itemTotal.toFixed(2)} €</span>
-                        <button class="remove-btn" data-name="${item.name}">Entfernen</button>
-                    </div>
-                `;
-                cartItemsContainer.appendChild(listItem);
-            });
-
-            cartTotalPrice.textContent = total.toFixed(2);
-            cartTotalItems.textContent = totalItems;
+                if(emptyMessageContainer) emptyMessageContainer.style.display = 'none';
+                if(cartSummaryContainer) cartSummaryContainer.style.display = 'block';
             
-            setupCartListeners(); 
-        }
 
-        /**
-         * Setzt Event Listener für Mengen-Inputs und Entfernen-Buttons auf der Warenkorb-Seite.
-         */
-        function setupCartListeners() {
-            // 1. Mengen-Änderungen
-            document.querySelectorAll('.quantity-input').forEach(input => {
-                input.removeEventListener('change', handleQuantityChange);
-                input.addEventListener('change', handleQuantityChange);
-            });
+                let totalItemsCount = 0;
+                let totalPrice = 0;
+                let html = '';
 
-            // 2. Entfernen-Buttons
-            document.querySelectorAll('.remove-btn').forEach(button => {
-                button.removeEventListener('click', handleRemoveClick);
-                button.addEventListener('click', handleRemoveClick);
-            });
-            
-            // 3. Warenkorb leeren Button
-            const clearBtn = document.getElementById('clear-cart-btn');
-            if (clearBtn) {
-                clearBtn.removeEventListener('click', clearCart);
-                clearBtn.addEventListener('click', clearCart);
+                cart.forEach(item => {
+                    const subtotal = item.price * item.quantity;
+                    totalPrice += subtotal;
+                    totalItemsCount += item.quantity;
+
+                    const sizeInfo = item.size ? `Größe: ${item.size}` : '';
+                    
+                    html += `
+                        <li class="cart-item">
+                            <div class="item-details">
+                                <span class="item-name">${item.name}</span>
+                                <span class="item-description">${sizeInfo}</span>
+                                <span class="item-price">Einzelpreis: ${item.price.toFixed(2)} €</span>
+                            </div>
+                            <div class="item-controls">
+                                <label for="quantity-${item.name}">Menge:</label>
+                                <input type="number" 
+                                       id="quantity-${item.name}" 
+                                       class="quantity-input" 
+                                       data-name="${item.name}" 
+                                       value="${item.quantity}" 
+                                       min="1" 
+                                       max="99"
+                                       onchange="updateQuantity('${item.name}', this.value)">
+                                <span class="item-subtotal">${subtotal.toFixed(2)} €</span>
+                                <button class="remove-btn" data-name="${item.name}" onclick="removeFromCart('${item.name}')">Entfernen</button>
+                            </div>
+                        </li>
+                    `;
+                });
+                
+                if(cartItemsContainer) cartItemsContainer.innerHTML = html;
+
+                if(document.getElementById('cart-total-price')) document.getElementById('cart-total-price').textContent = (totalPrice).toFixed(2) + ' €';
+                if(document.getElementById('cart-total-items')) document.getElementById('cart-total-items').textContent = totalItemsCount;
+                
+                if (orderRequestBtn) {
+                    orderRequestBtn.removeEventListener('click', handleOrderRequest);
+                    orderRequestBtn.addEventListener('click', handleOrderRequest);
+                }
             }
 
-            // 4. Bestell-Anfrage Button
-            const orderBtn = document.getElementById('order-request-btn');
-            if (orderBtn) {
-                orderBtn.removeEventListener('click', handleOrderRequest);
-                orderBtn.addEventListener('click', handleOrderRequest);
-            }
-        }
-
-        function handleQuantityChange(e) {
-            const input = e.target;
-            const productName = input.getAttribute('data-name');
-            let newQuantity = parseInt(input.value);
-
-            if (isNaN(newQuantity) || newQuantity < 1) {
-                newQuantity = 1;
-                input.value = 1;
+            // Listener für Warenkorb leeren
+            if (clearCartBtn) {
+                clearCartBtn.removeEventListener('click', clearCart);
+                clearCartBtn.addEventListener('click', clearCart);
             }
 
-            updateItemQuantity(productName, newQuantity);
+            updateCartCount();
         }
 
-        function handleRemoveClick(e) {
-            const productName = e.target.getAttribute('data-name');
-            removeItem(productName);
-        }
-
-        function updateItemQuantity(productName, newQuantity) {
-            const cart = getCart();
-            const item = cart.find(i => i.name === productName);
-            if (item) {
-                item.quantity = newQuantity;
-                saveCart(cart); 
-                showToast(`Menge von ${productName} aktualisiert.`);
-            }
-        }
-
-        /**
-         * Leert den gesamten Warenkorb.
-         */
+        // Funktion zum Warenkorb leeren
         function clearCart() {
-            localStorage.removeItem(CART_STORAGE_KEY);
-            saveCart([]); 
-            showToast('Warenkorb geleert.');
+            if (confirm("Möchtest du wirklich den gesamten Warenkorb leeren?")) {
+                localStorage.removeItem(CART_STORAGE_KEY);
+                showToast("Der Warenkorb wurde geleert.");
+                renderCart();
+            }
         }
 
-        /**
-         * Behandelt den Klick auf den Bestell-Anfrage Button.
-         */
+        // Funktion zum Klick auf "Bestell-Anfrage senden" (von Warenkorb zur Formularseite)
         function handleOrderRequest() {
-            showToast('Bestell-Anfrage wird verarbeitet...');
-            // HIER KÖNNTE LOGIK FOLGEN, UM DIE BESTELLUNG PER E-MAIL ZU SENDEN
+            if (getCart().length === 0) {
+                showToast('⚠️ Dein Warenkorb ist leer. Füge zuerst Artikel hinzu!', true); 
+                return; 
+            }
+            showView('customer-order-form');
         }
+
 
         // =================================================================
-        // INITIALISIERUNG
+        // BESTELL-LOGIK (FORMULAR UND E-MAIL)
+        // =================================================================
+
+        // **********************************************
+        // SCHRITT 4: HANDHABUNG DES E-MAIL-LINKS (IMMEDIATE SUCCESS)
+        // **********************************************
+        function handleMailLinkClick(event) {
+            event.preventDefault(); 
+
+            const mailtoLink = document.getElementById('mail-link-btn').href;
+            
+            window.location.href = mailtoLink;
+            
+            // Elemente für die finale Bestätigung anpassen
+            document.getElementById('copy-btn').style.display = 'none';
+            document.getElementById('mail-link-btn').style.display = 'none'; 
+            document.getElementById('copy-container').style.display = 'none';
+            
+            // Verstecke den success-message-wrapper und zeige die finale Bestätigung
+            document.getElementById('success-message-wrapper').style.display = 'none';
+            document.getElementById('final-confirmation').style.display = 'block';
+            
+            localStorage.removeItem(CART_STORAGE_KEY);
+            updateCartCount(); 
+            
+            showToast("Dein E-Mail-Programm sollte sich geöffnet haben. Bitte sende die E-Mail ab!");
+        }
+        
+        // Hilfsfunktion für den Fallback (die alte execCommand Methode)
+        function fallbackCopyTextToClipboard(text) {
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = text;
+            tempTextArea.style.position = 'fixed'; 
+            tempTextArea.style.top = '0';
+            tempTextArea.style.left = '0';
+            document.body.appendChild(tempTextArea);
+            
+            tempTextArea.focus();
+            tempTextArea.select();
+            
+            let success = false;
+            try {
+                success = document.execCommand('copy');
+            } catch (err) {
+                console.error('Kopieren fehlgeschlagen:', err);
+            }
+            
+            document.body.removeChild(tempTextArea);
+
+            if (success) {
+                showToast("E-Mail-Inhalt wurde in die Zwischenablage kopiert! (Fallback)");
+            } else {
+                showToast("Kopieren fehlgeschlagen. Bitte den Text manuell markieren und kopieren.", true);
+            }
+        }
+
+
+        // **********************************************
+        // SCHRITT 3: KOPIEREN DES E-MAIL-TEXTES (VERBESSERT)
+        // **********************************************
+        function copyEmailContent() {
+            const content = document.getElementById('email-body-content').textContent;
+            
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(content).then(() => {
+                    showToast("E-Mail-Inhalt wurde in die Zwischenablage kopiert!");
+                }).catch(err => {
+                    console.error('Kopieren mit Clipboard API fehlgeschlagen:', err);
+                    fallbackCopyTextToClipboard(content);
+                });
+            } else {
+                fallbackCopyTextToClipboard(content);
+            }
+        }
+
+
+        // **********************************************
+        // SCHRITT 2: FORMULAR-EINREICHUNG (ERSTELLUNG DER E-MAIL)
+        // **********************************************
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const errorMsg = document.getElementById('validation-error');
+            
+            if (!form.checkValidity()) {
+                form.classList.add('was-validated'); // Standard-Validierung anzeigen
+                errorMsg.style.display = 'block';
+                showToast("⚠️ Bitte fülle alle erforderlichen Felder aus (*).", true);
+                return;
+            }
+            
+            form.classList.remove('was-validated');
+            errorMsg.style.display = 'none';
+
+            // Daten sammeln
+            const name = document.getElementById('full-name').value;
+            const email = document.getElementById('email').value;
+            const address = document.getElementById('address').value;
+            const note = document.getElementById('note').value;
+            
+            // Warenkorb-Daten sammeln
+            const cart = getCart();
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            // DETAILLIERTE ARTIKELLISTE ERSTELLEN
+            let orderDetails = '--- BESTELLTE ARTIKEL ---\n';
+            cart.forEach((item, index) => {
+                const subtotal = (item.price * item.quantity).toFixed(2);
+                const sizeInfo = item.size ? `Größe: ${item.size}` : 'Größe: N/A';
+
+                orderDetails += `\n[ARTIKEL ${index + 1}]\n`;
+                orderDetails += `Produkt: ${item.name}\n`;
+                orderDetails += `Menge: ${item.quantity}\n`;
+                orderDetails += `${sizeInfo}\n`;
+                orderDetails += `Einzelpreis: ${item.price.toFixed(2)} €\n`;
+                orderDetails += `Teilsumme: ${subtotal} €\n`;
+            });
+
+            orderDetails += `\n--- ZUSAMMENFASSUNG ---\n`;
+            orderDetails += `GESAMTBETRAG: ${totalPrice.toFixed(2)} € (inkl. 0,00 € Versand)\n`;
+            orderDetails += `------------------------\n\n`;
+
+            // E-Mail Body zusammenbauen
+            let emailBody = `Hallo Colonia Della Furia Team,\n\n`;
+            emailBody += `hiermit sende ich eine verbindliche Bestellanfrage über folgende Artikel:\n\n`;
+            emailBody += `${orderDetails}`;
+            
+            emailBody += `--- LIEFER- & KONTAKTDATEN ---\n`;
+            emailBody += `VOLLSTÄNDIGER NAME: ${name}\n`;
+            emailBody += `E-MAIL (Antwortadresse): ${email}\n`;
+            emailBody += `LIEFERADRESSE: ${address}\n\n`;
+            
+            // Anmerkungen
+            if (note) {
+                 emailBody += `--- ANMERKUNGEN ---\n`;
+                 emailBody += `${note}\n\n`;
+            }
+            
+            emailBody += `Bitte bestätigt die Bestellung und sendet mir die Zahlungsinformationen zu.\n`;
+            emailBody += `Vielen Dank und viele Grüße!\n`;
+            
+            const emailSubject = `Bestellanfrage: ${name} (Gesamt ${totalPrice.toFixed(2)} €)`;
+
+            // Sicherstellen, dass der Body für mailto korrekt formatiert ist (URL-Encoding)
+            const mailtoLink = `mailto:coloniadellafuria1972@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            
+            // Anzeige der Erfolgsmeldung mit dem E-Mail-Inhalt
+            showView('view-success');
+            document.getElementById('email-body-content').textContent = emailBody;
+            
+            // Setze den Mailto-Link
+            const mailLink = document.getElementById('mail-link-btn');
+            if (mailLink) {
+                 mailLink.setAttribute('href', mailtoLink);
+            }
+        }
+        
+        // =================================================================
+        // INITIALISIERUNG & SCROLL
         // =================================================================
 
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. Zähler beim initialen Laden der Seite aktualisieren
             updateCartCount(); 
-
-            // 2. Event Listener für Buttons auf Produktseiten (falls man von hier aus zum Shop geht)
-            document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-                button.addEventListener('click', handleAddToCartClick);
-            });
             
-            // 3. Warenkorb-Seite initialisieren
             if (document.getElementById('cart-section')) {
                 renderCart(); // STARTET DIE ANZEIGE DES WARENKORBS
             }
+            
+            document.getElementById('copy-btn')?.addEventListener('click', copyEmailContent);
+            document.getElementById('mail-link-btn')?.addEventListener('click', handleMailLinkClick);
+            document.getElementById('customer-order-form')?.addEventListener('submit', handleFormSubmit);
+            
+            // SCROLL TO TOP LOGIK
+            document.getElementById("scrollToTopBtn")?.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+            window.addEventListener('scroll', handleScrollToTop);
         });
         
-        // **********************************************
-        // SCROLL TO TOP LOGIK
-        // **********************************************
         function handleScrollToTop() {
             const scrollToTopBtn = document.getElementById("scrollToTopBtn");
             if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
@@ -576,15 +824,6 @@
             }
         }
 
-        document.getElementById("scrollToTopBtn")?.addEventListener("click", () => {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        });
-
-        window.addEventListener('scroll', handleScrollToTop);
-
-    </script> 
+    </script>
 </body>
 </html>
