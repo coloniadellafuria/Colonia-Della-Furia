@@ -193,16 +193,6 @@
             background-color: #FF0000;
         }
 
-        /* Neuer Stil für die finale Bestätigung */
-        #final-confirmation {
-            display: none; 
-            margin-top: 25px;
-            padding: 20px;
-            background-color: #1a1a1a;
-            border-radius: 6px;
-            border: 2px solid #FF0000;
-        }
-        
         /* Button für Rückkehr zum Hauptmenü (im finalen Schritt) */
         #back-to-home-btn {
             display: inline-block;
@@ -272,123 +262,6 @@
         #scrollToTopBtn:hover {
             background-color: #cc0000;
         }
-
-        /* Responsive Anpassungen für Smartphones */
-        @media (max-width: 600px) {
-            /* 1. HEADER SEHR KOMPAKT MACHEN (Nur Logo bleibt sichtbar) */
-            header {
-                /* Reduziert den Header auf eine kleine Leiste */
-                padding: 10px 0 0px; 
-            }
-            header .container {
-                flex-direction: column;
-                text-align: center;
-                padding: 10px 15px;
-            }
-            header .header-logo {
-                width: 50px; /* Logo noch kleiner machen */
-                margin: 10px auto 5px;
-            }
-            header h1, header p {
-                /* Titel und Slogan ausblenden, um Platz zu sparen */
-                display: none;
-            }
-            
-            /* 2. NAVIGATION SOFORT FIXIEREN UND KOMPAKT MACHEN */
-            .main-nav {
-                /* Überschreibt die Standardposition und macht sie permanent fixiert */
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                background-color: rgba(0, 0, 0, 0.9);
-                padding: 10px 0; /* Etwas Puffer */
-                z-index: 999;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-                border-bottom: 3px solid #FF0000;
-            }
-            .main-nav .container {
-                /* Passt die Container-Anordnung an die fixierte Leiste an */
-                justify-content: center; 
-                padding: 0 10px;
-            }
-            .main-nav ul {
-                /* Navigation wieder in eine Zeile bringen */
-                flex-direction: row;
-                gap: 0;
-                padding: 0;
-                justify-content: space-around;
-                width: 100%;
-            }
-            .main-nav a {
-                /* Passt die Schriftgröße an, damit alles Platz hat */
-                font-size: 0.9em;
-                padding: 5px 8px;
-            }
-
-            /* 3. HERO-SECTION NACH UNTEN VERSCHIEBEN */
-             #hero {
-                 /* Fügt Platz hinzu, damit der Inhalt nicht unter der fixen Navigation beginnt */
-                 margin-top: 70px; 
-             }
-             
-             /* Restliche Styles beibehalten oder anpassen */
-             main section {
-                padding: 50px 0;
-            }
-            #about-us .content-wrapper {
-                flex-direction: column;
-                gap: 30px;
-            }
-            .gallery-grid {
-                grid-template-columns: 1fr; 
-                gap: 20px;
-            }
-            #cookieConsent .container {
-                flex-direction: column;
-                text-align: center;
-            }
-            #cookieConsent p {
-                margin-bottom: 10px;
-            }
-            .news-grid {
-                grid-template-columns: 1fr;
-            }
-            .game-card {
-                flex-direction: column; 
-                min-height: initial;
-            }
-            .game-date-time-box {
-                flex-basis: auto;
-                padding: 10px;
-                display: flex;
-                justify-content: center;
-                gap: 15px;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            }
-            .game-day, .game-date, .game-time {
-                margin: 0;
-            }
-            .game-date {
-                 font-size: 1.5em; 
-            }
-            .game-details {
-                text-align: center;
-            }
-            .game-opponent {
-                 font-size: 1.2em;
-            }
-            /* Die Buttons sind groß (wie gewünscht) und klickbar */
-            .game-cta {
-                margin: 10px auto 0;
-                width: 100%; 
-                max-width: none; 
-                box-sizing: border-box; 
-                position: relative; 
-                z-index: 10; 
-            }
-        }
-
     </style>
 </head>
 <body>
@@ -423,16 +296,16 @@
                             <label for="trip-destination">Ziel der Auswärtsfahrt</label>
                             <select id="trip-destination" name="trip-destination">
                                 <option value="" disabled selected>Auswärtsspiele werden geladen...</option>
-                                </select>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="trip-quantity">Anzahl der Plätze (inkl. dir)</label>
                             <input type="number" id="trip-quantity" name="trip-quantity" min="1" max="10" value="1">
                         </div>
                     </div>
-
+                    
                     <div id="anmeldung-specific-fields" style="display: none;">
-                         <div class="form-group">
+                        <div class="form-group">
                             <label for="birth-date">Geburtsdatum</label>
                             <input type="text" id="birth-date" name="birth-date" placeholder="TT.MM.JJJJ">
                         </div>
@@ -451,12 +324,10 @@
                         <label for="full-name">Vollständiger Name</label>
                         <input type="text" id="full-name" name="full-name" required>
                     </div>
-                    
                     <div class="form-group">
                         <label for="email">E-Mail Adresse</label>
                         <input type="email" id="email" name="email" required>
                     </div>
-                    
                     <div class="form-group">
                         <label for="message">Nachricht / Anmerkungen (Optional)</label>
                         <textarea id="message" name="message" placeholder="Deine Nachricht an den Fanclub..."></textarea>
@@ -468,393 +339,305 @@
                 </form>
 
                 <div id="success-message">
-                    <p>Deine Anfrage wurde erfolgreich vorbereitet! Bitte **kopiere zuerst** den folgenden E-Mail-Inhalt:</p>
-        
+                    <p>Deine Anfrage wurde erfolgreich vorbereitet! Bitte kopiere zuerst den folgenden E-Mail-Inhalt:</p>
+
                     <div id="copy-container">
                         <p id="email-body-content" style="margin: 0; color: #f0f0f0;"></p>
                     </div>
 
-                    <p>Klicke bitte auf Inhalt kopieren und fügen Sie den kopierten Text in Ihr E-Mailprogramm. Danach senden Sie uns an unsere E-Mail Adresse (coloniadellafuria1972@gmail.com) gerne eine E-Mail.</p>
-
+                    <p>Klicke bitte auf Inhalt kopieren und fügen Sie den kopierten Text in Ihr E-Mailprogramm ein. Danach senden Sie uns an unsere E-Mail Adresse (<span style="color:#FF0000; font-weight:bold;">coloniadellafuria1972@gmail.com</span>) gerne eine E-Mail.</p>
+                    
                     <button type="button" id="copy-btn" role="button" aria-label="Inhalt kopieren">Inhalt kopieren</button>
                     
-                    
-                    <p style="margin-top: 25px; font-weight: bold;">Klicke danach auf den Button, um dein E-Mail-Programm zu öffnen und den Text dort einzufügen.</p>
-                    
-                    <a href="#" class="mail-link-style" id="mail-link-btn" role="button" aria-label="E-Mail jetzt senden">E-Mail jetzt senden</a>
-
-                    <div id="final-confirmation">
-                        <p style="font-size: 1.1em; color: #fff;">**E-Mail-Programm geöffnet!**</p>
-                        <p>Sobald du die E-Mail **abgeschickt** hast, kannst du zurück zur Startseite.</p>
-                        <a href="index.html" id="back-to-home-btn">Zurück zum Hauptmenü</a>
-                    </div>
+                    <div style="margin-top: 25px; padding: 20px; background-color: #1a1a1a; border-radius: 6px; border: 2px solid #FF0000;"> 
+                        <p>Nach dem Öffnen des E-Mail-Programms kannst du zurück zur Startseite.</p> 
+                        <a href="index.html" id="back-to-home-btn">Zurück zum Hauptmenü</a> 
+                    </div> 
                 </div>
 
             </div>
         </section>
         
         <div id="toast-notification"></div>
-        
     </main>
-    
+
     <button id="scrollToTopBtn" title="Zum Seitenanfang">↑</button>
-
-
 
     <script>
         // **********************************************
         // Globale Variablen & HILFSFUNKTIONEN
         // **********************************************
-        let generatedMailtoLink = null; 
-        let generatedEmailBody = null;
+        let generatedEmailBody = null; 
+        
+        // **********************************************
+        // FUNKTIONEN ZUR FORMULARVERARBEITUNG
+        // **********************************************
         
         /**
-         * Zeigt eine benutzerdefinierte Toast-Benachrichtigung an.
-         * @param {string} message - Die anzuzeigende Nachricht.
-         * @param {boolean} [isError=false] - Zeigt an, ob es sich um eine Fehlermeldung handelt (roter Rand).
+         * Erstellt den Textkörper der E-Mail basierend auf den Formulardaten.
          */
-        function showToast(message, isError = false) {
-            const toast = document.getElementById("toast-notification");
-            if (!toast) return;
-
-            // Stoppe alle laufenden Animationen/Timeouts
-            clearTimeout(toast.timeoutId);
-
-            // Nachricht setzen
-            toast.textContent = message;
-
-            // Stil und Sichtbarkeit setzen
-            toast.classList.remove("error");
-            if (isError) {
-                toast.classList.add("error");
-            }
-
-            toast.classList.add("show");
-
-            // Nach 4 Sekunden ausblenden
-            toast.timeoutId = setTimeout(() => {
-                toast.classList.remove("show");
-            }, 4000);
-        }
-
-        
-        function getUrlParameter(name) {
-            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-            const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-            const results = regex.exec(location.search);
-            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-        }
-        
-        /**
-         * Lädt, filtert und befüllt die Auswärtsspiele in das Select-Feld.
-         */
-        async function loadAwayGames() {
-            const selectEl = document.getElementById('trip-destination');
-            const subtitleEl = document.getElementById('form-subtitle');
+        function generateEmailBody() {
+            const formType = document.getElementById('form-type').value;
+            const fullName = document.getElementById('full-name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
             
-            try {
-                // Pfad zur JSON-Datei
-                const response = await fetch('../spiele.json'); 
-                const games = await response.json();
-                
-                // 1. Filter für Auswärtsspiele
-                const awayGames = games.filter(game => game.ort === "Auswärts");
-                
-                // --- Filterung auf ZUKÜNFTIGE Spiele ---
-                const now = new Date(); 
-                
-                const futureAwayGames = awayGames.filter(game => {
-                    const gameDate = new Date(game.datum);
-                    return gameDate > now; 
-                });
-                // --------------------------------------------------
-                
-                selectEl.innerHTML = '<option value="" disabled selected>Bitte Auswärtsspiel auswählen</option>';
-                
-                // 2. Erstellen der Optionen
-                futureAwayGames.forEach(game => {
-                    const gameDate = new Date(game.datum);
-                    const dateStr = gameDate.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
-                    const timeStr = gameDate.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
-                    
-                    const optionText = `${game.gegner} - ${dateStr} um ${timeStr} (${game.arena})`;
-                    const optionValue = `${game.gegner} am ${dateStr} (${timeStr} Uhr)`;
-                    
-                    const option = document.createElement('option');
-                    option.value = optionValue;
-                    option.textContent = optionText;
-                    selectEl.appendChild(option);
-                });
-                
-                // 3. Status-Anzeige aktualisieren
-                if (futureAwayGames.length > 0) {
-                    subtitleEl.textContent = 'Wähle das gewünschte Auswärtsspiel aus der Liste aus.';
-                    // Wichtig: required wird hier im JS verwaltet
-                    selectEl.setAttribute('required', 'required');
-                    document.getElementById('trip-quantity').setAttribute('required', 'required');
-                } else {
-                     selectEl.innerHTML = '<option value="" disabled selected>Aktuell keine Fahrten verfügbar</option>';
-                     subtitleEl.textContent = 'Aktuell sind keine zukünftigen Auswärtsfahrten zur Buchung verfügbar.';
-                     // Wenn keine Fahrten verfügbar, ist das Feld nicht erforderlich
-                     selectEl.removeAttribute('required');
-                     document.getElementById('trip-quantity').removeAttribute('required');
-                }
-                
-            } catch (error) {
-                console.error("Fehler beim Laden oder Verarbeiten der Spieldaten:", error);
-                selectEl.innerHTML = '<option value="" disabled selected>Fehler beim Laden der Spiele</option>';
-                subtitleEl.textContent = 'Fehler beim Laden der Spieldaten. Bitte versuchen Sie es später erneut.';
-                selectEl.removeAttribute('required');
-                document.getElementById('trip-quantity').removeAttribute('required');
-            }
-        }
-
-
-        /**
-         * Generiert den E-Mail-Betreff und den E-Mail-Text (Body)
-         */
-        function generateMailContent() {
-            const type = document.getElementById('form-type').value;
-            const name = document.getElementById('full-name').value;
-            const email = document.getElementById('email').value;
-            const optionalMessage = document.getElementById('message').value;
-
-            let subject = `Allgemeine Anfrage von ${name}`;
-            let baseBody = `Hallo Colonia Della Furia Team,\n\n`;
-            let specificDetails = ``;
+            let body = `Anfrage Typ: ${formType}\n\n`;
             
-            if (type === 'fahrt') {
-                const destination = document.getElementById('trip-destination').value; 
+            if (formType === 'Auswärtsfahrt') {
+                const destinationSelect = document.getElementById('trip-destination');
+                const destination = destinationSelect.options[destinationSelect.selectedIndex].text;
                 const quantity = document.getElementById('trip-quantity').value;
                 
-                subject = `Buchungsanfrage: ${destination} (${quantity} Plätze)`;
-                baseBody += `hiermit buche ich verbindlich ${quantity} Plätze für die Auswärtsfahrt nach ${destination}.\n\n`;
-                specificDetails = `ANFRAGE: ${destination}\nAnzahl der Plätze: ${quantity}\n`;
-            
-            } else if (type === 'anmeldung') {
-                const birthDate = document.getElementById('birth-date').value;
+                body += `Ziel: ${destination}\n`;
+                body += `Anzahl Plätze (inkl. mir): ${quantity}\n`;
+                body += `-------------------------------------------\n`;
+            } else if (formType === 'Mitgliedschaft') {
+                const birthDate = document.getElementById('birth-date').value.trim();
                 const membershipType = document.getElementById('membership-type').value;
-
-                subject = `Mitgliedsantrag: ${name}`;
-                baseBody += `hiermit möchte ich die Mitgliedschaft '${membershipType}' beantragen.\n\n`;
-                specificDetails = `GEBURTSTAG: ${birthDate}\nGEWÜNSCHTE MITGLIEDSCHAFT: ${membershipType}\n`;
-
-            } else {
-                 baseBody += `ich habe eine allgemeine Anfrage:\n\n`;
+                
+                body += `Geburtsdatum: ${birthDate || 'Nicht angegeben'}\n`;
+                body += `Gewünschte Mitgliedschaft: ${membershipType}\n`;
+                body += `-------------------------------------------\n`;
             }
 
-            let finalBody = baseBody;
-            finalBody += `--- Angaben zur Anfrage ---\n`;
-            finalBody += specificDetails;
-            finalBody += `VOLLSTÄNDIGER NAME: ${name}\n`;
-            finalBody += `E-MAIL (Antwortadresse): ${email}\n\n`;
+            body += `Name: ${fullName}\n`;
+            body += `E-Mail: ${email}\n`;
+            body += `\nNachricht:\n${message || '(Keine zusätzliche Nachricht)'}\n\n`;
+            body += `\nGesendet über das Webformular.`;
             
-            if (optionalMessage) {
-                 finalBody += `--- Zusätzliche Nachricht ---\n`;
-                 finalBody += `${optionalMessage}\n\n`;
-            } else {
-                 finalBody += `Keine zusätzliche Nachricht angegeben.\n\n`;
-            }
-            
-            finalBody += `Vielen Dank und bis bald in der Halle!\n`;
-            
-            const mailtoLink = `mailto:coloniadellafuria1972@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(finalBody)}`;
-            
-            return {
-                subject: subject,
-                body: finalBody,
-                mailto: mailtoLink
-            };
+            generatedEmailBody = body; // Speichere für die Kopierfunktion
+            return body;
         }
 
-        
-        // **********************************************
-        // FORMULAR ABSENDEN (ERSTER KLICK)
-        // **********************************************
+        /**
+         * Verarbeitet die Formular-Übermittlung (wird durch onsubmit=... im Formular aufgerufen).
+         */
         function handleFormSubmit(event) {
+            event.preventDefault(); // Verhindert das Standard-Senden des Formulars und Neuladen der Seite
             
             const form = document.getElementById('contact-form');
-            const errorMsg = document.getElementById('validation-error');
-            
-            event.preventDefault(); 
-            
             if (!form.checkValidity()) {
-                form.reportValidity();
-                errorMsg.style.display = 'block';
+                document.getElementById('validation-error').style.display = 'block';
+                showToast('Bitte fülle alle Pflichtfelder aus.', 'error');
                 return false;
             }
-
-            // 1. E-Mail-Inhalt generieren
-            const mailContent = generateMailContent();
-
-            // 2. Globale Variablen speichern
-            generatedMailtoLink = mailContent.mailto;
-            generatedEmailBody = mailContent.body; 
             
-            // 3. Setze den mailto-Link direkt auf den A-Tag (Robuster Mailto-Trigger)
-            document.getElementById('mail-link-btn').href = generatedMailtoLink;
+            // Zusätzliche Validierung für Auswärtsfahrten-Dropdown
+            if (document.getElementById('form-type').value === 'Auswärtsfahrt') {
+                 const selectedTrip = document.getElementById('trip-destination').value;
+                 // Prüft, ob ein Platzhalter, Fehlertext oder leere Auswahl ausgewählt ist
+                 if (!selectedTrip || selectedTrip === "Keine Fahrten" || selectedTrip === "Fehler" || selectedTrip.includes('Bitte Auswärtsspiel auswählen')) {
+                     document.getElementById('validation-error').style.display = 'block';
+                     showToast('Bitte wähle eine gültige Auswärtsfahrt aus.', 'error');
+                     return false;
+                 }
+            }
 
-            // 4. E-Mail-Inhalt in den kopierbaren Bereich einfügen
-            document.getElementById('email-body-content').textContent = generatedEmailBody;
+
+            document.getElementById('validation-error').style.display = 'none';
             
-            // 5. Ansicht wechseln
-            document.getElementById('contact-form').style.display = 'none';
+            // E-Mail-Text generieren
+            const emailBody = generateEmailBody();
+            
+            // Den generierten Text im Success-Container anzeigen
+            document.getElementById('email-body-content').textContent = emailBody;
+            
+            // mailto-Link im Success-Block mit Body aktualisieren
+            const mailLinkBtn = document.getElementById('mail-link-btn');
+            if (mailLinkBtn) {
+                 const subject = "Anfrage von der Webseite";
+                 mailLinkBtn.href = `mailto:coloniadellafuria1972@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+            }
+
+
+            // Formular und Success-Message umschalten
+            form.style.display = 'none';
             document.getElementById('success-message').style.display = 'block';
+            
+            // Sofort zur Success-Message scrollen
+            document.getElementById('success-message').scrollIntoView({ behavior: 'smooth' });
 
-            return false;
+            return false; 
+        }
+
+        /**
+         * Kopiert den generierten E-Mail-Text in die Zwischenablage.
+         */
+        function copyEmailContent() {
+            if (generatedEmailBody) {
+                // Führt den Kopiervorgang durch
+                navigator.clipboard.writeText(generatedEmailBody).then(() => {
+                    showToast('Inhalt in die Zwischenablage kopiert! Jetzt E-Mail senden.', 'success');
+                }).catch(err => {
+                    console.error('Kopieren fehlgeschlagen: ', err);
+                    showToast('Kopieren fehlgeschlagen. Bitte manuell kopieren.', 'error');
+                });
+            } else {
+                showToast('Es ist kein E-Mail-Inhalt zum Kopieren vorhanden.', 'error');
+            }
+        }
+        
+        // **********************************************
+        // HILFSFUNKTIONEN FÜR DYNAMISCHE INHALTE
+        // **********************************************
+        
+        /**
+         * Lädt die Auswärtsspiele aus spiele.json und füllt das Dropdown.
+         */
+        async function loadUpcomingTrips() {
+            const selectElement = document.getElementById('trip-destination');
+            // Zeigt Lade-Status und deaktiviert das Menü VORÜBERGEHEND
+            selectElement.innerHTML = '<option value="" disabled selected>Lade Auswärtsspiele...</option>';
+            selectElement.disabled = true;
+
+            try {
+                // 1. Daten von spiele.json laden
+                const response = await fetch('spiele.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP-Fehler! Status: ${response.status} beim Laden von spiele.json`);
+                }
+                const allGames = await response.json();
+                
+                // 2. Spiele filtern: Nur zukünftige Auswärtsspiele
+                const now = new Date();
+                // Setzt die Uhrzeit auf den Beginn des aktuellen Tages (lokale Zeit)
+                now.setHours(0, 0, 0, 0); 
+
+                const upcomingAwayTrips = allGames.filter(game => {
+                    // NEUER KORREKTER FILTER: Die neue spiele.json verwendet 'ort' statt 'heimspiel'
+                    // und die Zeit im Datum-String (YYYY-MM-DDTHH:MM:SS).
+                    
+                    // Extrahiert YYYY-MM-DD (z.B. "2025-09-19") aus dem ISO-String
+                    const datePart = game.datum.substring(0, 10); 
+                    const parts = datePart.split('-');
+                    
+                    // Erstellt ein lokales Datumsobjekt (wichtig für korrekten Vergleich)
+                    // Teile: Jahr, Monat-Index (0-11), Tag
+                    const gameDateForComparison = new Date(parts[0], parts[1] - 1, parts[2]); 
+                    gameDateForComparison.setHours(0, 0, 0, 0); // Stellt sicher, dass das Spieldatum auf 00:00:00 steht
+                    
+                    // FILTER-LOGIK: Spiel ist Auswärts (ort: "Auswärts") UND das Datum liegt heute oder in der Zukunft
+                    return game.ort === "Auswärts" && gameDateForComparison >= now;
+                });
+                
+                // Dropdown leeren
+                selectElement.innerHTML = ''; 
+
+                if (upcomingAwayTrips.length > 0) {
+                    const defaultOption = document.createElement('option');
+                    defaultOption.value = "";
+                    defaultOption.textContent = '--- Bitte Auswärtsspiel auswählen ---';
+                    defaultOption.disabled = true;
+                    defaultOption.selected = true;
+                    selectElement.appendChild(defaultOption);
+                    
+                    upcomingAwayTrips.forEach(trip => {
+                        const option = document.createElement('option');
+                        
+                        // Korrekte Formatierung: Datum aus dem ISO-String extrahieren
+                        const datePart = trip.datum.substring(0, 10); 
+                        const dateFormatted = new Date(datePart).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+                        
+                        // Die Arena-Information (statt fahrt_info) hinzufügen
+                        const info = trip.arena ? ` (${trip.arena})` : ''; 
+
+                        option.value = `${trip.gegner} - ${dateFormatted}${info}`;
+                        option.textContent = `${trip.gegner} - ${dateFormatted}${info}`;
+                        selectElement.appendChild(option);
+                    });
+                    
+                } else {
+                    const option = document.createElement('option');
+                    option.value = "Keine Fahrten";
+                    option.textContent = 'Aktuell keine Auswärtsfahrten verfügbar (alle Spiele vorbei, oder alle Heimspiele).';
+                    selectElement.appendChild(option);
+                }
+                
+                // WICHTIG: Dropdown AKTIVIEREN, egal ob Spiele gefunden wurden oder nicht
+                selectElement.disabled = false; 
+
+            } catch (error) {
+                console.error('Fehler beim Laden der spiele.json:', error);
+                
+                selectElement.innerHTML = '';
+                const option = document.createElement('option');
+                option.value = "Fehler";
+                
+                let errorMessage = 'Unbekannter Fehler beim Laden.';
+                if (error.message.includes('Status: 404')) {
+                    errorMessage = 'Fehler beim Laden: spiele.json nicht gefunden. (Ist die Datei im richtigen Ordner?)';
+                } else if (error.message.includes('JSON')) {
+                    errorMessage = 'Fehler beim Laden: Das JSON-Format ist fehlerhaft. (Prüfe Kommas und Klammern in spiele.json)';
+                } else {
+                     errorMessage = `Ladefehler: ${error.message}`;
+                }
+
+                option.textContent = errorMessage;
+                selectElement.appendChild(option);
+                
+                // WICHTIG: Dropdown AKTIVIEREN, damit die Fehlermeldung sichtbar ist
+                selectElement.disabled = false; 
+                showToast(option.textContent, 'error');
+            }
+        }
+
+
+        /**
+         * Konfiguriert das Formular basierend auf dem URL-Parameter (Auswärtsfahrt oder Mitgliedschaft).
+         */
+        function initializeForm() {
+            const urlParams = new URLSearchParams(window.location.search);
+            let formType = urlParams.get('type') || 'Auswärtsfahrt'; // Standard
+            
+            if (formType !== 'Auswärtsfahrt' && formType !== 'Mitgliedschaft') {
+                formType = 'Auswärtsfahrt'; // Fallback
+            }
+
+            document.getElementById('form-type').value = formType;
+            
+            const titleElement = document.getElementById('form-title');
+            const subtitleElement = document.getElementById('form-subtitle');
+            
+            const tripFields = document.getElementById('trip-specific-fields');
+            const anmeldungFields = document.getElementById('anmeldung-specific-fields');
+            
+            if (formType === 'Auswärtsfahrt') {
+                titleElement.textContent = 'Anfrage für Auswärtsfahrten';
+                subtitleElement.textContent = 'Wähle deine gewünschte Fahrt und die Anzahl der Plätze.';
+                tripFields.style.display = 'block';
+                anmeldungFields.style.display = 'none';
+                document.getElementById('submit-btn').textContent = 'Fahrten-Anfrage senden';
+                loadUpcomingTrips(); // <-- Läd die Daten aus spiele.json
+            } else if (formType === 'Mitgliedschaft') {
+                titleElement.textContent = 'Mitgliedschaftsanfrage';
+                subtitleElement.textContent = 'Fülle das Formular aus, um deine Mitgliedsanfrage zu starten. Wir senden dir die Dokumente zu.';
+                tripFields.style.display = 'none';
+                anmeldungFields.style.display = 'block';
+                document.getElementById('submit-btn').textContent = 'Mitgliedschaftsanfrage senden';
+            }
         }
         
         /**
-         * Kopiert den Inhalt des E-Mail-Textes in die Zwischenablage.
-         * ERSETZT ALLE alert() DURCH showToast()
+         * Zeigt eine temporäre Benachrichtigung (Toast) an.
          */
-        function copyEmailContent() {
-            const content = document.getElementById('email-body-content').textContent;
-            const successMessage = 'E-Mail-Inhalt wurde in die Zwischenablage kopiert!';
-            const errorMessage = 'Kopieren fehlgeschlagen. Bitte den Text manuell kopieren.';
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast-notification');
+            toast.textContent = message;
             
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(content).then(() => {
-                    showToast(successMessage);
-                }).catch(err => {
-                    console.error('Kopieren fehlgeschlagen:', err);
-                    showToast(errorMessage, true); // true für Fehler-Stil
-                });
-            } else {
-                // Fallback für unsichere Kontexte oder ältere Browser
-                const tempTextArea = document.createElement('textarea');
-                tempTextArea.value = content;
-                tempTextArea.style.position = 'fixed'; 
-                document.body.appendChild(tempTextArea);
-                tempTextArea.focus();
-                tempTextArea.select();
-                try {
-                    document.execCommand('copy');
-                    showToast(successMessage); // Erfolgsmeldung
-                } catch (err) {
-                    console.error('Fallback Kopieren fehlgeschlagen:', err);
-                    showToast(errorMessage, true); // Fehlermeldung
-                }
-                document.body.removeChild(tempTextArea);
+            // Typ-spezifische Stile
+            toast.classList.remove('error');
+            if (type === 'error') {
+                toast.classList.add('error');
             }
+
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000); 
         }
 
-        
-        // **********************************************
-        // INITIALISIERUNG
-        // **********************************************
-        function initializeForm() {
-             // Setze Standardwert auf 'fahrt', wenn kein Typ übergeben wird
-            let type = getUrlParameter('type');
-            if (!type || (type !== 'fahrt' && type !== 'anmeldung')) {
-                 type = 'fahrt';
-            }
-            
-            const titleEl = document.getElementById('form-title');
-            const subtitleEl = document.getElementById('form-subtitle');
-            const formTypeEl = document.getElementById('form-type');
-            const tripFields = document.getElementById('trip-specific-fields');
-            const anmeldungFields = document.getElementById('anmeldung-specific-fields');
-            const pageTitleEl = document.getElementById('page-title');
-            const mailLink = document.getElementById('mail-link-btn'); 
-            const copyBtn = document.getElementById('copy-btn');
-            const finalConfirmation = document.getElementById('final-confirmation');
-            const tripDestination = document.getElementById('trip-destination');
-            const tripQuantity = document.getElementById('trip-quantity');
-            const birthDate = document.getElementById('birth-date');
-            const membershipType = document.getElementById('membership-type');
-
-            formTypeEl.value = type;
-
-            // Setze alle optionalen/spezifischen Felder NICHT erforderlich
-            tripDestination.removeAttribute('required');
-            tripQuantity.removeAttribute('required');
-            birthDate.removeAttribute('required');
-            membershipType.removeAttribute('required');
-
-
-            if (type === 'fahrt') {
-                pageTitleEl.textContent = 'Fahrt buchen | Colonia Della Furia';
-                titleEl.textContent = 'Buchungsanfrage Auswärtsfahrt';
-                subtitleEl.textContent = 'Lade Auswärtsspiele...'; 
-                
-                tripFields.style.display = 'block'; 
-                anmeldungFields.style.display = 'none'; 
-                
-                // Setze Felder für Fahrt als erforderlich
-                tripDestination.setAttribute('required', 'required');
-                tripQuantity.setAttribute('required', 'required');
-
-                loadAwayGames(); 
-                
-            } else if (type === 'anmeldung') {
-                pageTitleEl.textContent = 'Mitglied werden | Colonia Della Furia';
-                titleEl.textContent = 'Mitgliedsantrag';
-                subtitleEl.textContent = 'Fülle das Formular aus, um deine Mitgliedsanfrage an den Fanclub zu senden.';
-                tripFields.style.display = 'none'; 
-                anmeldungFields.style.display = 'block';
-
-                // Setze Felder für Anmeldung als erforderlich
-                birthDate.setAttribute('required', 'required');
-                membershipType.setAttribute('required', 'required');
-            } else {
-                pageTitleEl.textContent = 'Kontaktanfrage | Colonia Della Furia';
-                titleEl.textContent = 'Allgemeine Kontaktanfrage';
-                subtitleEl.textContent = 'Bitte fülle alle Felder aus, um uns eine Nachricht zu senden.';
-                tripFields.style.display = 'none'; 
-                anmeldungFields.style.display = 'none';
-            }
-
-            // Listener für den "Inhalt kopieren" Button
-            if(copyBtn) {
-                 copyBtn.addEventListener('click', copyEmailContent);
-            }
-            
-            // Listener für den A-TAG (öffnet E-Mail) - Handhabt nur UI-Übergang
-            if(mailLink) {
-                 // Fügt den Event-Listener hinzu, um das UI zu aktualisieren und die Toast-Nachricht anzuzeigen
-                 mailLink.addEventListener('click', (e) => {
-                    
-                    if (generatedMailtoLink) {
-                        // Verzögerung, damit der mailto-Link zuerst ausgelöst wird
-                        setTimeout(() => {
-                           // Elemente verstecken
-                           mailLink.style.display = 'none';
-                           copyBtn.style.display = 'none'; 
-                           document.getElementById('copy-container').style.display = 'none';
-                           
-                           // Das sekundäre Abbrechen-Element, falls es im HTML wäre, wird jetzt nicht mehr benötigt
-                           const secondaryLink = document.querySelector('.back-link-secondary');
-                           if (secondaryLink) secondaryLink.style.display = 'none';
-
-                           // Zeige die finale Bestätigung
-                           finalConfirmation.style.display = 'block';
-
-                           // Zeige benutzerdefinierte Toast-Nachricht (ersetzt alert)
-                           showToast("WICHTIG: Dein E-Mail-Programm sollte sich jetzt geöffnet haben. Bitte sende die E-Mail ab!");
-                        }, 50); 
-                        
-                    } else {
-                         e.preventDefault(); 
-                         showToast("Fehler: E-Mail-Link ist nicht verfügbar. Bitte fülle das Formular erneut aus.", true); // Fehlermeldung
-                    }
-                });
-            }
-        }
-        
-        document.addEventListener('DOMContentLoaded', () => {
-             initializeForm();
-
-            // Allgemeine Skripte
-            updateCartCount(); 
-            
-            document.getElementById("scrollToTopBtn")?.addEventListener("click", () => {
-                window.scrollTo({ top: 0, behavior: "smooth" });
-            });
-            window.addEventListener('scroll', handleScrollToTop);
-        });
-
-        // HILFSFUNKTIONEN FÜR WARENKORB/SCROLLEN
+        // HILFSFUNKTIONEN FÜR WARENKORB (nur Zähler-Aktualisierung)
         const CART_STORAGE_KEY = 'coloniaFuriaCart';
         function getCart() {
             try {
@@ -870,6 +653,8 @@
             const countElements = document.querySelectorAll('#cart-count-nav');
             countElements.forEach(el => { el.textContent = totalItems; });
         }
+        
+        // SCROLL TO TOP LOGIK
         function handleScrollToTop() {
             const scrollToTopBtn = document.getElementById("scrollToTopBtn");
             if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
@@ -878,6 +663,28 @@
                 scrollToTopBtn.style.display = "none";
             }
         }
+
+        // **********************************************
+        // INITIALISIERUNG
+        // **********************************************
+
+        document.addEventListener('DOMContentLoaded', () => {
+             initializeForm();
+
+            // Allgemeine Skripte
+            updateCartCount(); 
+            
+            // Listener für das Kopieren
+            document.getElementById('copy-btn')?.addEventListener('click', copyEmailContent);
+            
+            // SCROLL TO TOP LOGIK
+            document.getElementById("scrollToTopBtn")?.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+            window.addEventListener('scroll', handleScrollToTop);
+        });
+        
     </script>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -9,12 +9,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
+        /* ZUSÄTZLICHE STILE, UM DEN HINTERGRUND ZU VERLÄNGERN */
+        html, body {
+            height: 100%; /* Stellt sicher, dass HTML und Body mindestens 100% der Viewport-Höhe einnehmen */
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a; /* Hintergrundfarbe des Impressums hier wiederholen */
+        }
+        main {
+            /* Passt die Höhe dynamisch an die Größe des Fensters an */
+            /* 100vh = 100% der Viewport-Höhe, abzüglich ca. 50px für die feste Navigationsleiste */
+            min-height: calc(100vh - 50px); 
+        }
+
         /* Spezifische Stile für die Impressum-Seite */
         #impressum {
             padding: 80px 0;
             background-color: #1a1a1a; 
             color: #ffffff;
             line-height: 1.6;
+            min-height: 100%; /* Stellt sicher, dass die Sektion mindestens die Höhe des Main-Containers ausfüllt */
         }
         #impressum h2 {
             color: #FF0000; 
@@ -214,23 +228,8 @@
                 <h2>Impressum</h2>
                 
                 <div>
-                    <h3>Angaben gemäß § 5 TMG</h3>
-                    <p>Timo Krauthausen<br>
-                    Rilkestraße 38<br>
-                    50997 Köln</p>
-                </div>
-                
-                <div>
                     <h3>Kontakt</h3>
                     <p>E-Mail: coloniadellafuria1972@gmail.com</p>
-                    <p>Telefon: +49 (0) 176 832 770 20</p>
-                </div>
-
-                <div>
-                    <h3>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
-                    <p>Timo Krauthausen<br>
-                    Rilkestraße 38<br>
-                    50997 Köln</p>
                 </div>
 
                 <div>
@@ -242,7 +241,6 @@
                     <h3>Urheberrecht</h3>
                     <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p>
                 </div>
-                
             </div>
         </section>
         

@@ -706,3 +706,8 @@ footer a:hover {
     visibility: visible;
     opacity: 1;
 }
+/* Standard-Stil für alle Texte in der Hauptklasse (z.B. linksbündig) */
+.haupttext p {
+    text-align: left;
+}
+
