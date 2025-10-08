@@ -76,34 +76,119 @@
             color: #FF0000;
         }
         
-        /* NEU: Responsive Anpassungen für Smartphones */
+        /* Responsive Anpassungen für Smartphones */
         @media (max-width: 600px) {
-            /* FIX: Hauptsektion nach unten schieben */
-            #datenschutz {
-                padding-top: 75px !important; /* WICHTIG: Erhöhter Abstand, um unter der fixen Leiste zu starten */
+            /* 1. HEADER SEHR KOMPAKT MACHEN (Nur Logo bleibt sichtbar) */
+            header {
+                /* Reduziert den Header auf eine kleine Leiste */
+                padding: 10px 0 0px; 
             }
-            #datenschutz .container {
-                padding: 0 15px;
+            header .container {
+                flex-direction: column;
+                text-align: center;
+                padding: 10px 15px;
             }
-            #datenschutz h2 {
-                font-size: 2em;
+            header .header-logo {
+                width: 50px; /* Logo noch kleiner machen */
+                margin: 10px auto 5px;
             }
-             /* FIX: Navigation kompakter machen (Falls sie per CSS gestackt wurde) */
-            .fixed-compact-nav .container {
-                /* flex-direction: column; entfernt, um horizontal zu bleiben */
+            header h1, header p {
+                /* Titel und Slogan ausblenden, um Platz zu sparen */
+                display: none;
+            }
+            
+            /* 2. NAVIGATION SOFORT FIXIEREN UND KOMPAKT MACHEN */
+            .main-nav {
+                /* Überschreibt die Standardposition und macht sie permanent fixiert */
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                padding: 10px 0; /* Etwas Puffer */
+                z-index: 999;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+                border-bottom: 3px solid #FF0000;
+            }
+            .main-nav .container {
+                /* Passt die Container-Anordnung an die fixierte Leiste an */
+                justify-content: center; 
                 padding: 0 10px;
             }
-            .fixed-compact-nav .header-logo {
-                height: 25px; 
-                margin-right: 10px;
+            .main-nav ul {
+                /* Navigation wieder in eine Zeile bringen */
+                flex-direction: row;
+                gap: 0;
+                padding: 0;
+                justify-content: space-around;
+                width: 100%;
             }
-            .fixed-compact-nav nav ul {
-                flex-direction: row; /* WICHTIG: Horizontal beibehalten */
-                justify-content: flex-end;
+            .main-nav a {
+                /* Passt die Schriftgröße an, damit alles Platz hat */
+                font-size: 0.9em;
+                padding: 5px 8px;
             }
-            .fixed-compact-nav nav a {
-                padding: 8px 5px; /* Sehr kompakte Links */
-                font-size: 0.7em; /* Kleinere Schrift */
+
+            /* 3. HERO-SECTION NACH UNTEN VERSCHIEBEN */
+             #hero {
+                 /* Fügt Platz hinzu, damit der Inhalt nicht unter der fixen Navigation beginnt */
+                 margin-top: 70px; 
+             }
+             
+             /* Restliche Styles beibehalten oder anpassen */
+             main section {
+                padding: 50px 0;
+            }
+            #about-us .content-wrapper {
+                flex-direction: column;
+                gap: 30px;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr; 
+                gap: 20px;
+            }
+            #cookieConsent .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            #cookieConsent p {
+                margin-bottom: 10px;
+            }
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            .game-card {
+                flex-direction: column; 
+                min-height: initial;
+            }
+            .game-date-time-box {
+                flex-basis: auto;
+                padding: 10px;
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .game-day, .game-date, .game-time {
+                margin: 0;
+            }
+            .game-date {
+                 font-size: 1.5em; 
+            }
+            .game-details {
+                text-align: center;
+            }
+            .game-opponent {
+                 font-size: 1.2em;
+            }
+            /* Die Buttons sind groß (wie gewünscht) und klickbar */
+            .game-cta {
+                margin: 10px auto 0;
+                width: 100%; 
+                max-width: none; 
+                box-sizing: border-box; 
+                position: relative; 
+                z-index: 10; 
             }
         }
     </style>
